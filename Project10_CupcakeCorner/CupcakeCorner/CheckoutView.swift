@@ -16,6 +16,10 @@ struct CheckoutView: View {
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
     
+    //提示失败的弹窗
+    @State private var errorMessage = ""
+    @State private var showingError = false
+    
     
     var body: some View {
         
@@ -38,11 +42,12 @@ struct CheckoutView: View {
                 Text("Your total is \(order.cost, format: .currency(code: "USD"))")
                     .font(.title)
 
-                //提交订单
+                //MARK: - 提交订单，保存地址
                 Button("提交订单、保存地址") {
-                    //方法：执行提交订单方法
-                    placeAddress()
+                    //方法：执行保存地址
+                    //placeAddress()
                     Task {
+                        //方法：执行提交订单
                         await placeOrder()
                     }
                 }
@@ -52,11 +57,17 @@ struct CheckoutView: View {
         .navigationTitle("Check out")
         .navigationBarTitleDisplayMode(.inline)
         .scrollBounceBehavior(.basedOnSize)
-        //提交状态弹窗
+        //提交状态弹窗 - 成功
         .alert("Thank you!", isPresented: $showingConfirmation) {
             Button("OK") { }
         } message: {
             Text(confirmationMessage)
+        }
+        //提交状态弹窗 - 失败
+        .alert("Opps！", isPresented: $showingError) {
+            Button("OK") { }
+        } message: {
+            Text(errorMessage)
         }
         
     }
@@ -89,34 +100,34 @@ struct CheckoutView: View {
             confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.typeIndex].lowercased()) cupcakes is on its way!"
             showingConfirmation = true
         } catch {
-            // 如果出错的情况下：比如因为没有互联网连接，那么 catch 块将运行，
-            print("Checkout failed: \(error.localizedDescription)")
-            confirmationMessage = "网络未连接，暂时无法提交信息，请稍后再试。"
-            showingConfirmation = true
+            // 如果出错的情况下：比如因为没有互联网连接，那么 catch 块将运行
+            errorMessage = "Checkout failed. \n\nMessage \(error.localizedDescription)"
+            showingError = true
         }
         
     }
     
     
     //MARK: - 方法：提交地址到UserDefault
-    func placeAddress() {
-        
-        guard let encoded = try? JSONEncoder().encode(order.userAddress) else {
-            print("编码地址数据失败")
-            return
-        }
-        
-        // MARK: 保存到UserDefaults
-        UserDefaults.standard.set(encoded, forKey: "UserAddress")
-        print("编码地址成功")
-        print(UserDefaults.standard.data(forKey: "UserAddress") ?? "地址没有内容")
-        
-    }
+//    func placeAddress() {
+//        
+//        guard let encoded = try? JSONEncoder().encode(order.userAddress) else {
+//            print("编码地址数据失败")
+//            return
+//        }
+//        
+//        // MARK: 保存到UserDefaults
+//        UserDefaults.standard.set(encoded, forKey: "UserAddress")
+//        print("编码地址成功")
+//        print(UserDefaults.standard.data(forKey: "UserAddress") ?? "地址没有内容")
+//        
+//    }
     
     
 }
 
 
+//MARK: - 预览
 #Preview {
     CheckoutView(order: Order())
 }

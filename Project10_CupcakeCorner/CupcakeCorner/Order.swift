@@ -15,14 +15,14 @@ import Foundation
 //4.用户是否想要在蛋糕上加额外的糖霜。
 //5.用户是否想在蛋糕上添加糖粉。
 
-
 //其中每一个都需要在更改时更新 UI，这意味着我们需要确保该类使用 @Observable 宏
 
 
 @Observable
 class Order : Codable {
+
     
-    //对observable的类，要嵌套一个 Enum 符合 CodingKey 协议，以便可以正确编码
+    //MARK: - 订单基本属性：对observable的类，要嵌套一个 Enum 符合 CodingKey 协议，以便可以正确编码
     enum CodingKeys: String, CodingKey {
         case _typeIndex = "typeIndex"
         case _quantity = "quantity"
@@ -35,8 +35,6 @@ class Order : Codable {
 //        case _streetAddress = "streetAddress"
 //        case _zip = "zip"
     }
-    
-    //蛋糕基本属性
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
     var typeIndex = 0
     var quantity = 3
@@ -51,34 +49,8 @@ class Order : Codable {
     var extraFrosting = false
     var addSprinkles = false
     
-
     
-    //订单的地址数据
-    var userAddress = Address()
-//    var name = ""
-//    var streetAddress = ""
-//    var city = ""
-//    var zip = ""
-    
-    //计算属性：用于验证一个订单数据是否符合最低要求
-//    var hasValidAddress: Bool {
-//
-//        let nameTrim = name.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let streetAddressTrim = streetAddress.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let cityTrim = city.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let zipTrim = zip.trimmingCharacters(in: .whitespacesAndNewlines)
-//        
-//        if nameTrim.isEmpty || streetAddressTrim.isEmpty || cityTrim.isEmpty || zipTrim.isEmpty {
-//            return false
-//        }
-//        
-//        return true
-//    }
-    
-    
-    
-    
-    //计算属性：用于计算一个订单的费用
+    //MARK: - 计算属性：用于计算一个订单的费用
     var cost: Double {
         // $2 per cake
         var cost = Double(quantity) * 2
@@ -98,7 +70,18 @@ class Order : Codable {
 
         return cost
     }
+
     
-    
+    //MARK: - 订单的地址数据。一旦发生赋值，就会触发保存到UserDefault
+    var userAddress = Address() {
+        didSet{
+            guard let encoded = try? JSONEncoder().encode(oldValue) else {
+                print("编码地址数据失败")
+                return
+            }
+            UserDefaults.standard.set(encoded, forKey: "UserAddress")
+        }
+    }
+
     
 }

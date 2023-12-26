@@ -74,8 +74,6 @@ struct ContentView: View {
             }
             .navigationTitle("Order your cakes:")
             
-            //编码解码测试
-            //Button("Encode Taylor", action: encodeTaylor)
             
         }
         
