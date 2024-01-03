@@ -37,23 +37,36 @@ struct ContentView: View {
     @State private var path = [User]()
     
     
+    //4. 用于传递到 usersView 视图的参数
+    @State private var showingNewOnly = false
+    
+    @State private var sortOrder = [
+        SortDescriptor(\User.name),
+        SortDescriptor(\User.joinDate),
+    ]
+    
+    
+    
     //MARK: - 视图
     var body: some View {
         
-        //绑定了储存的导航路径
+        //NavigationStack：绑定了储存的导航路径
         NavigationStack(path: $path) {
-            List(users) { user in
-                NavigationLink(value: user) {
-                    Text(user.name)
-                }
-            }
+            
+            //子视图：通过状态属性 showingNewOnly 以及 sortOrder，控制显示什么内容
+            UsersView(minimumJoinDate: showingNewOnly ? .now : .distantPast, sortOrder: sortOrder)
+            
             .navigationTitle("Users")
             //当导航到 User 对象时，去到以下目标页面（并且把 user 传递过去）
             .navigationDestination(for: User.self) {
                 user in
                 EditUserView(user: user)
             }
+            
+            //顶部工具栏：
             .toolbar {
+                
+                //按钮：添加一些数据
                 Button("Add User", systemImage: "plus") {
                     
                     //删除 User 类型的所有现有模型对象
@@ -69,16 +82,51 @@ struct ContentView: View {
                     modelContext.insert(third)
                     modelContext.insert(fourth)
                     
+                    addSample()
+                    
                     //跳转到相应页面
                     //path = [user]
                 }
+                
+                //按钮：控制是否仅显示最新数据
+                Button(showingNewOnly ? "Show Everyone" : "Show Upcoming") {
+                    showingNewOnly.toggle()
+                }
+                
+                //按钮：控制排序逻辑
+                Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                    //用 tag 修饰符，包裹具体选项的值（可以是任何值）。该值与状态属性绑定
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Sort by Name")
+                            .tag([
+                                SortDescriptor(\User.name),
+                                SortDescriptor(\User.joinDate),
+                            ])
+
+                        Text("Sort by Join Date")
+                            .tag([
+                                SortDescriptor(\User.joinDate),
+                                SortDescriptor(\User.name)
+                            ])
+                    }
+                }
+                
             }
         }
         
     }
     
     //MARK: - 方法
-    
+    func addSample() {
+        let user1 = User(name: "Piper Chapman", city: "New York", joinDate: .now)
+        let job1 = Job(name: "Organize sock drawer", priority: 3)
+        let job2 = Job(name: "Make plans with Alex", priority: 4)
+
+        modelContext.insert(user1)
+
+        user1.jobs.append(job1)
+        user1.jobs.append(job2)
+    }
     
 }
 
