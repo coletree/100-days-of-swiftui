@@ -5,12 +5,19 @@
 //  Created by coletree on 2024/1/5.
 //
 
+import SwiftData
 import SwiftUI
+
 
 struct UserDetailView: View {
     
+    //MARK: - 属性
+    
+    //声明User数组，等待被传入
     var user: User
     
+    
+    //MARK: - 视图
     var body: some View {
         
         Form{
@@ -27,11 +34,19 @@ struct UserDetailView: View {
             }
             
             Section{
-                ForEach(user.tags, id: \.self){
-                    item in
-                    HStack{
-                        Text("\(item)")
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing: 8){
+                        ForEach(user.tags, id: \.self){
+                            item in
+                            Button(action: {
+                                
+                            }, label: {
+                                Text("\(item)")
+                            })
+                            .buttonStyle(.borderedProminent)
+                        }
                     }
+                    
                 }
             }
             
@@ -54,6 +69,25 @@ struct UserDetailView: View {
     }
 }
 
+
+
+//MARK: - 预览
 #Preview {
-    UserDetailView(user: User(id: UUID(), isActive: false, name: "aaa", age: 16, company: "fdsafd", email: "fdsfa", address: " fdsa ffdsaf", about: "fdsafdas fdsa ", registered: .now, tags: ["111"], friends: [Friend(id: UUID(), name: "bb")]))
+    
+    do {
+        //1.由于并不希望创建的模型容器实际存储任何内容；则需要创建【自定义配置】，告诉 SwiftData 仅将信息存储在内存中；
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        
+        //2.使用刚刚的【自定义配置】，来创建一个模型容器；
+        let container = try ModelContainer(for: User.self, configurations: config)
+        
+        //3. 这是在 User 类中，定义的 static 静态属性。方便随时调用，只需要用（大写类名）代表类本身
+        let temp = User.example
+        
+        //4.返回以下内容给Preview，输入temp作为实例化参数；
+        return UserDetailView(user: temp).modelContainer(container)
+        
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }

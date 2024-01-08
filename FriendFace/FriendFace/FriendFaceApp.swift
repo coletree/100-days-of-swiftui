@@ -4,8 +4,10 @@
 //
 //  Created by coletree on 2024/1/5.
 //
-
+import SwiftData
 import SwiftUI
+
+
 
 @main
 struct FriendFaceApp: App {
@@ -13,5 +15,6 @@ struct FriendFaceApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: User.self)
     }
 }

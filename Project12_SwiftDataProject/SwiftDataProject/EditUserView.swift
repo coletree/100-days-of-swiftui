@@ -48,8 +48,7 @@ struct EditUserView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: User.self, configurations: config)
         let user = User(name: "Taylor Swift", city: "Nashville", joinDate: .now)
-        return EditUserView(user: user)
-            .modelContainer(container)
+        return EditUserView(user: user).modelContainer(container)
     } catch {
         return Text("Failed to create container: \(error.localizedDescription)")
     }
