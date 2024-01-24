@@ -38,6 +38,7 @@ struct MissionView: View {
                         width * 0.5
                     }
                     .padding(.vertical, 40)
+                    .accessibilityLabel("badget for \(mission.displayName)")
 
                 //任务内容：
                 VStack(alignment: .leading) {
@@ -139,12 +140,14 @@ struct CrewScrollView: View {
                                     Circle()
                                         .strokeBorder(.white, lineWidth: 2)
                                 )
+                                .accessibilityLabel("avatar for \(crewMember.astronaut.name)")
                             //成员信息：
                             VStack(alignment: .leading) {
                                 //成员名称：crewMember.astronaut.name
                                 Text(crewMember.astronaut.name)
                                     .foregroundStyle(.white)
                                     .font(.headline)
+                                    .accessibilityLabel(crewMember.astronaut.name.replacingOccurrences(of: ".", with: ""))
                                 //成员角色：crewMember.role
                                 Text(crewMember.role)
                                     .foregroundStyle(.white.opacity(0.5))

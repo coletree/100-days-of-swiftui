@@ -17,6 +17,7 @@ struct AstronautView: View {
                 Image(astronaut.id)
                     .resizable()
                     .scaledToFit()
+                    .accessibilityLabel("picture of \(astronaut.name)")
 
                 Text(astronaut.description)
                     .padding()
@@ -30,10 +31,9 @@ struct AstronautView: View {
 
 
 
-#Preview {
-    
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
 
+#Preview {
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     return AstronautView(astronaut: astronauts["aldrin"]!)
         .preferredColorScheme(.dark)
 }

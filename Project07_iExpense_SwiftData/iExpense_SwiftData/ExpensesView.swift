@@ -57,6 +57,10 @@ struct ExpensesView: View {
                         }
                         
                     }
+                    .accessibilityElement()
+                    .accessibilityLabel("\(item.name), \(item.amount.formatted(.currency(code: "USD")))")
+                    .accessibilityHint(item.type)
+                    
                     
                 }
             }

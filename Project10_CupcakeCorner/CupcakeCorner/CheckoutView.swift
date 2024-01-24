@@ -37,6 +37,7 @@ struct CheckoutView: View {
                     ProgressView()
                 }
                 .frame(height: 280)
+                .accessibilityHidden(true)
 
                 //展示订单价格
                 Text("Your total is \(order.cost, format: .currency(code: "USD"))")

@@ -7,20 +7,31 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     
+    //MARK: - 属性
     
+    //状态属性：用户输入的所有正确的词
     @State private var usedWords = [String]()
+    
+    //状态属性：根词
     @State private var rootWord = ""
+    
+    //状态属性：当前正在输入的词
     @State private var newWord = ""
     
+    //状态属性：用户输入正确的词数量
     @State private var bingoNum = 0
     
+    //状态属性：出错信息弹窗
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var showingError = false
     
     
+    
+    //MARK: - 视图
     var body: some View {
         NavigationStack {
             List {
@@ -35,11 +46,13 @@ struct ContentView: View {
                     ForEach(usedWords, id: \.self) {
                         word in
                         HStack {
-                            Text(word)
-                            Spacer()
                             Image(systemName: "\(word.count).circle")
                                 .foregroundStyle(.gray)
+                            Text(word)
                         }
+                        //VoiceOver 可用性
+                        .accessibilityElement()
+                        .accessibilityLabel("\(word), \(word.count) letters")
                     }
                 }
             }
@@ -52,6 +65,7 @@ struct ContentView: View {
             }
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
+            //视图：提示框
             .alert(errorTitle, isPresented: $showingError) {
                 Button("OK") { }
             } message: {
@@ -61,7 +75,37 @@ struct ContentView: View {
     }
     
     
-    // 提交新词
+    //MARK: - 方法
+    
+    
+    //方法：游戏开始
+    func startGame(){
+        //1. 我们传入一个文件 URL，如果可以加载该文件，它将发送回一个包含该文件内容的字符串。
+        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
+            // 2. Load start.txt into a string
+            if let startWords = try? String(contentsOf: startWordsURL) {
+                // 3. Split the string up into an array of strings, splitting on line breaks
+                let allWords = startWords.components(separatedBy: "\n")
+                // 4. 随机选取一个词，或使用 "silkworm" 作为默认
+                rootWord = allWords.randomElement() ?? "silkworm"
+                // If we are here everything has worked, so we can exit
+                return
+            }
+        }
+        
+        // If were are *here* then there was a problem – trigger a crash and report the error
+        fatalError("Could not load start.txt from bundle.")
+    }
+    
+    //方法：重置游戏
+    func resetGame(){
+        usedWords = [String]()
+        newWord = ""
+        bingoNum = 0
+        startGame()
+    }
+    
+    //方法：提交新词
     func addNewWord(){
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -75,11 +119,13 @@ struct ContentView: View {
             return
         }
         
+        //检查是否已经提交过该词
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
             return
         }
 
+        //检查是否可能
         guard isPossible(word: answer) else {
             wordError(title: "Word not possible", message: "You can't spell that word from '\(rootWord)'!")
             return
@@ -96,47 +142,15 @@ struct ContentView: View {
         }
     }
     
-    // 游戏开始
-    func startGame(){
-        //1. 我们传入一个文件 URL，如果可以加载该文件，它将发送回一个包含该文件内容的字符串。
-        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
-            // 2. Load start.txt into a string
-            if let startWords = try? String(contentsOf: startWordsURL) {
-                // 3. Split the string up into an array of strings, splitting on line breaks
-                let allWords = startWords.components(separatedBy: "\n")
-                // 4. Pick one random word, or use "silkworm" as a sensible default
-                rootWord = allWords.randomElement() ?? "silkworm"
-                // If we are here everything has worked, so we can exit
-                return
-            }
-        }
-        
-        // If were are *here* then there was a problem – trigger a crash and report the error
-        fatalError("Could not load start.txt from bundle.")
-    }
     
-    // 重置游戏
-    func resetGame(){
-        usedWords = [String]()
-        newWord = ""
-        bingoNum = 0
-        startGame()
-    }
-    
-    
-    
-    
-    
-    
-    // 检查：是否已经提交过该词
+    //方法：检查是否已经提交过该词
     func isOriginal(word: String) -> Bool {
         !usedWords.contains(word)
     }
     
-    //检查：单词是否是可能的
+    //方法：检查单词是否是可能的
     func isPossible(word: String) -> Bool {
         var tempWord = rootWord
-
         for letter in word {
             //用word里的每个字母，去查找tempWord里是否包含
             if let pos = tempWord.firstIndex(of: letter) {
@@ -150,7 +164,7 @@ struct ContentView: View {
         return true
     }
     
-    //检查：是否真实存在这个单词
+    //方法：是否真实存在这个单词
     func isReal(word: String) -> Bool {
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
@@ -159,7 +173,7 @@ struct ContentView: View {
         return misspelledRange.location == NSNotFound
     }
     
-    
+    //方法：错误提示
     func wordError(title: String, message: String) {
         errorTitle = title
         errorMessage = message
@@ -169,6 +183,10 @@ struct ContentView: View {
     
 }
 
+
+
+
+//MARK: - 预览
 #Preview {
     ContentView()
 }

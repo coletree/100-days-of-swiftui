@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    //MARK: - ContentView 需要的属性
+    //MARK: - 属性
     
     //1. 加载两个JSON文件，传入两个数据属性
     let missions: [Mission] = Bundle.main.decode("missions.json")
@@ -20,6 +20,8 @@ struct ContentView: View {
     @State var gridViewOn = true
     
     
+    
+    //MARK: - 视图
     var body: some View {
         
         NavigationStack {
@@ -107,6 +109,7 @@ struct MissionGridCellView: View {
                 .scaledToFit()
                 .frame(width: 100, height: 100)
                 .padding()
+                .accessibilityLabel("The mission badge for \(mission.displayName)")
             
             VStack {
                 Text(mission.displayName)
@@ -128,6 +131,7 @@ struct MissionGridCellView: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.lightBackground)
         )
+        //.accessibilityElement(children: .combine)
     }
 }
 
@@ -144,6 +148,9 @@ struct MissionListCellView: View {
                 .scaledToFit()
                 .frame(width: 72, height: 72)
                 .padding()
+                .accessibilityLabel("The mission badge for \(mission.displayName)")
+                .accessibilityAddTraits(.isButton)
+                .accessibilityRemoveTraits(.isImage)
             
             VStack(alignment: .leading) {
                 Text(mission.displayName)

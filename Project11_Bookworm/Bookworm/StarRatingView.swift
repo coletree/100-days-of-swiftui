@@ -7,7 +7,7 @@
 
 
 /* -------------------------------------------------------------------------------
-当构建星级评定组件时，我们创建了一些成为用户交互式控件的东西，像 Button 一样。然而我们并没有停下来考虑它如何与可访问性一起工作，这是一个问题： Button 和其他东西可以很好地工作，但是一旦我们开始创建自己的组件，则需要自己介入并完成这项工作。
+当构建星级评定组件时，我们创建了成为用户交互式控件的东西，像 Button 一样。然而我们并没有停下来考虑它如何与可访问性一起工作，这是一个问题： Button 和其他东西可以很好地工作，但是一旦我们开始创建自己的组件，则需要自己介入并完成这项工作。
  ------------------------------------------------------------------------------- */
 
 
@@ -50,6 +50,19 @@ struct StarRatingView: View {
 
         }
         .buttonStyle(.plain)
+        .accessibilityElement()
+        .accessibilityLabel("comment")
+        .accessibilityValue(rating == 1 ? "1 star" : "\(rating) stars")
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment:
+                if rating < maximumRating { rating += 1 }
+            case .decrement:
+                if rating > 1 { rating -= 1 }
+            default:
+                break
+            }
+        }
         
     }
     
