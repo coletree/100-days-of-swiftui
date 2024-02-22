@@ -5,7 +5,10 @@
 //  Created by coletree on 2024/1/30.
 //
 
+import SwiftData
 import SwiftUI
+
+
 
 @main
 struct HotProspectsApp: App {
@@ -13,5 +16,6 @@ struct HotProspectsApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Prospect.self)
     }
 }

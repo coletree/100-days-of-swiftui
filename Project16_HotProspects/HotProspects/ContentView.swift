@@ -5,6 +5,7 @@
 //  Created by coletree on 2024/1/30.
 //
 
+import SamplePackage
 import SwiftUI
 
 
@@ -23,98 +24,47 @@ struct ContentView: View {
     @State private var output = ""
     
     @State private var backgroundColor = Color.red
+    
+    let possibleNumbers = 1...60
+    
+    var results: String {
+        // more code to come
+        let selected = possibleNumbers.random(7).sorted()
+        let strings = selected.map(String.init)
+        return strings.formatted()
+    }
+    
+    
+    //创建模型上下文
+    @Environment(\.modelContext) var modelContext
 
+    
     
     
     //MARK: - 视图
     
     var body: some View {
         
-
-        TabView(selection: $selectedTab) {
-            
-            //Tab1
-            Button("Show Tab 2") {
-                selectedTab = "Two"
-            }
-            .tabItem {
-                Label("One", systemImage: "star")
-            }
-            .tag("One")
-            
-            //Tab2
-            VStack {
-                Text(output)
-                    .task {
-                        await fetchReadings()
-                    }
-            }
-            .tabItem {
-                Label("Two", systemImage: "circle")
-            }
-            .tag("Two")
-            
-            
-            //Tab3
-            VStack {
-                Image(.fishGreen)
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .background(.black)
-            }
-            .tabItem {
-                Label("Three", systemImage: "circle")
-            }
-            .tag("Three")
-            
-            
-            //Tab4
-            VStack {
-                Text("Hello, World!")
-                    .padding()
-                    .background(backgroundColor)
-                
-                Text("Change Color")
-                    .padding()
-                    .contextMenu {
-                        Button("Red", systemImage: "checkmark.circle.fill", role: .destructive) {
-                            backgroundColor = .red
-                        }
-                        
-                        Button("Green") {
-                            backgroundColor = .green
-                        }
-                        
-                        Button("Blue") {
-                            backgroundColor = .blue
-                        }
-                    }
-            }
-            .tabItem {
-                Label("Four", systemImage: "circle")
-            }
-            .tag("Four")
-            
-            
-            
-        }
         
-//        NavigationStack {
-//            List(users, id: \.self, selection: $selection) { user in
-//                Text(user)
-//            }
-//            .toolbar {
-//                //让按钮先从左侧开始放置
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    EditButton()
-//                }
-//            }
-//            if selection.isEmpty == false {
-//                Text("You selected \(selection.formatted())")
-//            }
-//            
-//        }
+        TabView {
+            ProspectsView(filter: .none)
+                .tabItem {
+                    Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView(filter: .contacted)
+                .tabItem {
+                    Label("Contacted", systemImage: "checkmark.circle")
+                }
+            ProspectsView(filter: .uncontacted)
+                .tabItem {
+                    Label("Uncontacted", systemImage: "questionmark.diamond")
+                }
+            MeView()
+                .tabItem {
+                    Label("Me", systemImage: "person.crop.square")
+                }
+        }
+
         
     }
     
