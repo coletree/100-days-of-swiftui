@@ -42,10 +42,17 @@ struct UsersView: View {
     
     
     //自定义初始化：通过初始化方法来给属性赋值
-    init(minimumJoinDate: Date, sortOrder: [SortDescriptor<User>]) {
-        _users = Query(filter: #Predicate<User> { user in
-            user.joinDate >= minimumJoinDate
-        }, sort: sortOrder)
+    init(
+        minimumJoinDate: Date,
+        sortOrder: [SortDescriptor<User>]
+    ){
+        _users = Query(
+            filter: #Predicate<User> {
+                user in
+                user.joinDate >= minimumJoinDate
+            }, 
+            sort: sortOrder
+        )
     }
     
     /*
