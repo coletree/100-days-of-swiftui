@@ -18,7 +18,9 @@ struct CardView: View {
     let card: Card
     
     //属性：存储一个闭包，该方法可以填充稍后想要的任何代码。借助该闭包，可以灵活地在 ContentView 中获取回调
-    var removal: (() -> Void)? = nil
+    var removalRight: (() -> Void)? = nil
+    
+    var removalWrong: (() -> Void)? = nil
     
     //状态属性：是否展示正确答案
     @State private var isShowingAnswer = false
@@ -56,7 +58,9 @@ struct CardView: View {
                     accessibilityDifferentiateWithoutColor
                     ? nil
                     : RoundedRectangle(cornerRadius: 25)
-                        .fill(bgColor)
+                        .fill(using: offset)
+                        //改用了扩展来实现
+                        //.fill(bgColor)
                 )
                 .shadow(radius: 10)
 
@@ -105,15 +109,16 @@ struct CardView: View {
                     _ in
                     if offset.width > 200 {
                         //大于200是代表正确
-                        //offset 判断：拖动超过 200 后，执行闭包 removal
+                        //offset 判断：拖动超过 200 后，执行闭包 removalRight
                         //注意：问号代表该闭包只会在有值的时候被调用
-                        removal?()
+                        removalRight?()
                     }
                     else if offset.width < -200 {
                         //小于-200是代表错误
-                        //offset 判断：拖动超过 -200 后，执行闭包 removal
+                        //offset 判断：拖动超过 -200 后，执行闭包 removalWrong
                         //注意：问号代表该闭包只会在有值的时候被调用
-                        removal?()
+                        removalWrong?()
+                        offset = .zero
                     }else {
                         //松手后，先让卡片背景色变成白色
                         bgColor = .white
@@ -135,6 +140,24 @@ struct CardView: View {
     
     
     
+}
+
+
+
+//MARK: - 其他
+
+
+//扩展：shape 的 fill 方法
+extension Shape {
+    func fill(using offset: CGSize) -> some View{
+        if offset.width == 0{
+            return self.fill(.white)
+        }else if offset.width < 0{
+            return self.fill(.red)
+        }else{
+            return self.fill(.green)
+        }
+    }
 }
 
 

@@ -81,21 +81,34 @@ struct ContentView: View {
                 
                 //视图：卡片堆栈
                 ZStack {
-                    ForEach(0..<cards.count, id: \.self) { index in
+                    //card数据模型用了Identifiable，这里只能改成cards，不能用整数
+                    ForEach(cards) {
+                        card in
+                        //这里强制解包
+                        let index = cards.firstIndex(of: card)!
                         /*
                          这里的 CardView 实例化时需要初始化参数，其中一个参数是 card 模型
                          另外一个参数是 removal 闭包，于是在这里后面就跟了一个闭包
                          这个闭包是在卡片拖动到一定程度时执行的，这个是在 CardView 里定义的
                         */
-                        CardView(card: cards[index]) {
+                        CardView(card: cards[index], removalRight: {
                             /*
                              将 removeCard(at:) 方法包装在 withAnimation() 中调用
                              那么删除卡片时，其他卡片将自动向上滑动，有动画
                             */
                             withAnimation {
-                                removeCard(at: index)
+                                removeCardRight(at: index)
                             }
-                        }
+                        }, removalWrong: {
+                            /*
+                             将 removeCard(at:) 方法包装在 withAnimation() 中调用
+                             那么删除卡片时，其他卡片将自动向上滑动，有动画
+                            */
+                            withAnimation {
+                                removeCardWrong(at: index)
+                            }
+                        })
+                        
                         //stacked 是自定义扩展的修饰符
                         .stacked(at: index, in: cards.count)
                         //如果不是最上面的卡片，不允许被拖动；也不支持被 VoiceOver 读出
@@ -148,7 +161,7 @@ struct ContentView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCardWrong(at: cards.count - 1)
                             }
                         } label: {
                             Image(systemName: "xmark.circle")
@@ -164,7 +177,7 @@ struct ContentView: View {
 
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCardRight(at: cards.count - 1)
                             }
                         } label: {
                             Image(systemName: "checkmark.circle")
@@ -212,12 +225,23 @@ struct ContentView: View {
     
     //MARK: - 方法
     
-    //方法：删除具体卡片
-    func removeCard(at index: Int) {
-        
+    //方法：删除具体卡片(回答正确时)
+    func removeCardRight(at index: Int) {
         guard index >= 0 else { return }
-        
         cards.remove(at: index)
+        print(cards.count)
+        if cards.isEmpty {
+            isActive = false
+        }
+    }
+    
+    //方法：删除具体卡片(回答错误时，不能直接删除，需要继续回答)
+    func removeCardWrong(at index: Int) {
+        guard index >= 0 else { return }
+        let tempCard = cards[index]
+        cards.remove(at: index)
+        cards.insert(tempCard, at:0)
+        print(cards.count)
         if cards.isEmpty {
             isActive = false
         }

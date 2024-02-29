@@ -13,9 +13,11 @@ import Foundation
 /*
  我们将设计一个 EditCards 视图来将 Card 数组编码和解码为 UserDefaults
  在这样做之前，希望 Card 结构能够符合 Codable 协议
- */
+*/
 
-struct Card: Codable {
+struct Card: Codable, Identifiable, Equatable{
+    
+    var id: UUID = UUID()
     var prompt: String
     var answer: String
 

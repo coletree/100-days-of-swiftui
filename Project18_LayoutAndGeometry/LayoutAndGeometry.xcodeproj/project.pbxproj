@@ -7,30 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DFA5EBB42B8E20AC00B5684E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBB32B8E20AC00B5684E /* SwiftUIView.swift */; };
-		DFF817B42B8C669800BB4D22 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF817B32B8C669800BB4D22 /* FlashzillaApp.swift */; };
-		DFF817B62B8C669800BB4D22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF817B52B8C669800BB4D22 /* ContentView.swift */; };
-		DFF817B82B8C669900BB4D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF817B72B8C669900BB4D22 /* Assets.xcassets */; };
-		DFF817BB2B8C669900BB4D22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF817BA2B8C669900BB4D22 /* Preview Assets.xcassets */; };
-		DFF817C22B8D7BC600BB4D22 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF817C12B8D7BC600BB4D22 /* Card.swift */; };
-		DFF817C42B8D7E3500BB4D22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF817C32B8D7E3500BB4D22 /* CardView.swift */; };
-		DFF817C62B8DB0DB00BB4D22 /* EditCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF817C52B8DB0DB00BB4D22 /* EditCards.swift */; };
+		DFA5EBC22B8EE19D00B5684E /* LayoutAndGeometryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */; };
+		DFA5EBC42B8EE19D00B5684E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBC32B8EE19D00B5684E /* ContentView.swift */; };
+		DFA5EBC62B8EE19E00B5684E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA5EBC52B8EE19E00B5684E /* Assets.xcassets */; };
+		DFA5EBC92B8EE19E00B5684E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA5EBC82B8EE19E00B5684E /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DFA5EBB32B8E20AC00B5684E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		DFF817B02B8C669800BB4D22 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFF817B32B8C669800BB4D22 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
-		DFF817B52B8C669800BB4D22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DFF817B72B8C669900BB4D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DFF817BA2B8C669900BB4D22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DFF817C12B8D7BC600BB4D22 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		DFF817C32B8D7E3500BB4D22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		DFF817C52B8DB0DB00BB4D22 /* EditCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCards.swift; sourceTree = "<group>"; };
+		DFA5EBBE2B8EE19D00B5684E /* LayoutAndGeometry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutAndGeometry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAndGeometryApp.swift; sourceTree = "<group>"; };
+		DFA5EBC32B8EE19D00B5684E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DFA5EBC52B8EE19E00B5684E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DFA5EBC82B8EE19E00B5684E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DFF817AD2B8C669800BB4D22 /* Frameworks */ = {
+		DFA5EBBB2B8EE19D00B5684E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,41 +32,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DFF817A72B8C669800BB4D22 = {
+		DFA5EBB52B8EE19D00B5684E = {
 			isa = PBXGroup;
 			children = (
-				DFF817B22B8C669800BB4D22 /* Flashzilla */,
-				DFF817B12B8C669800BB4D22 /* Products */,
+				DFA5EBC02B8EE19D00B5684E /* LayoutAndGeometry */,
+				DFA5EBBF2B8EE19D00B5684E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DFF817B12B8C669800BB4D22 /* Products */ = {
+		DFA5EBBF2B8EE19D00B5684E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DFF817B02B8C669800BB4D22 /* Flashzilla.app */,
+				DFA5EBBE2B8EE19D00B5684E /* LayoutAndGeometry.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DFF817B22B8C669800BB4D22 /* Flashzilla */ = {
+		DFA5EBC02B8EE19D00B5684E /* LayoutAndGeometry */ = {
 			isa = PBXGroup;
 			children = (
-				DFF817B32B8C669800BB4D22 /* FlashzillaApp.swift */,
-				DFF817B52B8C669800BB4D22 /* ContentView.swift */,
-				DFF817C32B8D7E3500BB4D22 /* CardView.swift */,
-				DFF817C12B8D7BC600BB4D22 /* Card.swift */,
-				DFF817C52B8DB0DB00BB4D22 /* EditCards.swift */,
-				DFA5EBB32B8E20AC00B5684E /* SwiftUIView.swift */,
-				DFF817B72B8C669900BB4D22 /* Assets.xcassets */,
-				DFF817B92B8C669900BB4D22 /* Preview Content */,
+				DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */,
+				DFA5EBC32B8EE19D00B5684E /* ContentView.swift */,
+				DFA5EBC52B8EE19E00B5684E /* Assets.xcassets */,
+				DFA5EBC72B8EE19E00B5684E /* Preview Content */,
 			);
-			path = Flashzilla;
+			path = LayoutAndGeometry;
 			sourceTree = "<group>";
 		};
-		DFF817B92B8C669900BB4D22 /* Preview Content */ = {
+		DFA5EBC72B8EE19E00B5684E /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				DFF817BA2B8C669900BB4D22 /* Preview Assets.xcassets */,
+				DFA5EBC82B8EE19E00B5684E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -82,39 +70,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DFF817AF2B8C669800BB4D22 /* Flashzilla */ = {
+		DFA5EBBD2B8EE19D00B5684E /* LayoutAndGeometry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DFF817BE2B8C669900BB4D22 /* Build configuration list for PBXNativeTarget "Flashzilla" */;
+			buildConfigurationList = DFA5EBCC2B8EE19E00B5684E /* Build configuration list for PBXNativeTarget "LayoutAndGeometry" */;
 			buildPhases = (
-				DFF817AC2B8C669800BB4D22 /* Sources */,
-				DFF817AD2B8C669800BB4D22 /* Frameworks */,
-				DFF817AE2B8C669800BB4D22 /* Resources */,
+				DFA5EBBA2B8EE19D00B5684E /* Sources */,
+				DFA5EBBB2B8EE19D00B5684E /* Frameworks */,
+				DFA5EBBC2B8EE19D00B5684E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Flashzilla;
-			productName = Flashzilla;
-			productReference = DFF817B02B8C669800BB4D22 /* Flashzilla.app */;
+			name = LayoutAndGeometry;
+			productName = LayoutAndGeometry;
+			productReference = DFA5EBBE2B8EE19D00B5684E /* LayoutAndGeometry.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DFF817A82B8C669800BB4D22 /* Project object */ = {
+		DFA5EBB62B8EE19D00B5684E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					DFF817AF2B8C669800BB4D22 = {
+					DFA5EBBD2B8EE19D00B5684E = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
-			buildConfigurationList = DFF817AB2B8C669800BB4D22 /* Build configuration list for PBXProject "Flashzilla" */;
+			buildConfigurationList = DFA5EBB92B8EE19D00B5684E /* Build configuration list for PBXProject "LayoutAndGeometry" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -122,46 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = DFF817A72B8C669800BB4D22;
-			productRefGroup = DFF817B12B8C669800BB4D22 /* Products */;
+			mainGroup = DFA5EBB52B8EE19D00B5684E;
+			productRefGroup = DFA5EBBF2B8EE19D00B5684E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DFF817AF2B8C669800BB4D22 /* Flashzilla */,
+				DFA5EBBD2B8EE19D00B5684E /* LayoutAndGeometry */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DFF817AE2B8C669800BB4D22 /* Resources */ = {
+		DFA5EBBC2B8EE19D00B5684E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFF817BB2B8C669900BB4D22 /* Preview Assets.xcassets in Resources */,
-				DFF817B82B8C669900BB4D22 /* Assets.xcassets in Resources */,
+				DFA5EBC92B8EE19E00B5684E /* Preview Assets.xcassets in Resources */,
+				DFA5EBC62B8EE19E00B5684E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DFF817AC2B8C669800BB4D22 /* Sources */ = {
+		DFA5EBBA2B8EE19D00B5684E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFF817B62B8C669800BB4D22 /* ContentView.swift in Sources */,
-				DFF817C22B8D7BC600BB4D22 /* Card.swift in Sources */,
-				DFA5EBB42B8E20AC00B5684E /* SwiftUIView.swift in Sources */,
-				DFF817C42B8D7E3500BB4D22 /* CardView.swift in Sources */,
-				DFF817C62B8DB0DB00BB4D22 /* EditCards.swift in Sources */,
-				DFF817B42B8C669800BB4D22 /* FlashzillaApp.swift in Sources */,
+				DFA5EBC42B8EE19D00B5684E /* ContentView.swift in Sources */,
+				DFA5EBC22B8EE19D00B5684E /* LayoutAndGeometryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		DFF817BC2B8C669900BB4D22 /* Debug */ = {
+		DFA5EBCA2B8EE19E00B5684E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		DFF817BD2B8C669900BB4D22 /* Release */ = {
+		DFA5EBCB2B8EE19E00B5684E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -280,14 +264,14 @@
 			};
 			name = Release;
 		};
-		DFF817BF2B8C669900BB4D22 /* Debug */ = {
+		DFA5EBCD2B8EE19E00B5684E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Flashzilla/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"LayoutAndGeometry/Preview Content\"";
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -295,13 +279,13 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.Flashzilla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.LayoutAndGeometry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -309,14 +293,14 @@
 			};
 			name = Debug;
 		};
-		DFF817C02B8C669900BB4D22 /* Release */ = {
+		DFA5EBCE2B8EE19E00B5684E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Flashzilla/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"LayoutAndGeometry/Preview Content\"";
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -324,13 +308,13 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.Flashzilla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.LayoutAndGeometry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -341,25 +325,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DFF817AB2B8C669800BB4D22 /* Build configuration list for PBXProject "Flashzilla" */ = {
+		DFA5EBB92B8EE19D00B5684E /* Build configuration list for PBXProject "LayoutAndGeometry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFF817BC2B8C669900BB4D22 /* Debug */,
-				DFF817BD2B8C669900BB4D22 /* Release */,
+				DFA5EBCA2B8EE19E00B5684E /* Debug */,
+				DFA5EBCB2B8EE19E00B5684E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DFF817BE2B8C669900BB4D22 /* Build configuration list for PBXNativeTarget "Flashzilla" */ = {
+		DFA5EBCC2B8EE19E00B5684E /* Build configuration list for PBXNativeTarget "LayoutAndGeometry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DFF817BF2B8C669900BB4D22 /* Debug */,
-				DFF817C02B8C669900BB4D22 /* Release */,
+				DFA5EBCD2B8EE19E00B5684E /* Debug */,
+				DFA5EBCE2B8EE19E00B5684E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DFF817A82B8C669800BB4D22 /* Project object */;
+	rootObject = DFA5EBB62B8EE19D00B5684E /* Project object */;
 }
