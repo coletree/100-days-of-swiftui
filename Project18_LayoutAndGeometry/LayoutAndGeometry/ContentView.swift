@@ -7,36 +7,44 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    
+    //MARK: - 属性
     let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
 
+    
+    //MARK: - 视图
     var body: some View {
         GeometryReader { fullView in
             ScrollView(.vertical) {
-                ForEach(0..<50) { index in
-                    GeometryReader { 
+                ForEach(0..<50) { 
+                    index in
+                    GeometryReader {
                         proxy in
                         Text("Row #\(index)")
                             .font(.title)
                             .frame(maxWidth: .infinity)
+                            //设置颜色：用求余数的方式，从前面的颜色数组中取值
                             //.background(colors[index % 7])
+                            //设置颜色：直接运算给 hue 赋值
                             .background(
                                 Color(
-                                    hue: min(proxy.frame(in: .global).minY / 660, 1),
-                                    saturation: min(proxy.frame(in: .global).minY / 460, 1),
-                                    brightness: min(proxy.frame(in: .global).minY / 200, 1)
+                                    hue: min(proxy.frame(in: .global).minY/fullView.frame(in: .global).height, 1),
+                                    saturation: 1,
+                                    brightness: 1
                                 )
                             )
-                            .opacity( 1 - Double(200 - proxy.frame(in: .global).minY)/120 )
+                            //设置透明度：
+                            .opacity( proxy.frame(in: .global).minY / 200 )
+                            //设置放大效果：
                             .scaleEffect(
-                                CGSize(
-                                width:
-                                    min( proxy.frame(in: .global).maxY/fullView.frame(in: .global).height + 0.1, 1),
-                                height: 
-                                    min( proxy.frame(in: .global).maxY/fullView.frame(in: .global).height + 0.5, 1)
-                                ),
-                                    anchor: .center
-                                )
+                                min(
+                                    1.2,
+                                    proxy.frame(in: .global).minY / (fullView.frame(in: .global).height) * 2)
+                            )
+                            //设置3D旋转效果：
                             .rotation3DEffect(.degrees(proxy.frame(in: .global).minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                     }
                     .frame(height: 40)
@@ -60,6 +68,7 @@ struct OuterView: View {
     }
 }
 
+
 struct InnerView: View {
     var body: some View {
         HStack {
@@ -80,7 +89,7 @@ struct InnerView: View {
 }
 
 
-
+//自定义辅助线扩展
 extension VerticalAlignment {
     struct MidAccountAndName: AlignmentID {
         static func defaultValue(in context: ViewDimensions) -> CGFloat {
@@ -92,6 +101,7 @@ extension VerticalAlignment {
 }
 
 
+//MARK: - 预览
 #Preview {
     ContentView()
 }
