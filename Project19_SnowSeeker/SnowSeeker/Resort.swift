@@ -31,6 +31,13 @@ struct Resort: Codable, Identifiable {
     let runs: Int
     let facilities: [String]
     
+    
+    //计算属性：根据名字创建 Facility 实例，把 facilities 数组用 map 遍历处理，最后返回 Facility 结构的数组
+    var facilityTypes: [Facility] {
+        facilities.map(Facility.init)
+    }
+    
+    
     //静态属性：直接 Resort. 可以访问示例。
     static let allResorts: [Resort] = Bundle.main.decode("resorts.json")
     static let example = allResorts[0]

@@ -30,6 +30,10 @@ struct ContentView: View {
     }
     
     
+    //状态参数：创建一个 Favorites 实例并将其注入到环境中，以便所有视图都可以共享它
+    @StateObject var favorites = Favorites()
+    
+    
     
     
     
@@ -48,7 +52,7 @@ struct ContentView: View {
                         //导航到 ResortView 的详情视图
                         ResortView(resort: resort)
                     } label: {
-                        HStack(spacing: 30) {
+                        HStack(spacing: 10) {
                             Image(resort.country)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -67,6 +71,13 @@ struct ContentView: View {
                                 Text("\(resort.runs) runs")
                                     .foregroundColor(.secondary)
                             }
+                            //根据是否收藏，展示红心
+                            if favorites.contains(resort) {
+                                Spacer()
+                                Image(systemName: "heart.fill")
+                                .accessibilityLabel("This is a favorite resort")
+                                    .foregroundColor(.red)
+                            }
                         }
                         
                     }
@@ -84,6 +95,11 @@ struct ContentView: View {
             }
         )
         .phoneOnlyStackNavigationView()
+        
+        //现在通过将此修饰符添加到 NavigationView 来将其注入环境中：
+        //因为它附加到导航视图，所以导航视图呈现的每个视图也将获得要使用的 Favorites 实例。
+        //因此，我们可以通过添加以下新属性从 ResortView 内部加载它：
+        .environmentObject(favorites)
         
     }
 
