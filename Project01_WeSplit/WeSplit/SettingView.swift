@@ -20,6 +20,9 @@ struct SettingView: View {
     //MARK: - body 视图
     var body: some View {
         
+        //自定义绑定：自定义绑定可以不用直接绑定状态属性，而是通过一个中间值转一道，这样可以在中间添加额外逻辑
+        //以下例子中 agreedToAll 就绑定了一个 自定义绑定类型 Binding
+        //这段自定义绑定的声明代码，要放在 body 内部
         let agreedToAll = Binding<Bool>(
             get: {
                 agreedToTerms && agreedToPrivacyPolicy && agreedToEmails
@@ -31,7 +34,7 @@ struct SettingView: View {
             }
         )
 
-        return VStack {
+        VStack {
             Toggle("Agree to terms", isOn: $agreedToTerms)
             Toggle("Agree to privacy policy", isOn: $agreedToPrivacyPolicy)
             Toggle("Agree to receive shipping emails", isOn: $agreedToEmails)
