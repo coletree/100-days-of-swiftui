@@ -32,17 +32,19 @@ class Favorites: ObservableObject{
     //用于在 UserDefaults 里读写的 Key
     private var saveKey = "Favorites"
 
+    
     //读取保存的数据
     init() {
         // load our saved data
-        if let savedResorts = UserDefaults.standard.object(forKey: saveKey) as? Set<String>{
-            resorts = savedResorts
-        }else{
-            // still here? Use an empty array
-            resorts = []
+        if let data = UserDefaults.standard.data(forKey: saveKey){
+            if let decoded = try? JSONDecoder().decode(Set<String>.self, from: data){
+                resorts = decoded
+                return
+            }
         }
-
+        resorts = []
     }
+    
 
     //方法：判断集合中是否包含有传入的度假村对象，如果包含则返回 true
     func contains(_ resort: Resort) -> Bool {
@@ -67,9 +69,14 @@ class Favorites: ObservableObject{
 
     //方法：保存方法。在插入和删除对象时会被调用。
     func save() {
-        UserDefaults.standard.set(Array(resorts), forKey: saveKey)
+        if let data = try? JSONEncoder().encode(resorts){
+            UserDefaults.standard.set(data, forKey: saveKey)
+        }
         //UserDefaults.standard.synchronize()方法在iOS 7之后就不再需要手动调用了，因为系统会自动进行同步。
         //UserDefaults.standard.synchronize()
     }
     
 }
+
+
+

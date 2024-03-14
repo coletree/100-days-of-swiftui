@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+
 struct SettingView: View {
+    
+    //MARK: - 属性
     @State private var agreedToTerms = false
     @State private var agreedToPrivacyPolicy = false
     @State private var agreedToEmails = false
 
+    
+    
+    //MARK: - body 视图
     var body: some View {
         
         let agreedToAll = Binding<Bool>(
@@ -34,6 +40,9 @@ struct SettingView: View {
     }
 }
 
+
+
+//MARK: - 预览
 #Preview {
     SettingView()
 }

@@ -47,20 +47,28 @@ struct ResortView: View {
             VStack(alignment: .leading, spacing: 0){
                 
                 //顶部图片
-                Image(decorative: resort.id)
-                    .resizable()
-                    .scaledToFit()
-                    .overlay {
-                        GeometryReader{ 
-                            geometry in
-                            Text(resort.imageCredit)
-                                .foregroundStyle(Color.white)
-                                .padding()
-                                .background(.red)
-                                .offset(x: geometry.frame(in: .local).minX, y: geometry.frame(in: .local).maxY - 54)
-                                
-                        }
-                    }
+                ZStack(alignment: .bottomTrailing) {
+                    Image(decorative: resort.id)
+                        .resizable()
+                        .scaledToFit()
+//                        .overlay {
+//                            GeometryReader{ 
+//                                geometry in
+//                                Text(resort.imageCredit)
+//                                    .foregroundStyle(Color.white)
+//                                    .padding()
+//                                    .background(.red)
+//                                    .offset(x: geometry.frame(in: .local).minX, y: geometry.frame(in: .local).maxY - 54)
+//                                    
+//                            }
+//                        }
+                    Text(resort.imageCredit)
+                        .font(.custom("", size: 14.0))
+                        .padding(10)
+                        .foregroundStyle(.white)
+                        .background(.black.opacity(0.6))
+                        .offset(x: -5, y: -5)
+                }
                 
                 //两个子视图，在不同的 size class 下的两种布局
                 HStack {

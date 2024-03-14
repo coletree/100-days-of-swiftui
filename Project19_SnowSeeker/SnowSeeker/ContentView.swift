@@ -30,6 +30,24 @@ struct ContentView: View {
     }
     
     
+    var sortedResorts: [Resort] {
+        switch sortType {
+        case .alphabetical:
+            return filteredResorts.sorted { $0.name < $1.name}
+        case .country:
+            return filteredResorts.sorted { $0.country < $1.country}
+        default:
+            return filteredResorts
+        }
+        
+    }
+    
+
+    @State private var sortType = SortType.default
+    @State private var showingSortOptions = false
+    
+    
+    
     //状态参数：创建一个 Favorites 实例并将其注入到环境中，以便所有视图都可以共享它
     @StateObject var favorites = Favorites()
     
@@ -46,7 +64,8 @@ struct ContentView: View {
             //左侧：主视图。
             sidebar: {
                 
-                List(filteredResorts) {
+                //使用排序后的数据
+                List(sortedResorts) {
                     resort in
                     NavigationLink{
                         //导航到 ResortView 的详情视图
@@ -86,6 +105,19 @@ struct ContentView: View {
                 }
                 .navigationTitle("Resorts")
                 .searchable(text: $searchText, prompt: "Search for a resort")
+                .toolbar{
+                    Button{
+                        showingSortOptions = true
+                    }
+                    label: {
+                        Label("change sort order", systemImage: "arrow.up.arrow.down")
+                    }
+                }
+                .confirmationDialog("Sort Order", isPresented: $showingSortOptions) {
+                    Button("default") { sortType = .default }
+                    Button("alphabetical") { sortType = .alphabetical }
+                    Button("country") { sortType = .country }
+                }
                 
             },
             
@@ -115,6 +147,15 @@ struct ContentView: View {
 
 
 //MARK: - 其他
+
+//排序逻辑
+enum SortType{
+    //Default是 swift 的关键词，所以用反引号将其和默认的关键词区分开
+    case `default`, alphabetical, country
+}
+
+
+
 struct User: Identifiable {
     var id = "Taylor Swift"
 }
