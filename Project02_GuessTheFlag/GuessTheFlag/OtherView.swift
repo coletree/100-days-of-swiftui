@@ -27,25 +27,25 @@ struct OtherView: View {
                 }
                 
                 HStack(alignment: .top, spacing: 10){
-                    Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.orange)
                     Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.green)
                     Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.blue)
+                    Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.orange)
                 }
                 
                 HStack(alignment: .top, spacing: 10){
+                    Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.blue)
                     Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.orange)
                     Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.green)
-                    Rectangle().frame(width: 40, height: 40, alignment: .center).foregroundColor(.blue)
                 }
                 
             }
             
-            Color.clear
+           Color.clear
                 //.background(.regularMaterial)
                 //.background(.thickMaterial)
-                //.background(.thinMaterial)
+                .background(.thinMaterial)
                 //.background(.ultraThickMaterial)
-                .background(.ultraThinMaterial)
+                //.background(.ultraThinMaterial)
             
             Button("Show Alert") {
                 showingAlert = true
@@ -59,6 +59,9 @@ struct OtherView: View {
         }
         .ignoresSafeArea(.all)
         
+        
+        
+        
         ZStack {
             VStack(spacing: 0) {
                 Color.red
@@ -66,7 +69,7 @@ struct OtherView: View {
             }
 
             Text("Your content")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.primary)
                 .padding(50)
                 .background(.ultraThinMaterial)
             

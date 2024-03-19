@@ -60,16 +60,23 @@ struct ContentView: View {
             
             
             //设置骰子
-            Picker(selection: $currentIndex, label: Text("选择骰子")) {
-                ForEach(diceType.indices) {
-                    index in
-                    Text("\(diceType[index])").tag(index)
+            VStack {
+                Picker(selection: $currentIndex, label: Text("选择骰子")) {
+                    ForEach(diceType.indices) {
+                        index in
+                        Text("\(diceType[index])").tag(index)
+                    }
                 }
             }
+            .background(.red.gradient)
+            //.background(Color.red.opacity(0.4))
+            //.fill(Color.blue)
+            
             
             
         }
         .padding()
+        
     }
     
     

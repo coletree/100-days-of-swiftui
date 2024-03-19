@@ -7,10 +7,18 @@
 
 import SwiftUI
 
+
+
+
 struct ContentView: View {
     
+    
+    //MARK: - 属性
+    
+    //常量：定义三种属性
     let fingerGes: [String] = ["✊🏻", "✌🏻", "🤚🏻"]
     
+    //枚举：定义整数型枚举 Result，每个值实例代表一种结果
     enum Result: Int, CaseIterable {
         case win = 0
         case lose = 1
@@ -25,14 +33,15 @@ struct ContentView: View {
         }
     }
     
+    //状态属性：每轮随机生成谜面
     @State private var aiChoose = Int.random(in: 0...2)
     @State private var aiCondition = Int.random(in: 0...2)
     
-    
+    //状态属性：记录当前局数，和总得分
     @State private var score = 0
     @State private var current = 0
     
-    
+    //状态属性：贴身弹窗的内容
     @State private var showsAlert = false
     @State private var alertTitle = ""
     @State private var alertMsg = ""
@@ -40,6 +49,8 @@ struct ContentView: View {
     
 
     
+    
+    //MARK: - 视图
     var body: some View {
         
         let conditionWord = Result(rawValue: aiCondition)?.text ?? "Win"
@@ -56,7 +67,7 @@ struct ContentView: View {
             .font(.title2)
             
             HStack {
-                ForEach(0 ..< fingerGes.count) {
+                ForEach(0..<fingerGes.count, id: \.self) {
                     number in
                     Button(fingerGes[number]) {
                         let tempResult = checkResult(num: number)
@@ -68,6 +79,7 @@ struct ContentView: View {
             }
             
         }
+        //结果弹窗
         .alert(alertTitle, isPresented: $showsAlert) {
             Button(buttonText) {
                 if current < 5{
@@ -79,9 +91,13 @@ struct ContentView: View {
         } message: {
             Text(alertMsg)
         }
+        
     }
     
     
+    
+    
+    //MARK: - 方法
     
     // 检查游戏结果
     func checkResult(num playerChoose: Int) -> Bool {
@@ -90,6 +106,7 @@ struct ContentView: View {
         
         var actualResult:Result
         
+        //通过 switch 判断各种胜负关系
         switch aiChoose {
         case 0:
             if playerChoose == 0{
@@ -119,6 +136,7 @@ struct ContentView: View {
             actualResult = .draw
         }
         
+        //判断实际结果 和 游戏开始设定的目标 是否一致，一致就得分，否则不得分。并且返回布尔值
         if actualResult == Result(rawValue: aiCondition){
             score += 1
             return true
@@ -167,6 +185,8 @@ struct ContentView: View {
 
 
 
+
+//MARK: - 预览
 #Preview {
     ContentView()
 }

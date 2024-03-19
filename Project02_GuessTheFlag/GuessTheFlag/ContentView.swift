@@ -10,12 +10,12 @@ import SwiftUI
 
 
 
-
 struct ContentView: View {
+    
     
     //MARK: - 属性
     
-    //状态属性：所有国家
+    //状态属性：所有国家的数组
     @State private var countries = [
         "Estonia",
         "France",
@@ -30,7 +30,7 @@ struct ContentView: View {
         "US"
     ]
     
-    //属性：所有国家国旗的说明
+    //属性：所有国家国旗的说明，这是一个字典数据
     let labels = [
         "Estonia": "Flag with three horizontal stripes. Top stripe blue, middle stripe black, bottom stripe white.",
         "France": "Flag with three vertical stripes. Left stripe blue, middle stripe white, right stripe red.",
@@ -73,17 +73,23 @@ struct ContentView: View {
     
 
     
+    
     //MARK: - 视图
     var body: some View {
         
         ZStack {
             
             //视图：背景椭圆
-            RadialGradient(stops: [
-                .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.3),
-                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
-            ], center: .top, startRadius: 200, endRadius: 400)
-                .ignoresSafeArea()
+            RadialGradient(
+                stops: [
+                    .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.4),
+                    .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.9),
+                ],
+                center: .top,
+                startRadius: 200,
+                endRadius: 400
+            )
+            .ignoresSafeArea()
             
             //视图：主体布局
             VStack {
@@ -106,6 +112,7 @@ struct ContentView: View {
                             .GiveMeTitle()
                     }
                     
+                    //从数组中取出头3个元素
                     ForEach(0..<3){
                         number in
                         Button(action: {
@@ -220,14 +227,6 @@ struct ContentView: View {
 
 
 
-
-//MARK: - 预览
-#Preview {
-    ContentView()
-}
-
-
-
 //子视图：国旗的视图
 struct FlagImage: View {
     
@@ -265,3 +264,15 @@ extension View {
         modifier(MyTitleStyle())
     }
 }
+
+
+
+
+
+//MARK: - 预览
+#Preview {
+    ContentView()
+}
+
+
+
