@@ -8,18 +8,21 @@
 import SwiftUI
 
 
+
+
 struct ContentView: View {
+    
     
     //MARK: - 属性
     
-    //状态属性：用户输入的所有正确的词
-    @State private var usedWords = [String]()
-    
-    //状态属性：根词
+    //状态属性：供用户拼写其他单词的【根】单词
     @State private var rootWord = ""
     
     //状态属性：当前正在输入的词
     @State private var newWord = ""
+    
+    //状态属性：用户输入的所有正确的词
+    @State private var usedWords = [String]()
     
     //状态属性：用户输入正确的词数量
     @State private var bingoNum = 0
@@ -31,17 +34,23 @@ struct ContentView: View {
     
     
     
+    
     //MARK: - 视图
     var body: some View {
+        
         NavigationStack {
+            
             List {
+                //输入区
                 Section {
                     Text("你已经拼出了\(bingoNum)个单词。继续加油：")
                     TextField("Enter your word", text: $newWord)
                         .textInputAutocapitalization(.never)
+                        //禁用文本字段的大写
                 }
-
+                //历史结果区
                 Section {
+                    //检查状态属性：usedWords，创建循环列表
                     //如果 usedWords 中有大量重复项，使用 id: \.self 会导致问题
                     ForEach(usedWords, id: \.self) {
                         word in
@@ -75,8 +84,9 @@ struct ContentView: View {
     }
     
     
-    //MARK: - 方法
     
+    
+    //MARK: - 方法
     
     //方法：游戏开始
     func startGame(){
@@ -107,41 +117,47 @@ struct ContentView: View {
     
     //方法：提交新词
     func addNewWord(){
+        
+        //先转小写：这样可以避免 car 和 Car 这种重复的情况
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
+        //确保单词的长度大于2
         guard answer.count > 2 else {
             wordError(title: "答案至少包含3个字母", message: "再想想")
             return
         }
         
+        //确保单词不能等于根词
         guard answer != rootWord else {
             wordError(title: "答案不能和原词一样", message: "开动脑筋")
             return
         }
         
-        //检查是否已经提交过该词
+        //使用 isOriginal 方法（返回布尔值）检查是否已经提交过该词
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
             return
         }
 
-        //检查是否可能
+        //使用 isPossible 方法（返回布尔值）检查是否可能的单词
         guard isPossible(word: answer) else {
             wordError(title: "Word not possible", message: "You can't spell that word from '\(rootWord)'!")
             return
         }
-
+        //使用 isReal 方法（返回布尔值）检查是否真实存在这个单词
         guard isReal(word: answer) else {
             wordError(title: "Word not recognized", message: "You can't just make them up, you know!")
             return
         }
+        
         withAnimation {
+            //用 insert 让新提交的单词出现在最前面，符合体验。而不是 append
             usedWords.insert(answer, at: 0)
             newWord = ""
             bingoNum += 1
         }
+        
     }
-    
     
     //方法：检查是否已经提交过该词
     func isOriginal(word: String) -> Bool {
@@ -173,7 +189,7 @@ struct ContentView: View {
         return misspelledRange.location == NSNotFound
     }
     
-    //方法：错误提示
+    //方法：错误提示方法，用于生成几个属性的内容
     func wordError(title: String, message: String) {
         errorTitle = title
         errorMessage = message

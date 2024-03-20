@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DFB8B5962BA96C230013F67A /* ListDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8B5952BA96C230013F67A /* ListDemoView.swift */; };
 		DFBF29142B1762C2008859A7 /* WordScrambleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF29132B1762C2008859A7 /* WordScrambleApp.swift */; };
 		DFBF29162B1762C2008859A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF29152B1762C2008859A7 /* ContentView.swift */; };
 		DFBF29182B1762C3008859A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFBF29172B1762C3008859A7 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DFB8B5952BA96C230013F67A /* ListDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDemoView.swift; sourceTree = "<group>"; };
 		DFBF29102B1762C2008859A7 /* WordScramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordScramble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBF29132B1762C2008859A7 /* WordScrambleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordScrambleApp.swift; sourceTree = "<group>"; };
 		DFBF29152B1762C2008859A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				DFBF29132B1762C2008859A7 /* WordScrambleApp.swift */,
 				DFBF29152B1762C2008859A7 /* ContentView.swift */,
+				DFB8B5952BA96C230013F67A /* ListDemoView.swift */,
 				DFBF29212B19786E008859A7 /* start.txt */,
 				DFBF29172B1762C3008859A7 /* Assets.xcassets */,
 				DFBF29192B1762C3008859A7 /* Preview Content */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFB8B5962BA96C230013F67A /* ListDemoView.swift in Sources */,
 				DFBF29162B1762C2008859A7 /* ContentView.swift in Sources */,
 				DFBF29142B1762C2008859A7 /* WordScrambleApp.swift in Sources */,
 			);
