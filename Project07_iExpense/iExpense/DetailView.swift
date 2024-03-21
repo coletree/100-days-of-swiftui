@@ -4,11 +4,13 @@
 //
 //  Created by coletree on 2023/12/19.
 //
-
 import SwiftUI
+
 
 struct DetailView: View {
 
+
+    //MARK: - 属性
     let types = ["Personal","Business"]
     var expenses: Expenses
     var expense: ExpenseItem
@@ -27,8 +29,8 @@ struct DetailView: View {
     
     
     
+    //MARK: - 视图
     var body: some View {
-        
         
         VStack{
             
@@ -84,6 +86,9 @@ struct DetailView: View {
     
 }
 
+
+
+//MARK: - 预览
 #Preview {
     DetailView(expenses: Expenses(), expense:Expenses().items[0])
 }

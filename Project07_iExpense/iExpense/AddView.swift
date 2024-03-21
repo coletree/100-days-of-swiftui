@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AddView: View {
     
+    
+    //MARK: - 属性
+    
     let types = ["Personal","Business"]
     var expenses: Expenses
     
@@ -25,6 +28,9 @@ struct AddView: View {
     //@Environment(\.dismiss) var dismissIt
     //@Environment(\.presentationMode) var presentationMode
     
+    
+    
+    //MARK: - 视图
     
     var body: some View {
         
@@ -75,7 +81,7 @@ struct AddView: View {
 }
 
 
-
+//MARK: - 预览
 #Preview {
     //AddView(expenses: Expenses())
     AddView(expenses: Expenses(), path: .constant([1]))
