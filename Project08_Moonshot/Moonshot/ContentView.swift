@@ -7,16 +7,20 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
 
+    
     //MARK: - 属性
     
-    //1. 加载两个JSON文件，传入两个数据属性
+    //常量：加载两个JSON文件，解码后赋予常量
     let missions: [Mission] = Bundle.main.decode("missions.json")
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     
-    //2. 布局属性
+    //常量：网格布局属性
     let columns = [ GridItem(.adaptive(minimum: 150)) ]
+    
+    //状态属性：控制视图切换
     @State var gridViewOn = true
     
     
@@ -25,11 +29,15 @@ struct ContentView: View {
     var body: some View {
         
         NavigationStack {
+            
             Group{
+                
+                //表格视图
                 if gridViewOn {
                     ScrollView {
                         Spacer(minLength: 20)
                         LazyVGrid(columns: columns) {
+                            //使用 missions 数组作为输入
                             ForEach(missions) {
                                 mission in
                                 NavigationLink(value: mission) {
@@ -44,7 +52,9 @@ struct ContentView: View {
                         }
                         .padding([.horizontal, .bottom])
                     }
-                } else {
+                }
+                //列表视图
+                else {
                     List (missions, id: \.id){
                         mission in
                         ZStack {
@@ -68,6 +78,7 @@ struct ContentView: View {
             .background(.darkBackground)
             //这个代码告诉程序，当前选择的显示模式是什么（深色还是浅色）
             .preferredColorScheme(.dark)
+            //导航栏按钮
             .toolbar {
                 if gridViewOn {
                     Button("List") {
@@ -83,6 +94,7 @@ struct ContentView: View {
                     }
                 }
             }
+            
         }
         
     }
@@ -91,13 +103,19 @@ struct ContentView: View {
 
 
 
+
+//MARK: - 预览
 #Preview {
     ContentView()
 }
 
 
 
-//MARK: 任务的网格视图单元
+
+//MARK: - 其他
+
+
+//任务的网格视图单元
 struct MissionGridCellView: View {
     
     let mission: Mission
@@ -136,7 +154,7 @@ struct MissionGridCellView: View {
 }
 
 
-//MARK: 任务的列表视图单元
+//任务的列表视图单元
 struct MissionListCellView: View {
     
     let mission: Mission

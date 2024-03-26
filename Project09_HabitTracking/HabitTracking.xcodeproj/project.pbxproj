@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DFABDB1F2BB1598900991CC8 /* ProgrammaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABDB1E2BB1598900991CC8 /* ProgrammaticView.swift */; };
 		DFCC31642B32BB40004EE2DD /* HabitTrackingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC31632B32BB40004EE2DD /* HabitTrackingApp.swift */; };
 		DFCC31662B32BB40004EE2DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC31652B32BB40004EE2DD /* ContentView.swift */; };
 		DFCC31682B32BB41004EE2DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFCC31672B32BB41004EE2DD /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DFABDB1E2BB1598900991CC8 /* ProgrammaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticView.swift; sourceTree = "<group>"; };
 		DFCC31602B32BB40004EE2DD /* HabitTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFCC31632B32BB40004EE2DD /* HabitTrackingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackingApp.swift; sourceTree = "<group>"; };
 		DFCC31652B32BB40004EE2DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				DFCC31772B32D07C004EE2DD /* ActivityDetailView.swift */,
 				DFCC31752B32C8CB004EE2DD /* AddActivityView.swift */,
 				DFCC31732B32BCF3004EE2DD /* ActivitiesData.swift */,
+				DFABDB1E2BB1598900991CC8 /* ProgrammaticView.swift */,
 				DFCC31672B32BB41004EE2DD /* Assets.xcassets */,
 				DFCC31692B32BB41004EE2DD /* Preview Content */,
 			);
@@ -150,6 +153,7 @@
 				DFCC31762B32C8CB004EE2DD /* AddActivityView.swift in Sources */,
 				DFCC31662B32BB40004EE2DD /* ContentView.swift in Sources */,
 				DFCC31782B32D07C004EE2DD /* ActivityDetailView.swift in Sources */,
+				DFABDB1F2BB1598900991CC8 /* ProgrammaticView.swift in Sources */,
 				DFCC31642B32BB40004EE2DD /* HabitTrackingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

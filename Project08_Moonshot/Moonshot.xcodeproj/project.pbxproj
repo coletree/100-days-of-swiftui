@@ -19,6 +19,7 @@
 		DFAF73762B26A45300D56F9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAF73752B26A45300D56F9E /* ContentView.swift */; };
 		DFAF73782B26A45400D56F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFAF73772B26A45400D56F9E /* Assets.xcassets */; };
 		DFAF737B2B26A45400D56F9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFAF737A2B26A45400D56F9E /* Preview Assets.xcassets */; };
+		DFB8B5B62BAC12E80013F67A /* demoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8B5B52BAC12E80013F67A /* demoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		DFAF73752B26A45300D56F9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DFAF73772B26A45400D56F9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFAF737A2B26A45400D56F9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DFB8B5B52BAC12E80013F67A /* demoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DFABDB1D2BADAD4B00991CC8 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF50A6FA2B27F04600B2A08D /* astronauts.json */,
+				DF50A6F92B27F04600B2A08D /* missions.json */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		DFAF73672B26A45300D56F9E = {
 			isa = PBXGroup;
 			children = (
@@ -72,11 +83,10 @@
 				DF3114E92B29610100225DDE /* MissionView.swift */,
 				DF3114EB2B2961FE00225DDE /* AstronautView.swift */,
 				DF50A7052B280C8500B2A08D /* Color-Theme.swift */,
-				DF50A7012B27FAF800B2A08D /* Mission.swift */,
-				DF50A6FD2B27F16000B2A08D /* Astronaut.swift */,
+				DFB8B5B52BAC12E80013F67A /* demoView.swift */,
 				DF50A6FF2B27F28D00B2A08D /* Bundle-Decodable.swift */,
-				DF50A6FA2B27F04600B2A08D /* astronauts.json */,
-				DF50A6F92B27F04600B2A08D /* missions.json */,
+				DFB8B5B72BAC5BDC0013F67A /* Model */,
+				DFABDB1D2BADAD4B00991CC8 /* Files */,
 				DFAF73772B26A45400D56F9E /* Assets.xcassets */,
 				DFAF73792B26A45400D56F9E /* Preview Content */,
 			);
@@ -89,6 +99,15 @@
 				DFAF737A2B26A45400D56F9E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DFB8B5B72BAC5BDC0013F67A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF50A6FD2B27F16000B2A08D /* Astronaut.swift */,
+				DF50A7012B27FAF800B2A08D /* Mission.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +185,7 @@
 				DF3114EA2B29610100225DDE /* MissionView.swift in Sources */,
 				DF50A6FE2B27F16000B2A08D /* Astronaut.swift in Sources */,
 				DF3114EC2B2961FE00225DDE /* AstronautView.swift in Sources */,
+				DFB8B5B62BAC12E80013F67A /* demoView.swift in Sources */,
 				DF50A7062B280C8500B2A08D /* Color-Theme.swift in Sources */,
 				DFAF73762B26A45300D56F9E /* ContentView.swift in Sources */,
 				DFAF73742B26A45300D56F9E /* MoonshotApp.swift in Sources */,
@@ -301,6 +321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moonshot/Preview Content\"";
@@ -310,6 +331,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -330,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moonshot/Preview Content\"";
@@ -339,6 +362,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

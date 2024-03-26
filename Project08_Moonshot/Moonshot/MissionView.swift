@@ -18,7 +18,10 @@ struct CrewMember {
 
 struct MissionView: View {
     
-    //MARK: MissionView 需要传入两个属性
+    
+    //MARK: - 属性
+    
+    // MissionView 需要传入两个属性
     let mission: Mission
     let crew: [CrewMember]
 
@@ -89,8 +92,13 @@ struct MissionView: View {
         .background(.darkBackground)
     }
     
-    //MARK: - 自定义初始化函数，需要赋值两个属性（mission, crew）
-    //未赋值的属性都要赋值。传入了一个 mission 对象，和 astronauts 字典
+    
+    
+    
+    //MARK: - 方法
+    
+    
+    //初始化函数：未赋值的两个属性（mission, crew）都要赋值，因此传入 mission 对象，和 astronauts 字典
     init(mission: Mission, astronauts: [String: Astronaut]) {
         //属性1: 赋值为传入的 mission 参数
         self.mission = mission
@@ -106,6 +114,7 @@ struct MissionView: View {
             }
         }
     }
+    
     
     
 }
