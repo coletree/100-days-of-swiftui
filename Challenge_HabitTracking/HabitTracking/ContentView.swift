@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+
+
+
 struct ContentView: View {
     
-    //MARK: - 数据属性
+    
+    //MARK: - 属性
     
     //状态参数：生成一个 ActivitiesData 类的实例
     @State private var myActivities = ActivitiesData()
@@ -18,7 +22,9 @@ struct ContentView: View {
     //@State private var showAddSheet = false
     
     
-    //MARK: - 视图主体
+    
+    
+    //MARK: - 视图
     var body: some View {
         
         NavigationStack {

@@ -8,6 +8,8 @@
 import Foundation
 
 
+
+
 //MARK: - 定义 Activity 结构体
 //该结构体是单个习惯的模型，使其符合 Codable 、Identifiable
 struct Activity: Codable, Identifiable, Hashable, Equatable{
@@ -17,6 +19,8 @@ struct Activity: Codable, Identifiable, Hashable, Equatable{
     var intro: String
     var count: Int
 }
+
+
 
 
 //MARK: - 定义 ActivitiesData 类

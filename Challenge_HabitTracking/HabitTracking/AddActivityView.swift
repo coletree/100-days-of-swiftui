@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+
+
 struct AddActivityView: View {
     
-    //MARK: - 数据属性
+    
+    //MARK: - 属性
     
     //定义类 ActivitiesData 属性：等待接收传入的参数
     var myActivities : ActivitiesData
@@ -22,7 +25,9 @@ struct AddActivityView: View {
     @State private var intro = "介绍"
     
     
-    //MARK: - 视图主体
+    
+    
+    //MARK: - 视图
     var body: some View {
         
         ScrollView{

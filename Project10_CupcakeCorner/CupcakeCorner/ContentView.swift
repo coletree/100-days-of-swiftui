@@ -13,26 +13,31 @@ import CoreHaptics
 
 struct ContentView: View {
 
-    //MARK: - 状态属性
+    
+    //MARK: - 属性
+    
+    //状态属性：控制触觉反馈的
     @State private var engine: CHHapticEngine?
 
+    //状态属性：创建 @observable类的单个实例。这是创建订单实例的唯一地方，后面程序中的每个视图都将传递该属性，因此它们都使用相同的数据。
     @State private var order = Order()
 
     
     
-
+    
+    //MARK: - 视图
     var body: some View {
 
         NavigationStack{
             
             Form{
                 
-                //MARK: - 选择蛋糕参数
+                //视图：选择蛋糕参数
                 Section{
-                    //MARK: 选择类型
                     VStack(alignment: .leading) {
                         Text("Choose your cake's type:")
                             .fontWeight(.medium)
+                        //蛋糕类型列表是一个字符串数组，但我们将用户的选择存储为整数，如何匹配两者？一个简单的解决方案是使用数组的 indices 属性，它为我们提供了每个项目的位置，然后我们可以将其用作数组索引。
                         Picker("Select your cake type", selection: $order.typeIndex) {
                             ForEach(Order.types.indices, id: \.self){
                                 item in
@@ -42,12 +47,11 @@ struct ContentView: View {
                         .pickerStyle(.segmented)
                         .padding(.bottom,8)
                     }
-                    //MARK: 选择数量
                     Stepper("Number of cakes: \(order.quantity)", value: $order.quantity, in: 1...20)
                     
                 }
                 
-                //MARK: - 设置蛋糕订单额外需求
+                //视图：置蛋糕订单额外需求
                 Section{
                     Toggle(isOn: $order.specialRequestEnabled) { Text("Any special requests?") }
                     if order.specialRequestEnabled {
@@ -80,7 +84,11 @@ struct ContentView: View {
     }
     
     
-    //MARK: - 自定义震动
+    
+    
+    //MARK: - 方法
+    
+    //方法：自定义震动
     func prepareHaptics() {
         //确保手机支持震动，不支持就直接返回
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -95,39 +103,14 @@ struct ContentView: View {
         }
     }
 
-    func complexSuccess() {
-        //确保手机支持震动，不支持就直接返回
-        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-
-        //创建了一个 CHHapticEvent 事件数组
-        var events = [CHHapticEvent]()
-
-        // create one intense, sharp tap
-        for i in stride(from: 0, to: 1, by: 0.1) {
-            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(1 - i))
-            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(1 - i))
-            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 1 + i)
-            events.append(event)
-        }
-        
-        // convert those events into a pattern and play it immediately
-        do {
-            let pattern = try CHHapticPattern(events: events, parameters: [])
-            let player = try engine?.makePlayer(with: pattern)
-            try player?.start(atTime: 0)
-        } catch {
-            print("Failed to play pattern: \(error.localizedDescription).")
-        }
-        
-    }
-
-
+    
+    
     
 }
 
 
 
-
+//MARK: - 预览
 #Preview {
     ContentView()
 }

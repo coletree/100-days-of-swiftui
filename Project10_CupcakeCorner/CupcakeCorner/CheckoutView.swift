@@ -7,20 +7,29 @@
 
 import SwiftUI
 
+
+
+
 struct CheckoutView: View {
     
-    //MARK: - 设置属性，等待参数传入
+    
+    //MARK: - 属性
+    
+    //属性：等待参数传入
     var order: Order
     
-    //提示弹窗的参数
+    //状态属性：提示弹窗的参数
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
     
-    //提示失败的弹窗
+    //状态属性：提示失败的弹窗参数
     @State private var errorMessage = ""
     @State private var showingError = false
     
     
+    
+    
+    //MARK: - 视图
     var body: some View {
         
         ScrollView {
@@ -76,7 +85,9 @@ struct CheckoutView: View {
     
     
     
-    //MARK: - 方法：提交订单到网络
+    //MARK: - 方法
+    
+    //方法：提交订单到网络
     func placeOrder() async {
         
         // 1.将我们当前的 order 对象转换为一些可以发送的JSON数据
@@ -125,7 +136,11 @@ struct CheckoutView: View {
 //    }
     
     
+    
+    
 }
+
+
 
 
 //MARK: - 预览
