@@ -24,6 +24,7 @@ struct UserListView: View {
         List{
             ForEach(users){
                 item in
+                //使用 user 作为导航附加值
                 NavigationLink(value: item){
                     HStack(spacing: 8) {
                         Circle()

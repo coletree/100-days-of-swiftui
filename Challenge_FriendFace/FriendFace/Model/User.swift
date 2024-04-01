@@ -9,6 +9,8 @@ import Foundation
 import SwiftData
 
 
+
+
 //User模型：之前用 struct 定义时，所有属性先要遵循这些协议，这个struct才能遵循这些协议
 //当改用 SwiftData 后，Model 只能用于 class，所以 struct 要改成 class，并且要遵循 Codable 协议
 //遵循 Codable 协议后，Identifiable, Hashable协议可以删掉了，因为Codable必然遵循这两个协议
@@ -105,5 +107,7 @@ class User:Codable,  Equatable{
         try container.encode(self.tags, forKey: .tags)
         try container.encode(self.friends, forKey: .friends)
     }
+    
+
     
 }

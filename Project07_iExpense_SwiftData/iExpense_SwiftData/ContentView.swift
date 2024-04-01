@@ -12,21 +12,23 @@ import SwiftUI
 struct ContentView: View {
     
     
+    
+    
     //MARK: - 属性
     
-    //1.模型上下文
+    //环境参数：模型上下文
     @Environment(\.modelContext) var modelContext
     
-    //2.设置属性储存排序方式
+    //状态属性：设置属性储存排序方式
     @State private var sortOrder = [
         SortDescriptor(\ExpenseItem.name),
         SortDescriptor(\ExpenseItem.amount, order: .reverse),
     ]
     
-    //3.设置属性储存过滤方式
+    //状态属性：数据的过滤方式
     @State private var filterString = "All"
     
-    
+    //计算属性：根据数据过滤方式，返回相应的谓词
     var filterType : Predicate<ExpenseItem>? {
         if filterString == "Personal"{
             return #Predicate<ExpenseItem> { 
@@ -43,16 +45,9 @@ struct ContentView: View {
         }
     }
     
-    
-    
-    
-    
-    //3. 储存导航路径参数
+    //状态属性：储存导航路径参数
     @State private var path = NavigationPath()
     
-    
-    
-
 
     
     

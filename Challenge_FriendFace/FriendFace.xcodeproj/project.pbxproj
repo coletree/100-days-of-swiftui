@@ -40,6 +40,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF028B202BBA5C2A0092EB5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF87DD6A2B47A7E900FE5D89 /* Friend.swift */,
+				DF87DD682B47A68700FE5D89 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DF87DD4E2B47A45600FE5D89 = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +72,7 @@
 				DF87DD5C2B47A45600FE5D89 /* ContentView.swift */,
 				DF87DD6C2B47DA7A00FE5D89 /* UserListView.swift */,
 				DF87DD6E2B47DB5F00FE5D89 /* UserDetailView.swift */,
-				DF87DD682B47A68700FE5D89 /* User.swift */,
-				DF87DD6A2B47A7E900FE5D89 /* Friend.swift */,
+				DF028B202BBA5C2A0092EB5D /* Model */,
 				DF87DD5E2B47A45700FE5D89 /* Assets.xcassets */,
 				DF87DD602B47A45700FE5D89 /* Preview Content */,
 			);

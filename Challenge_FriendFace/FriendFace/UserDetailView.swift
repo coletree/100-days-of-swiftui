@@ -11,6 +11,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     
+    
     //MARK: - 属性
     
     //声明User数组，等待被传入
@@ -71,6 +72,7 @@ struct UserDetailView: View {
 
 
 
+
 //MARK: - 预览
 #Preview {
     
@@ -90,4 +92,5 @@ struct UserDetailView: View {
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
+    
 }

@@ -15,10 +15,10 @@ struct ExpensesView: View {
     
     //MARK: - 属性
     
-    //1.模型上下文用于创建 swiftData 对象
+    //环境属性：模型上下文用于创建 swiftData 对象
     @Environment(\.modelContext) var modelContext
     
-    //2.读取数据
+    //SwiftData数据：读取数据
     @Query var expenses: [ExpenseItem]
 
 

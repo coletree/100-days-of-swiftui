@@ -9,8 +9,10 @@ import Foundation
 import SwiftData
 
 
-//Friend模型：Friend遵循Codable，才能让关联Friend的User也遵循Codable
-//遵循了Codable后，就不需要再遵循 Identifiable, Hashable ，因为 Codable 已经遵循了
+
+
+//Friend 模型：Friend 遵循 Codable，才能让关联 Friend 的 User 也遵循 Codable
+//遵循了 Codable 后，就不需要再遵循 Identifiable, Hashable ，因为 Codable 已经遵循了
 
 
 @Model
