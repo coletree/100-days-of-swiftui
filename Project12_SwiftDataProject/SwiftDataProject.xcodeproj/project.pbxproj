@@ -40,6 +40,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF028B1E2BB69E880092EB5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DFC760A92B4507C8008D4CDE /* Job.swift */,
+				DFC760A12B3E9514008D4CDE /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DFC760872B3E73D5008D4CDE = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +72,7 @@
 				DFC760952B3E73D5008D4CDE /* ContentView.swift */,
 				DFC760A72B44FBBA008D4CDE /* UsersView.swift */,
 				DFC760A52B3E9605008D4CDE /* EditUserView.swift */,
-				DFC760A12B3E9514008D4CDE /* User.swift */,
-				DFC760A92B4507C8008D4CDE /* Job.swift */,
+				DF028B1E2BB69E880092EB5D /* Model */,
 				DFC760972B3E73D5008D4CDE /* Assets.xcassets */,
 				DFC760992B3E73D5008D4CDE /* Preview Content */,
 			);

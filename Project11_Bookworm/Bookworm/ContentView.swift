@@ -9,27 +9,31 @@ import SwiftData
 import SwiftUI
 
 
+
 struct ContentView: View {
 
     
     //MARK: - 属性
     
-    //1. 环境属性
+    //环境属性：加载 swiftData 主上下文
     @Environment(\.modelContext) var modelContext
     
-    //2. 读取 SwiftData 对象
+    //属性：UserDefaults
     @AppStorage("notes") private var notes = ""
+    
+    //SwiftData 数据属性：读取 SwiftData 对象
     @Query(sort: [
         SortDescriptor(\Book.rating, order: .reverse),
         SortDescriptor(\Book.title),
         SortDescriptor(\Book.author)
     ]) var books: [Book]
     
-    //3. 状态属性
+    //状态属性：控制新增弹窗显示与否
     @State var showAddBookView = false
     
     
 
+    
     //MARK: - 视图
     var body: some View {
         
@@ -54,11 +58,12 @@ struct ContentView: View {
                         }
                     }
                 }
-                //onDelete(perform:) 左滑删除修饰符，它需要位于 ForEach 上，而不是 List
+                //左滑删除修饰符，它需要位于 ForEach 上，而不是 List
                 .onDelete(perform: deleteBooks)
                 
             }
-            //导航目的页设置：NavigationDestination不能加到里面的ForEach上，否则会导致循环多次导航
+            //导航目的页设置：NavigationDestination 不能加到里面的ForEach上，否则会导致循环多次导航
+            //导航附加值为 Book 对象
             .navigationDestination(for: Book.self) {
                 item in
                 DetailView(book: item)

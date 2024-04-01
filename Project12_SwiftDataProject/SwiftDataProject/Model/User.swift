@@ -9,6 +9,10 @@ import Foundation
 import SwiftData
 
 
+
+
+//MARK: - User数据结构
+
 @Model
 class User {
     

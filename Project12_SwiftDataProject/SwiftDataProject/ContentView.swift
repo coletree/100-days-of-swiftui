@@ -12,12 +12,13 @@ import SwiftUI
 struct ContentView: View {
     
     
+    
     //MARK: - 属性
     
-    //1. 添加属性以访问模型上下文
+    //环境属性：获取主模型上下文
     @Environment(\.modelContext) var modelContext
     
-    //2. 加载所有 User 对象
+    //SwiftData数据：加载所有 User 对象
     //@Query(sort: \User.name) var users: [User]
     @Query(
         filter: #Predicate<User> {
@@ -33,13 +34,14 @@ struct ContentView: View {
             }
         }, sort: \User.name) var users: [User]
     
-    //3. 存储导航路径
+    
+    //状态属性：存储导航路径
     @State private var path = [User]()
     
-    
-    //4. 用于传递到 usersView 视图的参数
+    //状态属性：用于传递到 usersView 视图的参数
     @State private var showingNewOnly = false
     
+    //状态属性：排序规则
     @State private var sortOrder = [
         SortDescriptor(\User.name),
         SortDescriptor(\User.joinDate),
@@ -47,13 +49,14 @@ struct ContentView: View {
     
     
     
+    
     //MARK: - 视图
     var body: some View {
         
-        //NavigationStack：绑定了储存的导航路径
+        //导航视图：绑定状态属性中的导航路径 path, 以便支持编程导航
         NavigationStack(path: $path) {
             
-            //子视图：通过状态属性 showingNewOnly 以及 sortOrder，控制显示什么内容
+            //子视图：通过传入状态属性 showingNewOnly 和 sortOrder，控制显示什么内容
             UsersView(minimumJoinDate: showingNewOnly ? .now : .distantPast, sortOrder: sortOrder)
             
             .navigationTitle("Users")

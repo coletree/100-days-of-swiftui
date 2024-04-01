@@ -18,5 +18,6 @@ struct BookwormApp: App {
             ContentView()
         }
         .modelContainer(for: Book.self)
+        //创建 swiftData 数据库，是 for 书籍对象的
     }
 }

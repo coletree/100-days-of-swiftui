@@ -23,7 +23,9 @@ import Foundation
 class Order : Codable {
 
     
-    //MARK: - 订单基本属性：对observable的类，要嵌套一个 Enum 符合 CodingKey 协议，以便可以正确编码
+    //MARK: - 订单基本属性：对observable的类，要嵌套一个 Enum 符合 CodingKey 协议，以便可以正确编码，否则swift会自动将属性加上下划线
+    //这意味着我们需要为 Order 类创建一些自定义编码键。这是相当乏味的，特别是对于像这样的类，我们想要保存和加载相当多的属性，但这是确保我们的网络正确完成的最佳方法。
+    //当您使用真实服务器时，这些名称很重要。您需要发送实际名称，而不是 @Observable 宏生成的奇怪版本。
     enum CodingKeys: String, CodingKey {
         case _typeIndex = "typeIndex"
         case _quantity = "quantity"
@@ -36,9 +38,16 @@ class Order : Codable {
 //        case _streetAddress = "streetAddress"
 //        case _zip = "zip"
     }
+    
+    //静态属性：类别
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
+    
+    //属性：类别代表数字
     var typeIndex = 0
+    
+    //属性：数量
     var quantity = 3
+    
     //表单的第二部分包含三个切换开关。但是，第二个和第三个开关仅在第一个开关启用时才可见，因此将其包装在一个 if 判断条件中。第一个开关没打开时，将两位两个开关设为 dieable，不可交互。另外可以通过向第一个开关，添加 didSet 属性观察器来实现“当关掉第一个开关时，把另外两个开关也关掉”的效果。
     var specialRequestEnabled = false {
         willSet {
@@ -48,7 +57,11 @@ class Order : Codable {
             }
         }
     }
+    
+    //属性：是否需要额外要求
     var extraFrosting = false
+    
+    //属性：是否需要额外要求
     var addSprinkles = false
     
     

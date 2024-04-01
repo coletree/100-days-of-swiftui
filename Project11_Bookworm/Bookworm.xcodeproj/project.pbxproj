@@ -44,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF028B1D2BB66BAF0092EB5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF097EA82B3BD922004BFB95 /* Book.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DF097E8C2B3AC3CC004BFB95 = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +77,7 @@
 				DF097EAA2B3C1021004BFB95 /* AddBookView.swift */,
 				DF097EAE2B3D41A4004BFB95 /* EmojiRatingView.swift */,
 				DF097EAC2B3D079A004BFB95 /* StarRatingView.swift */,
-				DF097EA82B3BD922004BFB95 /* Book.swift */,
+				DF028B1D2BB66BAF0092EB5D /* Model */,
 				DF097EA62B3BC823004BFB95 /* Student.swift */,
 				DF097E9C2B3AC3CD004BFB95 /* Assets.xcassets */,
 				DF097E9E2B3AC3CD004BFB95 /* Preview Content */,

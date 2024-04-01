@@ -82,6 +82,11 @@ struct DetailView: View {
                 }
             }
             
+            Spacer(minLength: 40)
+            
+            Text(book.createDate.formatted(date: .long, time: .shortened))
+                .font(.footnote)
+            
         }
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -131,8 +136,8 @@ struct DetailView: View {
         //2.使用刚刚的【自定义配置】，来创建一个模型容器；
         let container = try ModelContainer(for: Book.self, configurations: config)
         
-        //3. 这是准备好的 book 对象数据（这个不能放到前面，顺序不能换）
-        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it.", rating: 4)
+        //3.这是准备好的 book 对象数据（这个不能放到前面，顺序不能换）
+        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it.", rating: 3)
         
         //4.返回以下内容给Preview；
         return DetailView(book: example).modelContainer(container)

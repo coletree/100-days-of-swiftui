@@ -9,15 +9,23 @@ import SwiftData
 import SwiftUI
 
 
+
+
 struct UsersView: View {
     
     
+    //MARK: - 属性
+    
+    //环境属性：
     @Environment(\.modelContext) var modelContext
     
-    
+    //SwiftData数据
     @Query var users: [User]
     
     
+    
+    
+    //MARK: - 视图
     var body: some View {
         
         List(users) { user in
@@ -71,6 +79,8 @@ struct UsersView: View {
 
 
 
+
+//MARK: - 预览
 #Preview {
     UsersView(minimumJoinDate: .now, sortOrder: [SortDescriptor(\User.name)])
         .modelContainer(for: User.self)

@@ -11,29 +11,32 @@ import SwiftUI
 
 
 
+
 struct AddBookView: View {
+    
     
     //MARK: - 属性
     
-    //1.模型上下文：要使用SwiftData，先要声明一个【模型上下文】的环境属性
-    //以工作表形式呈现的视图有自己的环境，因此如果您想共享值，则需要将它们传入。
+    //环境属性：创建模型上下文
+    //要使用SwiftData，先要声明一个【模型上下文】的环境属性
+    //该视图有自己的环境，因此如果您想使用共享值，需要先将它们传入
     @Environment(\.modelContext) var modelContext
     
-    //2.状态参数：
+    //环境属性：关闭当前页面函数
+    @Environment(\.dismiss) var dismissIt
+    
+    //状态参数：用于新建 book 对象的表单
     @State var title: String = ""
     @State var author: String = ""
     @State var genre: String = "Fantasy"
     @State var review: String = ""
     @State var rating: Int = 0
     
-    //3. 所有的分类选项
+    //常量属性：所有的分类选项
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
-    //4. 环境变量：关闭当前页面
-    @Environment(\.dismiss) var dismissIt
-    
-    
-    //5.计算属性
+
+    //计算属性：验证表单输入框，通过一些方法返回布尔值
     var titleIsValid : Bool {
         return titleValid()
     }
@@ -110,7 +113,7 @@ struct AddBookView: View {
     
     //MARK: - 方法
     
-    //方法：书籍名是否填写正确
+    //方法：检查书籍名是否填写正确
     func titleValid() -> Bool {
         let processed = title.trimmingCharacters(in: .whitespacesAndNewlines)
         if processed.isEmpty{
@@ -119,7 +122,7 @@ struct AddBookView: View {
         return true
     }
     
-    //方法：作者名是否填写正确
+    //方法：检查作者名是否填写正确
     func authorValid() -> Bool {
         let processed = author.trimmingCharacters(in: .whitespacesAndNewlines)
         if processed.count <= 1{
