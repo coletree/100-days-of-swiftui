@@ -42,6 +42,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF028B232BBBB7690092EB5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF7DDC4D2B576B740073A2BA /* Result.swift */,
+				DF7DDC492B5622A50073A2BA /* Location.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF028B242BBBB7780092EB5D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF028B252BBBB7940092EB5D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF7DDC4B2B562DA40073A2BA /* EditView.swift */,
+				DF7DDC512B5BFE030073A2BA /* EditView-ViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DF7DDC2F2B54CF950073A2BA = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +89,9 @@
 				DF7DDC3B2B54CF950073A2BA /* BucketListApp.swift */,
 				DF7DDC3D2B54CF950073A2BA /* ContentView.swift */,
 				DF7DDC4F2B5773E00073A2BA /* ContentView-ViewModel.swift */,
-				DF7DDC4B2B562DA40073A2BA /* EditView.swift */,
-				DF7DDC512B5BFE030073A2BA /* EditView-ViewModel.swift */,
-				DF7DDC4D2B576B740073A2BA /* Result.swift */,
-				DF7DDC492B5622A50073A2BA /* Location.swift */,
+				DF028B252BBBB7940092EB5D /* Views */,
+				DF028B232BBBB7690092EB5D /* Model */,
+				DF028B242BBBB7780092EB5D /* Resources */,
 				DF7DDC3F2B54CF960073A2BA /* Assets.xcassets */,
 				DF7DDC412B54CF960073A2BA /* Preview Content */,
 			);
