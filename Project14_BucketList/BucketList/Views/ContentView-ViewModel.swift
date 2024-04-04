@@ -12,19 +12,22 @@ import SwiftUI
 
 
 
-//【ViewModel】我们将创建一个新类来管理数据，它会代表 ContentView 去操作数据，以便达到视图和数据逻辑分离的目的
 
-//将里面创建的新类 ViewModel 放置在 ContentView 的扩展中：
+// MARK: - 创建视图扩展
+//首先创建 ContentView 视图的扩展，里面会包含 ViewModel
 extension ContentView {
     
-    //创建一个使用 Observable 宏的新类，以便我们能够从任何监视的 SwiftUI 视图中报告更改
+    
+    // MARK: - ViewModel 视图模型
+    // 创建一个使用 Observable 宏的新类： ViewModel，以便能够从任何监视的 SwiftUI 视图中报告更改
+    // MVVM 的逻辑就是创建一个类的实例来管理数据，它会代表 ContentView 去操作数据，以便达到视图和数据逻辑分离的目的
     @Observable
     class ViewModel {
         
         
-        //MARK: - 属性
+        // MARK: - 类的属性
         
-        //属性：地图的初始位置（这属于swiftUI中的，需要额外导入 swiftUI 库，因此移进来不知道是否合理）
+        //常量属性：地图的初始位置（这属于swiftUI中的，需要额外导入 swiftUI 库，因此移进来不知道是否合理）
         let startPosition = MapCameraPosition.region(
             MKCoordinateRegion(
                 center: CLLocationCoordinate2D(latitude: 56, longitude: -3),
@@ -32,11 +35,11 @@ extension ContentView {
             )
         )
         
-        //属性：生物认证状态
+        //变量属性：生物认证状态
         var isUnlocked = false
         var authenError = false
         
-        //属性：向视图模型添加一个新属性来存储要保存到的位置：
+        //常量属性：添加一个新属性来记录数据要保存的位置
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         
         //状态属性：储存所有位置数据的数组
@@ -47,10 +50,10 @@ extension ContentView {
         
         
         
-        //MARK: - 方法
         
+        // MARK: - 类的方法
         
-        //方法：新的初始化函数。在初始化时，自动读取 locations 数据。
+        //方法：新的初始化函数。在类初始化时，自动读取 locations 数据
         init() {
             do {
                 let data = try Data(contentsOf: savePath)
@@ -62,8 +65,10 @@ extension ContentView {
         }
         
         
-        //方法：数据自动保存。只要在数据写入选项中添加 .completeFileProtection 即可确保文件以强加密方式存储。
-        //使用这种方法，可以在任意数量的文件中写入任意数量的数据。比 UserDefaults 灵活得多，并且还允许我们根据需要加载和保存数据，而不是像 UserDefaults  那样在应用程序启动时立即加载和保存数据。
+        //方法：数据保存方法。
+        //使用这种方法，可以在任意数量的文件中写入任意数量的数据
+        //这比 UserDefaults 灵活得多，并且还允许我们根据需要加载和保存数据，而不是像 UserDefaults  那样在应用程序启动时立即加载和保存数据
+        //在数据写入选项中添加 .completeFileProtection 即可确保文件以强加密方式存储
         func save() {
             do {
                 let data = try JSONEncoder().encode(locations)
@@ -74,8 +79,9 @@ extension ContentView {
         }
         
         
-        //方法：添加地点。将添加地点的方法移到这里
+        //方法：添加地点
         func addLocation(at point: CLLocationCoordinate2D) {
+            //创建新的 Location 对象
             let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: point.latitude, longitude: point.longitude)
             locations.append(newLocation)
             //写入文件
@@ -83,7 +89,7 @@ extension ContentView {
         }
         
         
-        //方法：更新地点。将更新地点的方法移到这里
+        //方法：更新地点
         func update(location: Location) {
             guard let selectedPlace else { return }
             //找到用户所选择地点，在整个数组中的位置索引
@@ -119,5 +125,5 @@ extension ContentView {
         
     }
     
+    
 }
-

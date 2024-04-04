@@ -16,6 +16,7 @@
 		DF7DDC4E2B576B740073A2BA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDC4D2B576B740073A2BA /* Result.swift */; };
 		DF7DDC502B5773E00073A2BA /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDC4F2B5773E00073A2BA /* ContentView-ViewModel.swift */; };
 		DF7DDC522B5BFE030073A2BA /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDC512B5BFE030073A2BA /* EditView-ViewModel.swift */; };
+		DF9E73422BBEA5610040DE3B /* StateDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E73412BBEA5610040DE3B /* StateDemoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		DF7DDC4D2B576B740073A2BA /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DF7DDC4F2B5773E00073A2BA /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		DF7DDC512B5BFE030073A2BA /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
+		DF9E73412BBEA5610040DE3B /* StateDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,11 @@
 		DF028B252BBBB7940092EB5D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DF7DDC3D2B54CF950073A2BA /* ContentView.swift */,
+				DF7DDC4F2B5773E00073A2BA /* ContentView-ViewModel.swift */,
 				DF7DDC4B2B562DA40073A2BA /* EditView.swift */,
 				DF7DDC512B5BFE030073A2BA /* EditView-ViewModel.swift */,
+				DF9E73412BBEA5610040DE3B /* StateDemoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				DF7DDC3B2B54CF950073A2BA /* BucketListApp.swift */,
-				DF7DDC3D2B54CF950073A2BA /* ContentView.swift */,
-				DF7DDC4F2B5773E00073A2BA /* ContentView-ViewModel.swift */,
 				DF028B252BBBB7940092EB5D /* Views */,
 				DF028B232BBBB7690092EB5D /* Model */,
 				DF028B242BBBB7780092EB5D /* Resources */,
@@ -183,6 +186,7 @@
 				DF7DDC4A2B5622A50073A2BA /* Location.swift in Sources */,
 				DF7DDC4C2B562DA40073A2BA /* EditView.swift in Sources */,
 				DF7DDC3C2B54CF950073A2BA /* BucketListApp.swift in Sources */,
+				DF9E73422BBEA5610040DE3B /* StateDemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

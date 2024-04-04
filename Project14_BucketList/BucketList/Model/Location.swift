@@ -14,10 +14,11 @@ import MapKit
 //2. Codable ，这样我们就可以轻松加载和保存地图数据
 //3. Equatable ，因此我们可以在一系列位置中找到一个特定位置
 
-//就其包含的数据而言，我们将为每个位置提供名称和描述，以及纬度和经度。还需要添加一个唯一标识符，以便 SwiftUI 乐意从动态数据创建它们
 
+//就其包含的数据而言，我们将为每个位置提供名称和描述，以及纬度和经度。还需要添加一个唯一标识符，以便 SwiftUI 乐意从动态数据创建它们
 struct Location: Codable, Equatable, Identifiable {
     
+    // 这里把 id 从常量改成变量，方便后面创建新对象
     var id: UUID
     var name: String
     var description: String

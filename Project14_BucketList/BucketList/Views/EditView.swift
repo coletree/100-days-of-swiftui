@@ -60,6 +60,7 @@ struct EditView: View {
                     dismiss()
                 }
             }
+            //该 task 请求在视图出现后，马上执行
             .task {
                 await viewModel.fetchNearbyPlaces()
             }
