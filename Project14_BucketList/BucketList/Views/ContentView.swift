@@ -141,7 +141,7 @@ struct ContentView: View {
                 }
 
                 
-                //切换按钮
+                //切换地图模式的按钮
                 VStack {
                     HStack {
                         Spacer()
@@ -166,7 +166,7 @@ struct ContentView: View {
                     Text("\(value)")
                 }
 
-                
+                //按钮：触发认证
                 Button("Unlock Places", action: viewModel.authenticate)
                     .padding()
                     .background(.blue)

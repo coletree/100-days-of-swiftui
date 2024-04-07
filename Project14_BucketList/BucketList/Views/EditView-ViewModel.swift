@@ -17,7 +17,6 @@ import SwiftUI
 extension EditView {
     
     
-    
     @Observable
     class ViewModel{
         
@@ -83,7 +82,7 @@ extension EditView {
             }
         }
         
-        //
+        //方法：创建新地点
         func createNewLocation() -> Location{
             var newLocation = location
             newLocation.id = UUID()
