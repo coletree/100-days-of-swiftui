@@ -5,6 +5,10 @@
 //  Created by coletree on 2024/2/21.
 //
 
+//当 CodeScannerView 找到代码时，它将使用 Result 实例调用完成闭包
+//该实例包含有关找到的代码的详细信息或说明问题所在的错误：可能是相机不可用，或者相机无法扫描代码。
+//无论返回什么代码或错误，我们都会忽略该视图；我们很快就会添加更多代码来完成更多工作。
+
 import CodeScanner
 import SwiftData
 import SwiftUI
@@ -18,24 +22,22 @@ struct ProspectsView: View {
     
     //MARK: - 属性
     
-    //该 ProspectsView 是要对应 3 个实例的，因此它里面肯定要区分不同实例的不同内容
-    //这里主要是靠 FilterType 这个枚举进行区分
+    
+    //枚举：使用 FilterType 这个枚举区分不同的实例
+    //由于 ProspectsView 是要对应 3 个视图实例的，因此它里面肯定要区分不同实例的不同内容
     enum FilterType {
         case none, contacted, uncontacted
     }
     
-
+    //常量：声明 FilterType 属性，没有赋值，因此要在初始化时赋值
     //默认情况下，这将加载所有 Prospect 模型对象，并按名称对它们进行排序
     //虽然这对于“Everyone”选项卡来说很好，但对于其他两个选项卡来说还不够
     //这里有三个 ProspectsView 实例，它们仅根据从选项卡视图传入的 FilterType 属性而变化
-    //我们已经使用 FilterType 来设置每个视图的标题，我们也可以使用它来过滤查询
-    //我们已经有一个默认查询，如果添加一个初始值设定项，就可以在设置过滤器时覆盖它
-    
-    //定义 FilterType 属性，没有赋值，因此要在初始化时赋值
+    //我们已经使用 FilterType 来设置每个视图的标题，我们还可以使用它来过滤查询
+    //我们已经有一个默认查询，如果在具体视图上添加一个初始值设定项，就可以在设置过滤器时覆盖它
     let filter: FilterType
     
-    
-    //定义计算属性 - 标题。它根据 FilterType 属性自动计算得出
+    //计算属性：用于 ProspectsView 视图的标题。它根据 FilterType 属性自动计算得出
     var title: String {
         switch filter {
             case .none:
@@ -47,11 +49,23 @@ struct ProspectsView: View {
         }
     }
     
-    //获取 prospects 数据：执行 Prospect 对象的查询
+    
+    
+    //创建模型上下文 ，以便写入 Prospect 对象
+    @Environment(\.modelContext) var modelContext
+    
+    //SwiftData数据：执行 Prospect 对象的查询获取数据
     @Query var prospects: [Prospect]
     
     
-    //定义一个计算参数去做过滤和排序，避免了直接在上面 Query 处做动态过滤的麻烦
+    
+    //枚举：定义可能的排序方式，后续可从中选择一个
+    enum sortType { case name, email, date }
+    
+    //状态属性：储存排序规则。是上面枚举的实例
+    @State private var sortOrder = sortType.name
+    
+    //计算属性：根据排序规则去做过滤和排序，避免了直接在上面 Query 处做动态过滤的麻烦
     var filteredProspects: [Prospect] {
         
 //        let result : [Prospect]
@@ -75,35 +89,20 @@ struct ProspectsView: View {
     
     
 
-    
-    
-    //创建模型上下文 ，以便写入 Prospect 对象
-    @Environment(\.modelContext) var modelContext
-    
-    
-    //控制是否弹出扫描窗口
+    //状态属性：控制是否弹出扫描窗口
     @State private var isShowingScanner = false
     
-    //储存选择的 Prospect
+    //状态属性：储存列表中选择的 Prospect（必须是集合）
     @State private var selectedProspects = Set<Prospect>()
-    
 
-    //定义可能的排序方式，后续可从中选择一个
-    enum sortType { case name, email, date }
-    
-    //设定状态属性 - 排序。默认为 name，后面可以修改
-    @State private var sortOrder = sortType.name
 
-    
-    
-    
-    
+
     //MARK: - 视图
     var body: some View {
         
         NavigationStack {
             
-            //名片的List列表
+            //视图：创建一个 List 来循环生成的数组
             List(filteredProspects, selection: $selectedProspects) {
                 
                 prospect in
@@ -140,8 +139,10 @@ struct ProspectsView: View {
                     }
                 }
                 
-                //设置滑动动作（只需在属性上调用 toggle 就可翻转布尔值）
+                //滑动按钮设置：只需在属性上调用 toggle 就可翻转布尔值
+                //由于这个视图在3个页面中都会展示，所以要考虑到3个页面中的不同展示的情况
                 .swipeActions {
+                    //如果属于“已联系”，显示按钮为 “标记为未联系” + “删除”
                     if prospect.isContacted {
                         Button("标记为 Uncontacted", systemImage: "person.crop.circle.badge.xmark") {
                             prospect.isContacted.toggle()
@@ -150,7 +151,9 @@ struct ProspectsView: View {
                         Button("Delete", systemImage: "trash", role: .destructive) {
                             modelContext.delete(prospect)
                         }
-                    } else {
+                    }
+                    //如果不属于 “已联系”，显示按钮为 “标记为已联系” + “提醒” + “删除”
+                    else {
                         Button("标记为 Contacted", systemImage: "person.crop.circle.fill.badge.checkmark") {
                             prospect.isContacted.toggle()
                         }
@@ -165,6 +168,7 @@ struct ProspectsView: View {
                     }
                 }
                 
+                //重要：为了让程序明确 List 的每一行对应一个对象，在滑动操作后需要添加以下代码：
                 //设置每一行的tag，以便标记每一个选择的行
                 .tag(prospect)
                 
@@ -221,16 +225,18 @@ struct ProspectsView: View {
     }
     
     
+    
+    
     //MARK: - 方法
     
 
-    
     //自定义初始化方法
     init(filter: FilterType) {
         self.filter = filter
         if filter != .none {
             let showContactedOnly = filter == .contacted
-            //这里用了$0代表第一个闭包参数
+            //这里用了 $0 代表第一个闭包参数，也就是每个 prospect 对象
+            //这里主要检查每个 prospect 对象的 isContacted 属性，是否为 true 或 false
             _prospects = Query(filter: #Predicate {
                 $0.isContacted == showContactedOnly
             })
@@ -257,11 +263,12 @@ struct ProspectsView: View {
     }
     
     
-    //方法：在编辑模式下，删除选择的所有 prospect
+    //方法：在编辑模式下，删除所有选择的 prospect
     func delete() {
         for prospect in selectedProspects {
             modelContext.delete(prospect)
         }
+        //删除完后，记得将选择集合的状态属性归位
         selectedProspects = Set()
     }
     

@@ -26,6 +26,19 @@ struct ContentView: View {
     //状态属性：用户当前剩余的游戏时间
     @State private var timeRemaining = 100
     
+
+    
+    //状态属性：标记是否要展示编辑卡片视图
+    @State private var showingEditScreen = false
+    
+    //状态属性：数组有一个初始值设定项 init(repeating:count:) ，它采用一个值并重复多次来创建数组，特别适合测试。
+    //@State private var cards = Array<Card>(repeating: .example, count: 10)
+    //当视图首次显示时， resetCards() 被调用；当 EditCards 被关闭后，resetCards() 也被调用
+    //这意味着我们可以放弃示例 cards 数据，并将其设为一个在运行时填充的空数组
+    @State private var cards = [Card]()
+    
+    
+    
     //环境属性：scenePhase
     @Environment(\.scenePhase) var scenePhase
     
@@ -37,11 +50,8 @@ struct ContentView: View {
      */
     @State private var isActive = true
     
-    //状态属性：数组有一个初始值设定项 init(repeating:count:) ，它采用一个值并重复多次来创建数组，特别适合测试。
-    //@State private var cards = Array<Card>(repeating: .example, count: 10)
-    //当视图首次显示时， resetCards() 被调用；当 EditCards 被关闭后，resetCards() 也被调用
-    //这意味着我们可以放弃示例 cards 数据，并将其设为一个在运行时填充的空数组
-    @State private var cards = [Card]()
+    
+    
     
     //环境属性：accessibilityDifferentiateWithoutColor
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
@@ -50,11 +60,6 @@ struct ContentView: View {
     @Environment(\.accessibilityVoiceOverEnabled) var accessibilityVoiceOverEnabled
     
     
-    //状态属性：标记是否要展示编辑卡片视图
-    @State private var showingEditScreen = false
-    
-
-    
     
     
     //MARK: - 视图
@@ -62,10 +67,12 @@ struct ContentView: View {
         
         ZStack {
             
+            
             //视图：背景图层，标记为纯装饰图像，不需要 VoiceOver 读出
             Image(decorative: "background")
                 .resizable()
                 .ignoresSafeArea()
+            
             
             //视图：卡片堆栈
             VStack {
@@ -133,6 +140,7 @@ struct ContentView: View {
                 
             }
             
+            
             //视图：进入新增卡片界面的按钮
             VStack {
                 HStack {
@@ -152,6 +160,7 @@ struct ContentView: View {
             .foregroundStyle(.white)
             .font(.largeTitle)
             .padding()
+            
             
             //判断视图：无颜色区分 & 启用了VoiceOver时，显示两个按钮
             if accessibilityDifferentiateWithoutColor || accessibilityVoiceOverEnabled {
@@ -195,6 +204,7 @@ struct ContentView: View {
                 }
             }
             
+            
         }
         .onReceive(timer) { time in
             //确保当前状态是 活跃，才进行计数，否则退出
@@ -221,6 +231,8 @@ struct ContentView: View {
         
         
     }
+    
+    
     
     
     //MARK: - 方法
@@ -272,14 +284,16 @@ struct ContentView: View {
 
 //MARK: - 其他
 
-
-//本例中将创建一个新的 stacked() 修饰符，它获取数组中的位置以及数组的总大小，并根据这些值将视图偏移一定量。
-//这将使我们能够创建一个有吸引力的卡牌堆，其中每张卡牌在屏幕上的位置都比之前的卡牌稍远一些。
+//扩展：新的修饰符
 extension View {
+    
+    //创建新的 stacked() 修饰符，它获取数组中的位置以及数组的总大小，并根据这些值将视图偏移一定量。
+    //这能够创建有吸引力的卡牌堆，其中每张卡牌在屏幕上的位置都比之前的卡牌稍远一些。
     func stacked(at position: Int, in total: Int) -> some View {
         let offset = Double(total - position)
         return self.offset(y: offset * 10)
     }
+    
 }
 
 

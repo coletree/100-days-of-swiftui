@@ -17,5 +17,6 @@ struct HotProspectsApp: App {
             ContentView()
         }
         .modelContainer(for: Prospect.self)
+        //这为 Prospect 类创建了存储空间，同时也将共享的 SwiftData 模型上下文放置到应用程序中的每个 SwiftUI 视图中
     }
 }

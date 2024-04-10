@@ -55,8 +55,9 @@ struct MeView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
+                    //设置长按菜单
                     .contextMenu {
-//                      let image = generateQRCode(from: "\(name)\n\(emailAddress)")
+                        //let image = generateQRCode(from: "\(name)\n\(emailAddress)")
                         ShareLink(
                             item: Image(uiImage: qrCode),
                             preview: SharePreview("My QR Code", image: Image(uiImage: qrCode))
@@ -65,7 +66,8 @@ struct MeView: View {
                 
             }
             .navigationTitle("Your code")
-            //设置生成二维码 和 更新二维码的触发点
+            //视图出现时：生成二维码
+            //当名称和邮件发生变更时：更新二维码
             .onAppear(perform: updateCode)
             .onChange(of: name, updateCode)
             .onChange(of: emailAddress, updateCode)
@@ -101,7 +103,7 @@ struct MeView: View {
     }
     
     
-    //方法：更新二维码。调用生成的方法，并将方法返回的 UIImage 赋予 @State 的 qrCode
+    //方法：更新二维码。重新调用生成的方法，并将方法返回的 UIImage 赋予 @State 的 qrCode
     func updateCode() {
         qrCode = generateQRCode(from: "\(name)\n\(emailAddress)")
     }

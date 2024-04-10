@@ -10,7 +10,10 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
+
+
+
+
     //MARK: - 属性
     
     //@State private var selection: String? = "Yuki"
@@ -64,6 +67,7 @@ struct ContentView: View {
                     Label("Me", systemImage: "person.crop.square")
                 }
         }
+        .accentColor(.yellow)
 
         
     }
