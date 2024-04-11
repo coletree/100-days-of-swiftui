@@ -17,9 +17,8 @@ struct CardView: View {
     //属性：单个卡片数据实例
     let card: Card
     
-    //属性：存储一个闭包，该方法可以填充稍后想要的任何代码。借助该闭包，可以灵活地在 ContentView 中获取回调
+    //属性：存储两个闭包，该方法可以填充稍后想要的任何代码。借助该闭包，可以灵活地在 ContentView 中获取回调
     var removalRight: (() -> Void)? = nil
-    
     var removalWrong: (() -> Void)? = nil
     
     //状态属性：是否展示正确答案
@@ -31,6 +30,7 @@ struct CardView: View {
     //状态属性：背景色。用这个属性解决卡片回位时会先变红的问题
     @State var bgColor: Color = .white
     
+    
     //环境属性：accessibilityDifferentiateWithoutColor
     @Environment(\.accessibilityDifferentiateWithoutColor) var accessibilityDifferentiateWithoutColor
     
@@ -40,21 +40,19 @@ struct CardView: View {
 
 
     
-    
     //MARK: - 视图
     var body: some View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 25)
+                //修饰符：用三元运算符进行判断“使用何种填充效果”
                 .fill(
-                    //判断：三元运算符可以直接用
-                    accessibilityDifferentiateWithoutColor
+                    accessibilityDifferentiateWithoutColor 
                     ? .white
-                    : .white
-                        .opacity(1 - Double(abs(offset.width / 50)))
+                    : .white.opacity(1 - Double(abs(offset.width / 50)))
                 )
+                //修饰符：用三元运算符进行判断“使用何种填充效果”
                 .background(
-                    //判断：三元运算符可以直接用
                     accessibilityDifferentiateWithoutColor
                     ? nil
                     : RoundedRectangle(cornerRadius: 25)
@@ -65,8 +63,8 @@ struct CardView: View {
                 .shadow(radius: 10)
 
             VStack {
-                //判断：如果启用了VoiceOver，那再看isShowingAnswer的状态
-                //如果 isShowingAnswer为true ，显示 answer；否则显示 prompt
+                //判断：如果启用了VoiceOver，那再看 isShowingAnswer 的状态
+                //如果 isShowingAnswer 为 true ，显示 answer；否则显示 prompt
                 if accessibilityVoiceOverEnabled {
                     Text(isShowingAnswer ? card.answer : card.prompt)
                         .font(.largeTitle)
@@ -88,16 +86,18 @@ struct CardView: View {
             .padding(20)
             .multilineTextAlignment(.center)
         }
+        
+        //根据 offset 的值，实时改变卡片外观
         .frame(width: 450, height: 250)
         .rotationEffect(.degrees(offset.width / 5.0))
-        .offset(x: offset.width * 2)
+        .offset(x: offset.width * 1.5)
+        .opacity(2 - Double(abs(offset.width / 80)))
         /*
          使用 2 是有意为之的，因为它允许卡片在被稍微拖动时保持不透明。因此，如果用户根本没有拖动，则不透明度为 2.0，这与不透明度为 1 相同。如果用户向左或向右拖动 50 点，我们将其除以 50 得到 1，然后从 2 中减去该值得到 1，所以不透明度仍然是 1——卡片仍然完全不透明。但超过 50 点时，我们开始淡出卡片，直到左侧或右侧 100 点时不透明度为 0。
          */
-        .opacity(2 - Double(abs(offset.width / 80)))
-        //明确卡片是可点击的按钮
-        .accessibilityAddTraits(.isButton)
-        //拖动手势
+
+        
+        //手势：拖动选择“学会”或者“未学会”
         .gesture(
             DragGesture()
                 .onChanged { 
@@ -126,19 +126,19 @@ struct CardView: View {
                     }
                 }
         )
+        
+        //手势：点击展示答案
         .onTapGesture {
             isShowingAnswer.toggle()
         }
-        //增加动画
+        
+        //增加动画效果
         .animation(.bouncy, value: offset)
         
+        //辅助系统：明确卡片是可点击的按钮
+        .accessibilityAddTraits(.isButton)
+        
     }
-
-    
-    //MARK: - 方法
-    
-    
-    
     
 }
 

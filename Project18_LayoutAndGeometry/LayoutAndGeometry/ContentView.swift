@@ -17,27 +17,39 @@ struct ContentView: View {
     
     //MARK: - 视图
     var body: some View {
-        GeometryReader { fullView in
+        
+        GeometryReader { 
+            
+            fullView in
+            
             ScrollView(.vertical) {
-                ForEach(0..<50) { 
+                
+                ForEach(0..<50) {
+                    
                     index in
+                    
                     GeometryReader {
+                        
                         proxy in
+                        
                         Text("Row #\(index)")
                             .font(.title)
                             .frame(maxWidth: .infinity)
+                        
                             //设置颜色：用求余数的方式，从前面的颜色数组中取值
                             //.background(colors[index % 7])
                             //设置颜色：直接运算给 hue 赋值
                             .background(
                                 Color(
-                                    hue: min(proxy.frame(in: .global).minY/fullView.frame(in: .global).height, 1),
+                                    hue: min(
+                                        proxy.frame(in: .global).minY/fullView.frame(in: .global).height,
+                                        1),
                                     saturation: 1,
                                     brightness: 1
                                 )
                             )
                             //设置透明度：
-                            .opacity( proxy.frame(in: .global).minY / 200 )
+                            .opacity( proxy.frame(in: .global).minY / 500 )
                             //设置放大效果：
                             .scaleEffect(
                                 min(
@@ -47,6 +59,7 @@ struct ContentView: View {
                             //设置3D旋转效果：
                             .rotation3DEffect(.degrees(proxy.frame(in: .global).minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                     }
+                    //限制 GeometryReader 的高度为 40
                     .frame(height: 40)
                 }
             }
@@ -90,15 +103,15 @@ struct InnerView: View {
 
 
 //自定义辅助线扩展
-extension VerticalAlignment {
-    struct MidAccountAndName: AlignmentID {
-        static func defaultValue(in context: ViewDimensions) -> CGFloat {
-            context[.leading]
-        }
-    }
-
-    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self)
-}
+//extension VerticalAlignment {
+//    struct MidAccountAndName: AlignmentID {
+//        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+//            context[.leading]
+//        }
+//    }
+//
+//    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self)
+//}
 
 
 //MARK: - 预览

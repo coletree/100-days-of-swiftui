@@ -51,6 +51,7 @@
 		DF9E734B2BC4EB5D0040DE3B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFA5EBB32B8E20AC00B5684E /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -85,7 +86,6 @@
 				DFF817B52B8C669800BB4D22 /* ContentView.swift */,
 				DFF817C32B8D7E3500BB4D22 /* CardView.swift */,
 				DFF817C52B8DB0DB00BB4D22 /* EditCards.swift */,
-				DFA5EBB32B8E20AC00B5684E /* SwiftUIView.swift */,
 				DF9E734B2BC4EB5D0040DE3B /* Views */,
 				DF9E734A2BC4EB560040DE3B /* Model */,
 				DF9E734C2BC4EB680040DE3B /* Resources */,

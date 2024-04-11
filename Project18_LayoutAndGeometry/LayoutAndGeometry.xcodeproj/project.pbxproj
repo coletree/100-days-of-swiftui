@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF9E73512BC67E250040DE3B /* LayoutDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E73502BC67E250040DE3B /* LayoutDemoView.swift */; };
+		DF9E73532BC803080040DE3B /* CoverFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E73522BC803080040DE3B /* CoverFlowView.swift */; };
 		DFA5EBC22B8EE19D00B5684E /* LayoutAndGeometryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */; };
 		DFA5EBC42B8EE19D00B5684E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBC32B8EE19D00B5684E /* ContentView.swift */; };
 		DFA5EBC62B8EE19E00B5684E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA5EBC52B8EE19E00B5684E /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF9E73502BC67E250040DE3B /* LayoutDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDemoView.swift; sourceTree = "<group>"; };
+		DF9E73522BC803080040DE3B /* CoverFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowView.swift; sourceTree = "<group>"; };
 		DFA5EBBE2B8EE19D00B5684E /* LayoutAndGeometry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutAndGeometry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAndGeometryApp.swift; sourceTree = "<group>"; };
 		DFA5EBC32B8EE19D00B5684E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +36,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF9E734D2BC679730040DE3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF9E73502BC67E250040DE3B /* LayoutDemoView.swift */,
+				DF9E73522BC803080040DE3B /* CoverFlowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF9E734E2BC679790040DE3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF9E734F2BC679800040DE3B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		DFA5EBB52B8EE19D00B5684E = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +81,9 @@
 				DFA5EBC12B8EE19D00B5684E /* LayoutAndGeometryApp.swift */,
 				DFA5EBC32B8EE19D00B5684E /* ContentView.swift */,
 				DFA5EBC52B8EE19E00B5684E /* Assets.xcassets */,
+				DF9E734D2BC679730040DE3B /* Views */,
+				DF9E734E2BC679790040DE3B /* Model */,
+				DF9E734F2BC679800040DE3B /* Resource */,
 				DFA5EBC72B8EE19E00B5684E /* Preview Content */,
 			);
 			path = LayoutAndGeometry;
@@ -137,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF9E73532BC803080040DE3B /* CoverFlowView.swift in Sources */,
+				DF9E73512BC67E250040DE3B /* LayoutDemoView.swift in Sources */,
 				DFA5EBC42B8EE19D00B5684E /* ContentView.swift in Sources */,
 				DFA5EBC22B8EE19D00B5684E /* LayoutAndGeometryApp.swift in Sources */,
 			);

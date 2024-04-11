@@ -91,11 +91,13 @@ struct ContentView: View {
                     //card数据模型用了Identifiable，这里只能改成cards，不能用整数
                     ForEach(cards) {
                         card in
+                        
                         //这里强制解包
                         let index = cards.firstIndex(of: card)!
+                        
                         /*
                          这里的 CardView 实例化时需要初始化参数，其中一个参数是 card 模型
-                         另外一个参数是 removal 闭包，于是在这里后面就跟了一个闭包
+                         另外两个参数是 removal 闭包，于是在这里后面就跟了两个闭包（一个对一个错）
                          这个闭包是在卡片拖动到一定程度时执行的，这个是在 CardView 里定义的
                         */
                         CardView(card: cards[index], removalRight: {
@@ -116,20 +118,22 @@ struct ContentView: View {
                             }
                         })
                         
-                        //stacked 是自定义扩展的修饰符
+                        //修饰符：添加扩展的自定义修饰符，传入卡片索引
                         .stacked(at: index, in: cards.count)
-                        //如果不是最上面的卡片，不允许被拖动；也不支持被 VoiceOver 读出
+                        
+                        //修饰符：判断如果不是最上面的卡片，不允许被拖动；也不支持被 VoiceOver 读出
                         .allowsHitTesting(index == cards.count - 1)
                         .accessibilityHidden(index < cards.count - 1)
                     }
                 }
+                
                 /*
                  通过将 allowsHitTesting() 设置为 false ，可以禁用视图的交互性；
-                 在这里，我们通过检查 timeRemaining 剩余时间，决定是否禁用卡片交互
+                 这里通过检查 timeRemaining 剩余时间是否大于 0，决定是否禁用卡片交互
                  */
                 .allowsHitTesting(timeRemaining > 0)
                 
-                //判断：当卡片空了的时候，显示重置按钮
+                //重置按钮视图：判断当卡片空了的时候，显示重置按钮
                 if cards.isEmpty {
                     Button("Start Again", action: resetCards)
                         .padding()
@@ -250,6 +254,7 @@ struct ContentView: View {
     //方法：删除具体卡片(回答错误时，不能直接删除，需要继续回答)
     func removeCardWrong(at index: Int) {
         guard index >= 0 else { return }
+        //将不会的卡片转存一下，后面再重新插入
         let tempCard = cards[index]
         cards.remove(at: index)
         cards.insert(tempCard, at:0)
