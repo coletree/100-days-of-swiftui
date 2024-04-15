@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF9E73582BC8E2EC0040DE3B /* SplitViewDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E73572BC8E2EC0040DE3B /* SplitViewDemoView.swift */; };
 		DFA5EBF82B9373D100B5684E /* SnowSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBF72B9373D100B5684E /* SnowSeekerApp.swift */; };
 		DFA5EBFA2B9373D100B5684E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBF92B9373D100B5684E /* ContentView.swift */; };
 		DFA5EBFC2B9373D300B5684E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA5EBFB2B9373D300B5684E /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF9E73572BC8E2EC0040DE3B /* SplitViewDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewDemoView.swift; sourceTree = "<group>"; };
 		DFA5EBF42B9373D100B5684E /* SnowSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnowSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA5EBF72B9373D100B5684E /* SnowSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowSeekerApp.swift; sourceTree = "<group>"; };
 		DFA5EBF92B9373D100B5684E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +52,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF9E73542BC8E2C10040DE3B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DFA5EC052B95E6E300B5684E /* resorts.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF9E73552BC8E2C90040DE3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DFA5EC072B96B9BC00B5684E /* Resort.swift */,
+				DFA5EC132B97027600B5684E /* Facility.swift */,
+				DFA5EC152B984CBE00B5684E /* Favorites.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF9E73562BC8E2CF0040DE3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DFA5EC112B96CFE300B5684E /* ResortDetailsView.swift */,
+				DFA5EC0F2B96CEDE00B5684E /* SkiDetailsView.swift */,
+				DFA5EC0B2B96C30000B5684E /* WelcomeView.swift */,
+				DF9E73572BC8E2EC0040DE3B /* SplitViewDemoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF9E73592BC9117C0040DE3B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DFA5EC092B96BA9000B5684E /* Bundle-Decodable.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		DFA5EBEB2B9373D100B5684E = {
 			isa = PBXGroup;
 			children = (
@@ -72,15 +111,11 @@
 				DFA5EBF72B9373D100B5684E /* SnowSeekerApp.swift */,
 				DFA5EBF92B9373D100B5684E /* ContentView.swift */,
 				DFA5EC0D2B96C6B000B5684E /* ResortView.swift */,
-				DFA5EC112B96CFE300B5684E /* ResortDetailsView.swift */,
-				DFA5EC0F2B96CEDE00B5684E /* SkiDetailsView.swift */,
-				DFA5EC0B2B96C30000B5684E /* WelcomeView.swift */,
-				DFA5EC152B984CBE00B5684E /* Favorites.swift */,
-				DFA5EC132B97027600B5684E /* Facility.swift */,
-				DFA5EC072B96B9BC00B5684E /* Resort.swift */,
-				DFA5EC092B96BA9000B5684E /* Bundle-Decodable.swift */,
+				DF9E73562BC8E2CF0040DE3B /* Views */,
+				DF9E73552BC8E2C90040DE3B /* Model */,
+				DF9E73592BC9117C0040DE3B /* Extension */,
+				DF9E73542BC8E2C10040DE3B /* Resources */,
 				DFA5EBFB2B9373D300B5684E /* Assets.xcassets */,
-				DFA5EC052B95E6E300B5684E /* resorts.json */,
 				DFA5EBFD2B9373D300B5684E /* Preview Content */,
 			);
 			path = SnowSeeker;
@@ -167,6 +202,7 @@
 			files = (
 				DFA5EC0C2B96C30000B5684E /* WelcomeView.swift in Sources */,
 				DFA5EC102B96CEDE00B5684E /* SkiDetailsView.swift in Sources */,
+				DF9E73582BC8E2EC0040DE3B /* SplitViewDemoView.swift in Sources */,
 				DFA5EC122B96CFE300B5684E /* ResortDetailsView.swift in Sources */,
 				DFA5EC162B984CBE00B5684E /* Favorites.swift in Sources */,
 				DFA5EC142B97027600B5684E /* Facility.swift in Sources */,

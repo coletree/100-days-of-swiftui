@@ -33,9 +33,9 @@ class Favorites: ObservableObject{
     private var saveKey = "Favorites"
 
     
-    //读取保存的数据
+    //初始化方法：
     init() {
-        // load our saved data
+        // 读取保存的数据
         if let data = UserDefaults.standard.data(forKey: saveKey){
             if let decoded = try? JSONDecoder().decode(Set<String>.self, from: data){
                 resorts = decoded

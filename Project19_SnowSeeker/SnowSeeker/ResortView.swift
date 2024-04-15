@@ -24,17 +24,21 @@ struct ResortView: View {
     //常量属性：resort 数据，等待传入
     let resort: Resort
     
-    //环境属性：
-    @Environment(\.horizontalSizeClass) var sizeClass
-    //@Environment(\.verticalSizeClass) var sizeClass
-    
+
     //状态属性：希望将 Facility 图像制作成按钮，以便点击后显示 alert
     @State private var selectedFacility: Facility?
     @State private var showingFacility = false
     
+    
+    //环境属性：尺寸类型
+    @Environment(\.horizontalSizeClass) var sizeClass
+    //@Environment(\.verticalSizeClass) var sizeClass
+    
+    
+    //环境属性：通过以下新属性从各页面内部加载它：
     //由于 favorites 类被附加到 contentView 导航视图，所以导航视图呈现的每个视图也将获得要使用的 Favorites 实例
-    //因此，我们可以通过添加以下新属性从 ResortView 内部加载它：
     @EnvironmentObject var favorites: Favorites
+    //@Environment(Favorites.self) var favorites
     
 
     
@@ -72,13 +76,13 @@ struct ResortView: View {
                 
                 //两个子视图，在不同的 size class 下的两种布局
                 HStack {
-                        //如果横向空间 horizontalSizeClass == 紧凑，则
+                    //如果横向空间 horizontalSizeClass == 紧凑，则
                     if sizeClass == .compact {
                         VStack(spacing: 10) { ResortDetailsView(resort: resort) }
                         VStack(spacing: 10) { SkiDetailsView(resort: resort) }
                     }
-                        //如果横向空间不等于紧凑，则
-                        else {
+                    //如果横向空间不等于紧凑，则
+                    else {
                         ResortDetailsView(resort: resort)
                         SkiDetailsView(resort: resort)
                     }

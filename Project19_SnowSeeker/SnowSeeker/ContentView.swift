@@ -10,9 +10,11 @@ import SwiftUI
 struct ContentView: View {
     
     
+    
+    
     //MARK: - 属性
     
-    //常量：加载所有休闲度假胜地
+    //常量：使用相同的 Bundle 扩展添加属性，加载所有休闲度假胜地:
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
     //状态参数：检索词
@@ -50,6 +52,7 @@ struct ContentView: View {
     
     //状态参数：创建一个 Favorites 实例并将其注入到环境中，以便所有视图都可以共享它
     @StateObject var favorites = Favorites()
+    //@Environment(Favorites.self) var favorites
     
     
     
@@ -61,7 +64,7 @@ struct ContentView: View {
         //分屏导航视图
         NavigationSplitView(
             
-            //左侧：主视图。
+            //左侧：主视图
             sidebar: {
                 
                 //使用排序后的数据
@@ -123,6 +126,7 @@ struct ContentView: View {
             
             //右侧：辅助视图。通过点击主视图中的 navigationLink 弹出
             detail: {
+                //设置一个默认视图
                 WelcomeView()
             }
         )
@@ -132,6 +136,7 @@ struct ContentView: View {
         //因为它附加到导航视图，所以导航视图呈现的每个视图也将获得要使用的 Favorites 实例。
         //因此，我们可以通过添加以下新属性从 ResortView 内部加载它：
         .environmentObject(favorites)
+        //.environment(favorites)
         
     }
 
