@@ -6,9 +6,15 @@
 //  Copyright © 2019 Hacking with Swift. All rights reserved.
 //
 
+
+import Observation
 import SwiftUI
 
-class Order {
+
+
+
+@Observable
+class Order{
     
     //MenuItem 数组
     var items = [MenuItem]()

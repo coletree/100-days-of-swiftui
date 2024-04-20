@@ -21,6 +21,8 @@ struct ContentView: View {
     let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     
     
+    
+    
     //MARK: - 视图
     var body: some View {
         
@@ -48,7 +50,9 @@ struct ContentView: View {
             .listStyle(.grouped)
             //.listStyle(.insetGrouped)
             //.listStyle(.sidebar)
+
         }
+        
         
     }
     

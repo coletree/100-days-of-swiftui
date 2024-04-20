@@ -13,14 +13,17 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
+    
     //MARK: - 属性
     
     //变量：等待传入一个 MenuItem 对象
     var item : MenuItem
     
-    
     //常量：定义一个储存每种 restrictions 类型对应颜色的字典
     let colors: [String: Color] = ["D": .purple, "G": .black, "N": .red, "S": .blue, "V": .green]
+    
+    //环境属性：读取在 App.swift 文件中定义的 order 属性
+    @Environment(Order.self) var order
     
     
     
@@ -43,6 +46,12 @@ struct ItemDetailView: View {
             
             Text(item.description)
                 .padding()
+            
+            //按钮：添加到购物车
+            Button("Order This") {
+                order.add(item: item)
+            }
+            .buttonStyle(.borderedProminent)
             
             Spacer()
             
@@ -67,5 +76,7 @@ struct ItemDetailView: View {
     //加上这个可以预览 ItemDetailView 在导航堆栈中的情况
     NavigationStack {
         ItemDetailView(item: MenuItem.example)
+            //加上环境属性后，预览必须加上这行代码
+            .environment(Order())
     }
 }

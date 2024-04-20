@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct iDineApp: App {
+    
+    //状态属性: 为类创建订单数据
+    @State private var order = Order()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(order)
         }
     }
+    
 }
