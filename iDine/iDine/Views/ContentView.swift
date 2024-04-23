@@ -38,13 +38,14 @@ struct ContentView: View {
                                 ItemRow2(item: item)
                             }
                         }
-                        //使用了链接和目标视图分离，附加值为 MenuItem
-                        .navigationDestination(for: MenuItem.self) {
-                            item in
-                            ItemDetailView(item: item)
-                        }
+                        
                     }
                 }
+            }
+            //目标视图：加到 List 外面的。使用了链接和目标视图分离，附加值为 MenuItem
+            .navigationDestination(for: MenuItem.self) {
+                item in
+                ItemDetailView(item: item)
             }
             .navigationTitle("Menu")
             .listStyle(.grouped)

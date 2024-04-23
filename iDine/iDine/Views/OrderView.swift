@@ -16,31 +16,54 @@ struct OrderView: View {
     @Environment(Order.self) var order
     
     
+    
+    
     //MARK: - 视图
     var body: some View {
         
         NavigationStack {
             List {
+                
+                //视图：已点菜品清单
                 Section {
-                    ForEach(order.items) { item in
+                    ForEach(order.items) { 
+                        item in
                         HStack {
                             Text(item.name)
                             Spacer()
                             Text("$\(item.price)")
                         }
                     }
+                    .onDelete(perform: deleteItems)
                 }
                 
+                //视图：结帐按钮
                 Section {
+                    //链接：跳转到结帐页面
                     NavigationLink("Place Order") {
-                        Text("Check out")
+                        CheckoutView()
                     }
+                    .disabled(order.items.isEmpty)
                 }
             }
             .navigationTitle("Order")
+            //支持批量编辑
+            .toolbar {
+                EditButton()
+            }
         }
         
     }
+    
+    
+    //MARK: - 方法
+    
+    //方法：删除元素
+    func deleteItems(at offsets: IndexSet) {
+        order.items.remove(atOffsets: offsets)
+    }
+    
+    
     
     
 }

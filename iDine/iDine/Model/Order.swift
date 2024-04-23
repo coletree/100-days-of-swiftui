@@ -13,10 +13,11 @@ import SwiftUI
 
 
 
+//MARK: - 可观察类 Order
 @Observable
 class Order{
     
-    //MenuItem 数组
+    //变量属性：定义一个 MenuItem 数组
     var items = [MenuItem]()
 
     //计算属性：计算总金额
@@ -28,12 +29,12 @@ class Order{
         }
     }
 
-    //添加一个 MenuItem
+    //方法：添加 MenuItem，就是往数组中增加一个元素
     func add(item: MenuItem) {
         items.append(item)
     }
 
-    //删除一个 MenuItem
+    //方法：删除 MenuItem，找到元素在数组中的索引，然后删掉
     func remove(item: MenuItem) {
         if let index = items.firstIndex(of: item) {
             items.remove(at: index)

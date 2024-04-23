@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DF44EB902BD2270E008FB6A6 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EB8F2BD2270E008FB6A6 /* OrderView.swift */; };
+		DF44EB922BD3AFE8008FB6A6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EB912BD3AFE8008FB6A6 /* MainView.swift */; };
+		DF44EB942BD60E30008FB6A6 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EB932BD60E30008FB6A6 /* CheckoutView.swift */; };
+		DF44EB962BD6162B008FB6A6 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EB952BD6162B008FB6A6 /* FavoriteView.swift */; };
+		DF44EB982BD61801008FB6A6 /* Favor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EB972BD61801008FB6A6 /* Favor.swift */; };
 		DF9E738D2BD0B65C0040DE3B /* iDineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E738C2BD0B65C0040DE3B /* iDineApp.swift */; };
 		DF9E738F2BD0B65C0040DE3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E738E2BD0B65C0040DE3B /* ContentView.swift */; };
 		DF9E73912BD0B65D0040DE3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF9E73902BD0B65D0040DE3B /* Assets.xcassets */; };
@@ -23,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		DF44EB8F2BD2270E008FB6A6 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		DF44EB912BD3AFE8008FB6A6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DF44EB932BD60E30008FB6A6 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		DF44EB952BD6162B008FB6A6 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		DF44EB972BD61801008FB6A6 /* Favor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favor.swift; sourceTree = "<group>"; };
 		DF9E73892BD0B65C0040DE3B /* iDine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9E738C2BD0B65C0040DE3B /* iDineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDineApp.swift; sourceTree = "<group>"; };
 		DF9E738E2BD0B65C0040DE3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				DF9E738C2BD0B65C0040DE3B /* iDineApp.swift */,
-				DF9E738E2BD0B65C0040DE3B /* ContentView.swift */,
+				DF44EB912BD3AFE8008FB6A6 /* MainView.swift */,
 				DF9E74862BD0BBFC0040DE3B /* Views */,
 				DF9E739C2BD0B6DD0040DE3B /* Model */,
 				DF9E73A12BD0B73B0040DE3B /* Resource */,
@@ -92,6 +100,7 @@
 			children = (
 				DF9E739E2BD0B6F00040DE3B /* Menu.swift */,
 				DF9E739D2BD0B6F00040DE3B /* Order.swift */,
+				DF44EB972BD61801008FB6A6 /* Favor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,7 +124,10 @@
 		DF9E74862BD0BBFC0040DE3B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DF9E738E2BD0B65C0040DE3B /* ContentView.swift */,
 				DF44EB8F2BD2270E008FB6A6 /* OrderView.swift */,
+				DF44EB952BD6162B008FB6A6 /* FavoriteView.swift */,
+				DF44EB932BD60E30008FB6A6 /* CheckoutView.swift */,
 				DF9E748B2BD0C7380040DE3B /* ItemDetailView.swift */,
 				DF9E74872BD0BC0F0040DE3B /* ItemRow.swift */,
 				DF9E74892BD0BFC10040DE3B /* ItemRow2.swift */,
@@ -195,8 +207,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF9E738F2BD0B65C0040DE3B /* ContentView.swift in Sources */,
+				DF44EB942BD60E30008FB6A6 /* CheckoutView.swift in Sources */,
 				DF9E738D2BD0B65C0040DE3B /* iDineApp.swift in Sources */,
+				DF44EB982BD61801008FB6A6 /* Favor.swift in Sources */,
 				DF9E739F2BD0B6F00040DE3B /* Order.swift in Sources */,
+				DF44EB962BD6162B008FB6A6 /* FavoriteView.swift in Sources */,
+				DF44EB922BD3AFE8008FB6A6 /* MainView.swift in Sources */,
 				DF9E74882BD0BC0F0040DE3B /* ItemRow.swift in Sources */,
 				DF9E748C2BD0C7380040DE3B /* ItemDetailView.swift in Sources */,
 				DF9E739B2BD0B6960040DE3B /* Helper.swift in Sources */,
