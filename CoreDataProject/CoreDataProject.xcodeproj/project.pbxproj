@@ -26,6 +26,7 @@
 		DF44EBEB2BDA33E3008FB6A6 /* Country+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBE72BDA33E3008FB6A6 /* Country+CoreDataProperties.swift */; };
 		DF44EBED2BDA3B02008FB6A6 /* CoreDataDemoThreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBEC2BDA3B02008FB6A6 /* CoreDataDemoThreeView.swift */; };
 		DF44EBEF2BDA3EBE008FB6A6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBEE2BDA3EBE008FB6A6 /* HomeView.swift */; };
+		DF44EBF12BDA8AF7008FB6A6 /* GenericsFilterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBF02BDA8AF7008FB6A6 /* GenericsFilterListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		DF44EBE72BDA33E3008FB6A6 /* Country+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF44EBEC2BDA3B02008FB6A6 /* CoreDataDemoThreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDemoThreeView.swift; sourceTree = "<group>"; };
 		DF44EBEE2BDA3EBE008FB6A6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DF44EBF02BDA8AF7008FB6A6 /* GenericsFilterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericsFilterListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				DF44EBE02BD9FBEB008FB6A6 /* CoreDataDemoTwoView.swift */,
 				DF44EBEC2BDA3B02008FB6A6 /* CoreDataDemoThreeView.swift */,
 				DF44EBE22BD9FE46008FB6A6 /* FilteredListView.swift */,
+				DF44EBF02BDA8AF7008FB6A6 /* GenericsFilterListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				DF44EBEB2BDA33E3008FB6A6 /* Country+CoreDataProperties.swift in Sources */,
 				DF44EBD92BD9F3A1008FB6A6 /* CoreDataDemoOneView.swift in Sources */,
 				DF44EBE92BDA33E3008FB6A6 /* Candy+CoreDataProperties.swift in Sources */,
+				DF44EBF12BDA8AF7008FB6A6 /* GenericsFilterListView.swift in Sources */,
 				DF44EBCF2BD8A947008FB6A6 /* DataController.swift in Sources */,
 				DF44EBD22BD8AB11008FB6A6 /* CoreDataProject.xcdatamodeld in Sources */,
 				DF44EBD52BD8BD70008FB6A6 /* Movie+CoreDataClass.swift in Sources */,

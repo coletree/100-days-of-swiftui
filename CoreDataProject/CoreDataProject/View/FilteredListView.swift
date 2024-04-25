@@ -8,6 +8,9 @@
 import CoreData
 import SwiftUI
 
+
+
+
 struct FilteredListView: View {
     
     
@@ -20,11 +23,10 @@ struct FilteredListView: View {
     
     //MARK: - 视图
     var body: some View {
-        
-        List(fetchRequest, id: \.self) { singer in
+        List(fetchRequest, id: \.self) { 
+            singer in
             Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
         }
-        
     }
     
     
