@@ -11,14 +11,21 @@ import SwiftUI
 struct ContentView: View {
     
     
+    //MARK: - 属性
+    
     @Environment(\.managedObjectContext) var moc
     
     @FetchRequest(sortDescriptors: []) var students: FetchedResults<Student>
     
     
+    //MARK: - 视图
     var body:some View {
         
         VStack {
+            
+            Text("创建随机的学生对象，保存到CoreData")
+                .font(.caption2)
+            
             List(students) {
                 student in
                 Text(student.name ?? "Unknown")
