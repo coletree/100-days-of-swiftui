@@ -11,6 +11,8 @@
 		DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */; };
 		DF44EBAA2BD79E3D008FB6A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
 		DF44EBAE2BD79E3D008FB6A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBAD2BD79E3D008FB6A6 /* Preview Assets.xcassets */; };
+		DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */; };
+		DF44EC142BDB5B2E008FB6A6 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC132BDB5B2E008FB6A6 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,9 @@
 		DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF44EBAB2BD79E3D008FB6A6 /* UltimatePortfolio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UltimatePortfolio.entitlements; sourceTree = "<group>"; };
 		DF44EBAD2BD79E3D008FB6A6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DF44EC0E2BDB4EFD008FB6A6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DF44EC132BDB5B2E008FB6A6 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		DF44EC172BDB7428008FB6A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +57,11 @@
 		DF44EBA42BD79E3B008FB6A6 /* UltimatePortfolio */ = {
 			isa = PBXGroup;
 			children = (
+				DF44EC172BDB7428008FB6A6 /* Info.plist */,
 				DF44EBA52BD79E3B008FB6A6 /* UltimatePortfolioApp.swift */,
-				DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */,
+				DF44EC162BDB5BC5008FB6A6 /* Views */,
+				DF44EC152BDB5BB4008FB6A6 /* ViewModel */,
+				DF44EC102BDB4F05008FB6A6 /* Model */,
 				DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */,
 				DF44EBAB2BD79E3D008FB6A6 /* UltimatePortfolio.entitlements */,
 				DF44EBAC2BD79E3D008FB6A6 /* Preview Content */,
@@ -67,6 +75,30 @@
 				DF44EBAD2BD79E3D008FB6A6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DF44EC102BDB4F05008FB6A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF44EC152BDB5BB4008FB6A6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DF44EC132BDB5B2E008FB6A6 /* DataController.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DF44EC162BDB5BC5008FB6A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +172,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */,
+				DF44EC142BDB5B2E008FB6A6 /* DataController.swift in Sources */,
 				DF44EBA62BD79E3B008FB6A6 /* UltimatePortfolioApp.swift in Sources */,
+				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +308,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UltimatePortfolio/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -312,6 +347,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UltimatePortfolio/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -359,6 +395,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DF44EC0E2BDB4EFD008FB6A6 /* Model.xcdatamodel */,
+			);
+			currentVersion = DF44EC0E2BDB4EFD008FB6A6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DF44EB9A2BD79E3B008FB6A6 /* Project object */;
 }
