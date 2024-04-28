@@ -11,7 +11,7 @@ import Foundation
 
 
 //创建控制数据的类：它将处理加载数据，本地保存数据，同步到CloudKit，等工作
-//这里要用 ObservableObject，不能用 Observable ，不然后面的 objectWillChange 属性就无法用
+//这里要用 ObservableObject，不能用 Observable ，不然后面 delete 方法的 objectWillChange 属性就无法用
 class DataController : ObservableObject {
     
     
@@ -20,8 +20,12 @@ class DataController : ObservableObject {
     //常量属性：创建容器，加载 Model 数据模型
     //let container = NSPersistentContainer(name: "Model")
     
-    //常量属性：创建一个 CloudKit 的容器（前面已经在CoreData编辑器的配置中勾选了 used with Cloudkit）
+    //常量属性：创建 CloudKit 的容器（前面已经在 CoreData 编辑器的配置中勾选了 used with Cloudkit）
     let container : NSPersistentCloudKitContainer
+    
+    //发布属性：创建一个变量来存储用户选择的过滤器，默认选择为“所有”
+    @Published var selectedFilter: Filter? = Filter.all
+    
     
     
 
@@ -32,7 +36,7 @@ class DataController : ObservableObject {
         //给容器属性赋值（后面 Model 就是告诉程序要加载的数据库）
         container = NSPersistentCloudKitContainer(name: "Model")
         
-        //TODO: - 没搞懂
+        //如果布尔值为真，则禁用持久化存储功能
         if inMemory{
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
@@ -73,12 +77,12 @@ class DataController : ObservableObject {
     //静态属性：为了方便后面视图的预览，创建一下预处理数据。
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
-        dataController.creatSampleData()
+        dataController.createSampleData()
         return dataController
     }()
     
     //方法: 添加测试数据
-    func creatSampleData(){
+    func createSampleData(){
         
         //常量属性：获取容器的上下文，必须有上下文才能创建/修改数据，context会把数据存到内存
         let viewContext = container.viewContext

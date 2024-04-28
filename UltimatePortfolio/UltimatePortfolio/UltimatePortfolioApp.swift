@@ -25,16 +25,25 @@ struct UltimatePortfolioApp: App {
     
     //MARK: - 根视图
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
-                //把视图模型 dataController 放入环境中
-                .environmentObject(dataController)
-                //把 dataController 中的上下文，赋予环境变量 managedObjectContext
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+            //定义一个三栏布局
+            NavigationSplitView(
+                //preferredCompactColumn: .constant(.detail)
+            ){
+                SidebarView()
+            } content: {
+                ContentView()
+            } detail: {
+                DetailView()
+            }
+            //把视图模型 dataController 放入环境中
+            .environmentObject(dataController)
+            //把 dataController 中的上下文，赋予环境变量 managedObjectContext
+            .environment(\.managedObjectContext, dataController.container.viewContext)
         }
+        
     }
-    
-    
     
     
 }
