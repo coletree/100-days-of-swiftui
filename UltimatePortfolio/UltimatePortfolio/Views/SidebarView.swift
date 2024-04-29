@@ -26,22 +26,25 @@ struct SidebarView: View {
     //环境属性：从环境中读取 dataController 实例
     @EnvironmentObject var dataController: DataController
     
-    //3. 使用我们之前创建的 .all 和 .recent 值创建智能过滤器数组
+    //3. 将所有这些放在一个简单的列表中
+    
+    //【智能过滤器】使用我们之前创建的 .all 和 .recent 值创建智能过滤器数组
     //静态属性：创建“智能分类”的数组，里面包括 “全部” 和 “最近” 两个实例
     let smartFilters: [Filter] = [.all, .recent]
     
-    //4. 将所有这些放在一个简单的列表中
-    
-    
-    //CoreData数据：获取所有 Tag 数据，按照 .name 排序
+    //【Tag过滤器】CoreData数据：获取所有 Tag 数据，按照 .name 排序
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     
-    //计算属性：需要 Filter 对象来匹配智能过滤器对象。因此编写一个计算属性将所有 Tag 转换为匹配的过滤器，添加正确的图标。
+    //计算属性：将所有 tag 转换为相应的过滤器 Filter 对象，再在列表中展示
     var tagFilters: [Filter] {
         //遍历 tags 所有数组元素进行处理，生成 Filter
         tags.map {
             tag in
-            Filter(id: tag.id ?? UUID(), name: tag.name ?? "No name", icon: "tag", tag: tag)
+            Filter(
+                id: tag.id ?? UUID(),           // 过滤器的 id 用 tag 的id，为什么？
+                name: tag.name ?? "No name",    // 过滤器的名称就用 tag 的名称
+                icon: "tag", tag: tag           // 过滤器的图标就用 tag 的图标
+            )
         }
     }
     

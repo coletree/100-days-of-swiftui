@@ -86,6 +86,7 @@
 		DF44EC102BDB4F05008FB6A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DF44EC1F2BDE3918008FB6A6 /* Filter.swift */,
 				DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -95,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				DF44EC132BDB5B2E008FB6A6 /* DataController.swift */,
-				DF44EC1F2BDE3918008FB6A6 /* Filter.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
