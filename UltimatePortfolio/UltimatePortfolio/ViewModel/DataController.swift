@@ -23,14 +23,21 @@ class DataController : ObservableObject {
     //常量属性：创建 CloudKit 的容器（前面已经在 CoreData 编辑器的配置中勾选了 used with Cloudkit）
     let container : NSPersistentCloudKitContainer
     
-    //发布属性：创建一个变量来存储用户选择的过滤器，默认选择为“所有”
+
+    //@Published属性：SwiftUI 提供了几种存储"用户选择过滤器"的方法，最简单的是添加 @Published 属性
+    
+    //1. 声明变量来存储用户选择的过滤器，它会通知订阅者。默认为“所有”
     @Published var selectedFilter: Filter? = Filter.all
     
+    //2. 声明变量来存储用户选择的 Issue 问题，它会通知订阅者
+    @Published var selectedIssue: Issue?
     
     
-
     
-    //MARK: - 初始化方法：
+    
+    //MARK: - 方法
+    
+    //方法：自定义初始化
     init(inMemory: Bool = false) {
         
         //给容器属性赋值（后面 Model 就是告诉程序要加载的数据库）
@@ -41,7 +48,27 @@ class DataController : ObservableObject {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
         
-        //容器读取数据库中的数据
+        //设置：自动将【底层持久性存储发生的更改】应用于视图
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        //设置：合并策略为属性合并 mergeByPropertyObjectTrump，它允许将来自本地对象的更改与来自远程对象的更改按属性组合在一起
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        //设置：告诉 Core Data 在存储发生更改时收到通知
+        container.persistentStoreDescriptions.first?.setOption(
+                true as NSNumber,
+                forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+        )
+        
+        //设置：告诉系统在发生更改时调用新 remoteStoreChanged() 方法
+        NotificationCenter.default.addObserver(
+                forName: .NSPersistentStoreRemoteChange,
+                object: container.persistentStoreCoordinator,
+                queue: .main,
+                using: remoteStoreChanged
+        )
+        
+        //设置：容器读取数据库中的数据
         container.loadPersistentStores {
             storeDescription, error in
             //如果发生错误，则退出程序。error 是 optional 类型，所以用 if let 解包
@@ -67,6 +94,11 @@ class DataController : ObservableObject {
         container.viewContext.delete(object)
         //持久化保存下来
         save()
+    }
+    
+    //方法：远程数据发生更改时进行以下处理
+    func remoteStoreChanged(_ notification: Notification) {
+        objectWillChange.send()
     }
     
     

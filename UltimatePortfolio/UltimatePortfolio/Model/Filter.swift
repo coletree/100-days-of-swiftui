@@ -26,6 +26,7 @@ struct Filter: Identifiable, Hashable{
     var name: String
     var icon: String
     var minModificationDate = Date.distantPast
+    //过滤器的 tag 属性，储存 Tag 对象，是一个 Optional，如果没有值就用于智能过滤器
     var tag: Tag?
     
     
@@ -59,12 +60,12 @@ struct Filter: Identifiable, Hashable{
      因此，我们将只使用 id 属性去判定两个对象是否相同，添加以下两个方法：
     */
     
-    //自定义对象哈希的方式（只加入id）
+    //方法：自定义对象哈希的方式（只加入id）
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    //自定义对象比较是否相等的方式（只比较id）
+    //方法：自定义对象比较是否相等的方式（只比较id）
     static func ==(lhs: Filter, rhs: Filter) -> Bool {
         lhs.id == rhs.id
     }

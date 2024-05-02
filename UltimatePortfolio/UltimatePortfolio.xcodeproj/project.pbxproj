@@ -16,6 +16,11 @@
 		DF44EC1C2BDE3024008FB6A6 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1B2BDE3024008FB6A6 /* SidebarView.swift */; };
 		DF44EC1E2BDE3032008FB6A6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1D2BDE3032008FB6A6 /* DetailView.swift */; };
 		DF44EC202BDE3918008FB6A6 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1F2BDE3918008FB6A6 /* Filter.swift */; };
+		DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC292BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift */; };
+		DF44EC2C2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC2B2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift */; };
+		DF44EC362BE08FEA008FB6A6 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC352BE08FEA008FB6A6 /* IssueRow.swift */; };
+		DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC5A2BE115F9008FB6A6 /* NoIssueView.swift */; };
+		DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC5C2BE1177B008FB6A6 /* IssueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 		DF44EC1B2BDE3024008FB6A6 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DF44EC1D2BDE3032008FB6A6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		DF44EC1F2BDE3918008FB6A6 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		DF44EC292BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		DF44EC2B2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		DF44EC352BE08FEA008FB6A6 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
+		DF44EC5A2BE115F9008FB6A6 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
+		DF44EC5C2BE1177B008FB6A6 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				DF44EC1F2BDE3918008FB6A6 /* Filter.swift */,
+				DF44EC292BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift */,
+				DF44EC2B2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift */,
 				DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -105,7 +117,10 @@
 			children = (
 				DF44EC1B2BDE3024008FB6A6 /* SidebarView.swift */,
 				DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */,
+				DF44EC352BE08FEA008FB6A6 /* IssueRow.swift */,
 				DF44EC1D2BDE3032008FB6A6 /* DetailView.swift */,
+				DF44EC5C2BE1177B008FB6A6 /* IssueView.swift */,
+				DF44EC5A2BE115F9008FB6A6 /* NoIssueView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,11 +196,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF44EC202BDE3918008FB6A6 /* Filter.swift in Sources */,
+				DF44EC2C2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift in Sources */,
+				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
 				DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */,
+				DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */,
 				DF44EC1E2BDE3032008FB6A6 /* DetailView.swift in Sources */,
 				DF44EC142BDB5B2E008FB6A6 /* DataController.swift in Sources */,
 				DF44EC1C2BDE3024008FB6A6 /* SidebarView.swift in Sources */,
 				DF44EBA62BD79E3B008FB6A6 /* UltimatePortfolioApp.swift in Sources */,
+				DF44EC362BE08FEA008FB6A6 /* IssueRow.swift in Sources */,
+				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

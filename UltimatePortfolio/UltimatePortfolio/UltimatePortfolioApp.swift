@@ -18,8 +18,7 @@ struct UltimatePortfolioApp: App {
     //MARK: - 属性
     
     //状态属性：实作视图模型 DataController
-    @State var dataController = DataController()
-    
+    @StateObject var dataController = DataController()
     
     
     
