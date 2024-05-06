@@ -27,7 +27,7 @@ extension Issue: Comparable {
         modificationDate ?? .now
     }
     
-    //计算属性：问题的当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加一个属性以正确地字符串化布尔值：
+    //计算属性：Issue当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加计算属性将布尔值转成字符串：
     var issueStatus: String {
         if completed {
             return "Closed"
@@ -43,6 +43,23 @@ extension Issue: Comparable {
         let result = tags?.allObjects as? [Tag] ?? []
         return result.sorted()
     }
+    
+    //将 issue 的标签数组转换为仅包含其名称的数组
+    var issueTagsList: String {
+        guard let tags else { return "No tags" }
+        if tags.count == 0 {
+            return "No tags"
+        } else {
+            //这个 \.tagName 是 Swift 中的键路径语法,它表示访问 tag 对象的 tagName 属性
+            //map 函数会遍历 issueTags 数组中的每个 tag 对象，并对每个对象执行 \.tagName 操作，也就是获取 tagName 属性的值
+            //最终 map 函数会返回一个新的数组，其中包含了 issueTags 数组中每个 tag 对象的 tagName 属性值
+            //用 formatted() 方法对这个字符串数组中的每个字符串进行格式化处理，方便显示
+            //formatted() 方法是 Swift 5.0 引入的一个通用的格式化方法，它可以根据不同的格式化规则对字符串进行格式化
+            //默认情况下 formatted() 方法会使用系统的默认格式化规则,比如添加千位分隔符、小数点对齐等
+            return issueTags.map(\.tagName).formatted()
+        }
+    }
+
     
     //静态属性：添加静态 example 属性，用于创建用于预览的示例项
     static var example: Issue {

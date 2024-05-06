@@ -102,15 +102,19 @@ class DataController : ObservableObject {
     }
     
     
-    //方法：接受一个 issue 并返回一个包含它缺少的所有标签的数组
-    //在内部加载所有可能存在的标签；计算当前未分配给问题的标签；对这些标签进行排序，然后将它们发回。
+    //方法：输入一个 issue ，然后返回一个包含 "该 issue 缺少的所有标签" 的数组
+    //在内部加载所有可能存在的标签。计算当前未分配给问题的标签；对这些标签进行排序，然后将它们发回
     func missingTags(from issue: Issue) -> [Tag] {
+        
+        //1. 首先获取所有 tag，并将其转为集合
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []
-
         let allTagsSet = Set(allTags)
+        
+        //2. 在所有 tag 集合上调用 symmetricDifference，与该issue的标签集合进行对比，返回差异化的tag集合
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
-
+        
+        //3. 对生成的集合进行 sort 排序然后返回
         return difference.sorted()
     }
     

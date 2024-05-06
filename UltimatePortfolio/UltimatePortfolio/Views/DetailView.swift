@@ -25,6 +25,7 @@ struct DetailView: View {
     //DetailView 要根据用户现在是否选择了某些内容，决定显示 IssueView 或 NoIssueView
     var body: some View {
         
+        //判断：selectedIssue是否有值，即是否存在一个选定的Issue
         VStack {
             //如果 selectedIssue 有值，就展示 IssueView
             if let issue = dataController.selectedIssue {
