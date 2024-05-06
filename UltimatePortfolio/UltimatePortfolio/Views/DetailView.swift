@@ -38,6 +38,8 @@ struct DetailView: View {
         .navigationTitle("Details")
         //由于这是详细信息视图，Apple 建议我们使用内联导航栏样式
         .navigationBarTitleDisplayMode(.inline)
+
+        
         
     }
     

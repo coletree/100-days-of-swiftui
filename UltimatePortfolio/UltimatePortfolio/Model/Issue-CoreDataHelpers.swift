@@ -27,6 +27,16 @@ extension Issue: Comparable {
         modificationDate ?? .now
     }
     
+    //计算属性：问题的当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加一个属性以正确地字符串化布尔值：
+    var issueStatus: String {
+        if completed {
+            return "Closed"
+        } else {
+            return "Open"
+        }
+    }
+    
+    
     //【NSSet类型属性】需要转型
     //将 NSSet 数组转型为 Tag 数组，并对该数组进行统一排序
     var issueTags: [Tag] {
