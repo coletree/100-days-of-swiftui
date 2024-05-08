@@ -8,6 +8,7 @@
 import Foundation
 
 
+
 //通过对 Issue 类进行扩展，来解决可选值的问题（每个CoreData的Entity都会自动生成一个类）
 extension Issue: Comparable {
     

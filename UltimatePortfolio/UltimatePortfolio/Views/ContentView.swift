@@ -16,52 +16,20 @@ struct ContentView: View {
     
     //环境属性：从环境中读取 dataController 实例
     @EnvironmentObject var dataController: DataController
-    
-    //计算属性：返回某个 tag 或者某个智能过滤器下的所有 Issue
-    var issues: [Issue] {
-        
-        //获取用户选择的过滤器(如果获取不到，就默认是 "过滤器All" )，根据过滤器的 tag 属性去生成后面的 Issues
-        let filter = dataController.selectedFilter ?? .all
-        
-        //声明所有Issue数组
-        var allIssues: [Issue]
-        
-        //之前已将这两种类型打包为一个 Filter 类型，因此可以在两种类型之间进行选择。但现在是时候让它们的行为方式不同了
-        //如果过滤器中存在特定标签，应该立即发回它的所有问题；
-        if let tag = filter.tag {
-            
-            //第1个零合并：由于 tag 对象储存的 issues 属性类型为 NSSet，因此这里要转型为 [Issue]
-            allIssues = tag.issues?.allObjects as? [Issue] ?? []
-        } 
-        //如果过滤器中没有标签，我们将发出一个提取请求 fetch(request)，以返回所有问题
-        //然后在谓词中通过区分 modificationDate 属性，实现区分 all 和 recent 的效果
-        //fetch 方法用于从持久化存储中获取数据。它接受一个 NSFetchRequest 类型的参数 request,用于定义要获取的数据。
-        //NSFetchRequest 可以指定要获取的实体类型、过滤条件、排序等。
-        else {
-            let request = Issue.fetchRequest()
-            
-            //这告诉 Core Data 仅匹配自过滤器的最小修改日期以来修改的问题。可悲的是 as NSDate 这部分是必需的，因为 Core Data 不了解 Swift Date 的类型，而是需要较旧的 NSDate 类型。
-            request.predicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
-            
-            //第2个零合并：因为发出 fetch 请求可能会失败，所以用 try? 转为 optional 并使用零合并
-            allIssues = (try? dataController.container.viewContext.fetch(request)) ?? []
-        }
 
-        //将所有问题排序后返回
-        return allIssues.sorted()
-        
-    }
-    
     
     
     
     //MARK: - 视图
     var body: some View {
         
+        //MARK: 列表
         //dataController 里储存了用户选择的 Issue，要和 List 的 selection 进行绑定
         List(selection: $dataController.selectedIssue) {
             
-            ForEach(issues) { 
+            //MARK: 通过函数返回 issue 列表
+            //之前的计算属性 [issues] 被移到视图模型中了，并改成了方法
+            ForEach(dataController.issuesForSelectedFilter()) {
                 issue in
                 IssueRow(issue: issue)
             }
@@ -70,6 +38,80 @@ struct ContentView: View {
         }
         .navigationTitle("Issues")
         
+        //FIXME: 搜索框(让列表支持搜索)
+        .searchable(
+            text: $dataController.filterText,
+            tokens: $dataController.filterTokens,
+            suggestedTokens: .constant(dataController.suggestedFilterTokens),
+            prompt: "Filter issues, or type # to add tags") {
+                tag in
+                Text(tag.tagName)
+            }
+        
+        //MARK: 标题栏过滤器控件
+        .toolbar {
+            
+            //菜单: 用于过滤
+            Menu{
+                
+                //切换按钮：控制过滤器是否开启
+                Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On") {
+                    dataController.filterEnabled.toggle()
+                }
+
+                //分隔符
+                Divider()
+
+                //排序选项菜单：影响数据模型的 SortType 和 sortNewestFirst
+                Menu("Sort By") {
+                    
+                    //Picker选择器：绑定 SortType 的实例
+                    Picker("Sort By", selection: $dataController.sortType) {
+                        Text("Date Created").tag(SortType.dateCreated)
+                        Text("Date Modified").tag(SortType.dateModified)
+                    }
+
+                    //分隔符
+                    Divider()
+
+                    //Picker选择器：绑定布尔值 sortNewestFirst
+                    Picker("Sort Order", selection: $dataController.sortNewestFirst) {
+                        Text("Newest to Oldest").tag(true)
+                        Text("Oldest to Newest").tag(false)
+                    }
+                    
+                }
+
+                //状态选项：如果过滤器关闭，则禁用
+                Picker("Status", selection: $dataController.filterStatus) {
+                    Text("All").tag(Status.all)
+                    Text("Open").tag(Status.open)
+                    Text("Closed").tag(Status.closed)
+                }
+                .disabled(dataController.filterEnabled == false)
+
+                //优先级选项：如果过滤器关闭，则禁用
+                Picker("Priority", selection: $dataController.filterPriority) {
+                    Text("All").tag(-1)
+                    Text("Low").tag(0)
+                    Text("Medium").tag(1)
+                    Text("High").tag(2)
+                }
+                .disabled(dataController.filterEnabled == false)
+                
+            }
+            label: {
+                Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                    .symbolVariant(dataController.filterEnabled ? .fill : .none)
+            }
+            
+            //按钮：创建新 issue
+            Button(action: dataController.newIssue) {
+                Label("New issue", systemImage: "square.and.pencil")
+            }
+
+        }
+        
     }
     
     
@@ -77,9 +119,10 @@ struct ContentView: View {
     
     //MARK: - 方法
     
-    
-    //方法：在 ContentView 中添加滑动删除支持，使用新 delete() 方法
+    //方法：在 ContentView 中添加滑动删除支持
     func delete(_ offsets: IndexSet) {
+        //一开始从视图模型中调用 issuesForSelectedFilter 返回数组
+        let issues = dataController.issuesForSelectedFilter()
         for offset in offsets {
             let item = issues[offset]
             //由于已经在 dataController 类中添加了 delete 方法

@@ -15,7 +15,9 @@ struct NoIssueView: View {
 
     //MARK: - 属性
     
-    //@EnvironmentObject var dataController: DataController
+    
+    //环境属性：从环境中读取 dataController 实例
+    @EnvironmentObject var dataController: DataController
 
     
     
@@ -29,6 +31,7 @@ struct NoIssueView: View {
 
         Button("New Issue") {
             // make a new issue
+            dataController.newIssue()
         }
         
     }

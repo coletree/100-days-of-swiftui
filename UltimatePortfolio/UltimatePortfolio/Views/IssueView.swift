@@ -119,6 +119,11 @@ struct IssueView: View {
         }
         //isDeleted属性也是 coredata 自动生成的，表示【该对象已删除】
         .disabled(issue.isDeleted)
+        //监视更改，触发保存
+        .onReceive(issue.objectWillChange) { 
+            _ in
+            dataController.queueSave()
+        }
         
     }
     
