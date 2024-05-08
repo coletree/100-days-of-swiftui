@@ -51,6 +51,10 @@ struct SidebarView: View {
     @State private var tagName = ""                  //新标签的名称
     
     
+    //状态属性：跟踪奖项视图是否展示
+    @State private var showingAwards = false
+    
+    
 
     
     //MARK: - 视图
@@ -114,6 +118,14 @@ struct SidebarView: View {
                 Label("Add tag", systemImage: "plus")
             }
             
+            //按钮：切换 AwardView 是否打开
+            Button {
+                showingAwards.toggle()
+            } label: {
+                Label("Show awards", systemImage: "rosette")
+            }
+
+            
         }
         //弹窗：新建 tag，绑定 $renamingTag 布尔值
         .alert("Rename tag", isPresented: $renamingTag) {
@@ -123,6 +135,10 @@ struct SidebarView: View {
             Button("Cancel", role: .cancel) { }
             //输入框：绑定状态属性 $tagName
             TextField("New name", text: $tagName)
+        }
+        //弹窗：
+        .sheet(isPresented: $showingAwards) {
+            AwardsView()
         }
         
     }

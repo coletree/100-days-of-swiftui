@@ -24,6 +24,9 @@
 		DF7789962BE8A9EA001415E8 /* Instructions.md in Resources */ = {isa = PBXBuildFile; fileRef = DF7789952BE8A9EA001415E8 /* Instructions.md */; };
 		DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789972BEB22DB001415E8 /* Extension-View.swift */; };
 		DF77899B2BEB2DCA001415E8 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */; };
+		DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899C2BEB57DD001415E8 /* AwardsView.swift */; };
+		DF77899F2BEB59F1001415E8 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DF77899E2BEB59F1001415E8 /* Awards.json */; };
+		DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789A02BEB5D9F001415E8 /* Award.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		DF7789952BE8A9EA001415E8 /* Instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Instructions.md; sourceTree = "<group>"; };
 		DF7789972BEB22DB001415E8 /* Extension-View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-View.swift"; sourceTree = "<group>"; };
 		DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
+		DF77899C2BEB57DD001415E8 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
+		DF77899E2BEB59F1001415E8 /* Awards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
+		DF7789A02BEB5D9F001415E8 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +92,6 @@
 				DF44EC102BDB4F05008FB6A6 /* Model */,
 				DF7789992BEB2DB2001415E8 /* Extension */,
 				DF7789942BE8A995001415E8 /* Resource */,
-				DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */,
 				DF44EBAB2BD79E3D008FB6A6 /* UltimatePortfolio.entitlements */,
 				DF44EBAC2BD79E3D008FB6A6 /* Preview Content */,
 			);
@@ -107,6 +112,7 @@
 				DF44EC1F2BDE3918008FB6A6 /* Filter.swift */,
 				DF44EC292BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift */,
 				DF44EC2B2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift */,
+				DF7789A02BEB5D9F001415E8 /* Award.swift */,
 				DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -129,6 +135,7 @@
 				DF44EC1D2BDE3032008FB6A6 /* DetailView.swift */,
 				DF44EC5C2BE1177B008FB6A6 /* IssueView.swift */,
 				DF44EC5A2BE115F9008FB6A6 /* NoIssueView.swift */,
+				DF77899C2BEB57DD001415E8 /* AwardsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				DF7789952BE8A9EA001415E8 /* Instructions.md */,
+				DF77899E2BEB59F1001415E8 /* Awards.json */,
+				DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -209,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF44EBAE2BD79E3D008FB6A6 /* Preview Assets.xcassets in Resources */,
+				DF77899F2BEB59F1001415E8 /* Awards.json in Resources */,
 				DF44EBAA2BD79E3D008FB6A6 /* Assets.xcassets in Resources */,
 				DF7789962BE8A9EA001415E8 /* Instructions.md in Resources */,
 			);
@@ -223,8 +233,10 @@
 			files = (
 				DF44EC202BDE3918008FB6A6 /* Filter.swift in Sources */,
 				DF44EC2C2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift in Sources */,
+				DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */,
 				DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */,
 				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
+				DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */,
 				DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */,
 				DF77899B2BEB2DCA001415E8 /* Bundle-Decodable.swift in Sources */,
 				DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */,

@@ -321,9 +321,46 @@ class DataController : ObservableObject {
     }
 
 
+    //方法：查询某类型的对象总数
+    //读取计数请求，每次都会返回一个可选值，因为有可能查询的类型根本不存在，这里做了个双问号默认值
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+
     
-    
-    
+    //TODO: - 方法：评估奖励
+    //评估是否得到奖励，有两个重要的值：criterion 和 value，最终返回的是布尔值。因此后续可以用于数组的 filter 过滤
+    func hasEarned(award: Award) -> Bool {
+        //首先判断标准 criterion 属于什么情况
+        switch award.criterion {
+            
+            case "issues":
+                // 标准为 issues 的情况下，如果查询到 issue 的数量大于标准值，返回 true
+                let fetchRequest = Issue.fetchRequest()
+                let awardCount = count(for: fetchRequest)
+                return awardCount >= award.value
+                
+            case "closed":
+                // 标准为 closed 的情况下，如果查询到（状态为已完成的 issue） 的数量大于标准值，返回 true
+                let fetchRequest = Issue.fetchRequest()
+                //添加了一个简单的谓词来按已完成的问题进行过滤
+                fetchRequest.predicate = NSPredicate(format: "completed = true")
+                let awardCount = count(for: fetchRequest)
+                return awardCount >= award.value
+                
+            case "tags":
+                // 标准为 tags 的情况下，如果查询到 tag 的数量大于标准值，返回 true
+                let fetchRequest = Tag.fetchRequest()
+                let awardCount = count(for: fetchRequest)
+                return awardCount >= award.value
+                
+            default:
+                // an unknown award criterion; this should never be allowed
+                // fatalError("Unknown award criterion: \(award.criterion)")
+                return false
+            
+        }
+    }
     
     
     
