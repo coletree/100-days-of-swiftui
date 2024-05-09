@@ -27,6 +27,7 @@
 		DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899C2BEB57DD001415E8 /* AwardsView.swift */; };
 		DF77899F2BEB59F1001415E8 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DF77899E2BEB59F1001415E8 /* Awards.json */; };
 		DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789A02BEB5D9F001415E8 /* Award.swift */; };
+		DF7789A32BEC80CA001415E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF7789A22BEC80CA001415E8 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		DF77899C2BEB57DD001415E8 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 		DF77899E2BEB59F1001415E8 /* Awards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
 		DF7789A02BEB5D9F001415E8 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		DF7789A22BEC80CA001415E8 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = UltimatePortfolio/Resource/Localizable.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				DF7789952BE8A9EA001415E8 /* Instructions.md */,
 				DF77899E2BEB59F1001415E8 /* Awards.json */,
+				DF7789A22BEC80CA001415E8 /* Localizable.strings */,
 				DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -217,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7789A32BEC80CA001415E8 /* Localizable.strings in Resources */,
 				DF44EBAE2BD79E3D008FB6A6 /* Preview Assets.xcassets in Resources */,
 				DF77899F2BEB59F1001415E8 /* Awards.json in Resources */,
 				DF44EBAA2BD79E3D008FB6A6 /* Assets.xcassets in Resources */,

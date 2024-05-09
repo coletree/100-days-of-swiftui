@@ -29,6 +29,10 @@ struct Filter: Identifiable, Hashable{
     //过滤器的 tag 属性，储存 Tag 对象，是一个 Optional，如果没有值就用于智能过滤器
     var tag: Tag?
     
+    //计算属性：计算标签
+    var activeIssuesCount: Int {
+        tag?.tagActiveIssues.count ?? 0
+    }
     
     
     

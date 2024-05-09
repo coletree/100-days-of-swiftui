@@ -66,7 +66,7 @@ struct SidebarView: View {
             
             //第1部份：固定的智能过滤器 smartFilters
             Section("Smart Filters") {
-                ForEach(smartFilters) { 
+                ForEach(smartFilters) {
                     filter in
                     //导航链接附加值为过滤器
                     NavigationLink(value: filter) {
@@ -83,15 +83,29 @@ struct SidebarView: View {
                     NavigationLink(value: filter) {
                         Label(filter.name, systemImage: filter.icon)
                             //在侧边栏中每个标签旁边显示其活动问题的数量
-                            .badge(filter.tag?.tagActiveIssues.count ?? 0)
+                            .badge(filter.activeIssuesCount)
                             //设置长按上下文菜单
                             .contextMenu {
+                                //重命名按钮
                                 Button {
                                     rename(filter)
                                 } label: {
                                     Label("Rename", systemImage: "pencil")
                                 }
+                                //删除按钮
+                                Button(role: .destructive) {
+                                    delete(filter)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
+                            //增加旁白功能
+                            //1.让子视图归组一起被读出，因为分别读出没什么意义
+                            .accessibilityElement()
+                            //2.先读出标题
+                            .accessibilityLabel(filter.name)
+                            //3.英语要解决复数问题
+                            .accessibilityHint("^[\(filter.activeIssuesCount) issue](inflect: true)")
 
                     }
                 }
@@ -140,6 +154,8 @@ struct SidebarView: View {
         .sheet(isPresented: $showingAwards) {
             AwardsView()
         }
+        //导航标题
+        .navigationTitle("Filters")
         
     }
     
@@ -148,7 +164,7 @@ struct SidebarView: View {
     
     //MARK: - 方法
     
-    //方法：在 SidebarView 中添加滑动删除支持，使用新 delete() 方法
+    //方法：在 SidebarView 中添加滑动删除支持
     func delete(_ offsets: IndexSet) {
         for offset in offsets {
             let item = tags[offset]
@@ -157,6 +173,16 @@ struct SidebarView: View {
             dataController.delete(item)
         }
     }
+    
+    //方法：再定义一个删除方法，它接受要删除的过滤器。我们不允许删除智能过滤器，只能删除用户创建的过滤器
+    func delete(_ filter: Filter) {
+        guard let tag = filter.tag else {
+            return
+        }
+        dataController.delete(tag)
+        dataController.save()
+    }
+
     
     //方法：开始重命名 tag（输入 filter 进行修改）
     func rename(_ filter: Filter) {

@@ -20,7 +20,7 @@ extension Tag: Comparable  {
         name ?? ""
     }
     
-    //【NSSet类型属性】需要转型
+    //计算属性：获取所有为完成的问题（NSSet 类型属性需要转型）
     //将 NSSet 数组转型为 Issue 数组，并只过滤出 complete 属性是 false 的
     var tagActiveIssues: [Issue] {
         let result = issues?.allObjects as? [Issue] ?? []

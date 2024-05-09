@@ -57,7 +57,15 @@ struct IssueRow: View {
 
                 VStack(alignment: .trailing) {
                     
-                    Text(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
+                    //方案1：
+                    //Text(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
+                    
+                    //方案2：修改日期格式，更方便旁白读。但这样破坏了UI，不好看
+                    //Text(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+                    
+                    //方案3：不改变 UI，只改变 accessibilityLabel 修饰符
+                    Text(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+                        .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
                         .font(.subheadline)
 
                     if issue.completed {
@@ -71,6 +79,8 @@ struct IssueRow: View {
             }
             
         }
+        //增加旁白：优先级高的时候要读出来
+        .accessibilityHint(issue.priority == 2 ? "High priority" : "")
 
     }
     

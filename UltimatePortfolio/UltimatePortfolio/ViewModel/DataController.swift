@@ -158,10 +158,27 @@ class DataController : ObservableObject {
     }
     
     
-    //方法: 将上下文中的 live 数据，持久化存储下来。存储前先检查是否有变化，节省资源
+    //方法: 立即保存。将上下文中的 live 数据持久化存储下来；存储前先检查是否有变化，节省资源
     func save(){
+        //issueView 中的 onReceive 修改器会调用排队保存，onSubmit 修改器立即保存；虽然我们有做 hasChanges 检查，但也会产生一点点重复工作
+        //所以我们在代码层面消除这个重复工作，即当调用 save 的时候，就取消 saveTask
+        saveTask?.cancel()
         if container.viewContext.hasChanges{
             try? container.viewContext.save()
+        }
+    }
+    
+    //方法：延迟n秒后保存。该方法将延迟保存更改。这可以通过创建一个新任务来完成，让它休眠几秒钟，然后调用 save() 
+    func queueSave() {
+        //每次调用排队保存时，先取消之前的 saveTask 属性中的任务（如果有的话），就是之前没有任务也不受影响
+        saveTask?.cancel()
+        //1.把新任务赋予 saveTask 属性。这样允许我们在发生其他更改时首先取消任务，确保不会发生任何现有的排队保存。
+        saveTask = Task {
+            @MainActor in
+            //2. 任务里面是的 sleep 等待时间，选择等待多长时间取决于你，但像 3 秒这样的等待是不错的默认情况
+            try await Task.sleep(for: .seconds(3))
+            //3. 休眠任务是一种抛出操作，因为取消任务会导致休眠立即结束并引发错误。这意味着我们的 save() 调用不会被执行
+            save()
         }
     }
     
@@ -177,28 +194,11 @@ class DataController : ObservableObject {
         save()
     }
     
-    
     //方法：远程数据发生更改时进行以下处理
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
     
-    
-    //方法：延迟n秒后保存。该方法将延迟保存更改。这可以通过创建一个新任务来完成，让它休眠几秒钟，然后调用 save() ：
-    func queueSave() {
-        //取消 saveTask 属性中的任务
-        saveTask?.cancel()
-        
-        //1.把新任务赋予 saveTask 属性。这样允许我们在发生其他更改时首先取消任务，确保不会发生任何现有的排队保存。
-        saveTask = Task {
-            @MainActor in
-            //2. 任务里面是的 sleep 等待时间，选择等待多长时间取决于你，但像 3 秒这样的等待是不错的默认情况
-            try await Task.sleep(for: .seconds(3))
-            //3. 休眠任务是一种抛出操作，因为取消任务会导致休眠立即结束并引发错误。这意味着我们的 save() 调用不会被执行
-            save()
-        }
-    }
-
     
     //方法：将之前视图中的 [issue] 计算属性改成方法。返回某个 tag 或者某个智能过滤器下的所有 Issue
     func issuesForSelectedFilter() -> [Issue] {
@@ -287,8 +287,8 @@ class DataController : ObservableObject {
         //第2个零合并：因为发出 fetch 请求可能会失败，所以用 try? 转为 optional 并使用零合并
         allIssues = (try? container.viewContext.fetch(request)) ?? []
         
-        //将所有问题排序后返回
-        return allIssues.sorted()
+        //返回所有 Issue ，无需再排序，因为前面已经定义了 sortDescriptors
+        return allIssues
         
     }
     

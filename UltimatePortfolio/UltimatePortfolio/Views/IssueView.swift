@@ -115,15 +115,39 @@ struct IssueView: View {
                 }
             }
             
-            
         }
-        //isDeleted属性也是 coredata 自动生成的，表示【该对象已删除】
+        //对象被删除时禁用编辑：isDeleted 属性是 coredata 自动生成的，表示该对象已删除
         .disabled(issue.isDeleted)
-        //监视更改，触发保存
-        .onReceive(issue.objectWillChange) { 
+        //设置工具栏
+        .toolbar {
+            Menu {
+                //复制标题
+                Button {
+                    UIPasteboard.general.string = issue.title
+                } label: {
+                    Label("Copy Issue Title", systemImage: "doc.on.doc")
+                }
+                //将问题标记为已完成，修改完进行保存
+                Button {
+                    issue.completed.toggle()
+                    dataController.save()
+                } label: {
+                    Label(issue.completed ? "Re-open Issue" : "Close Issue", systemImage: "bubble.left.and.exclamationmark.bubble.right")
+                }
+            } label: {
+                Label("Actions", systemImage: "ellipsis.circle")
+            }
+        }
+        
+        //MARK: 设置保存点
+        //onReceive 修改器会调用排队保存，onSubmit 修改器立即保存，因此这里会产生一点点重复工作
+        //监视 issue.objectWillChange 的更改，触发保存。在 删除实体对象 和 远程数据发生更改时 会发送 objectWillChange
+        .onReceive(issue.objectWillChange) {
             _ in
             dataController.queueSave()
         }
+        //在点击完成按钮的时候，增加一个保存点
+        .onSubmit(dataController.save)
         
     }
     
