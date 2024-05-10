@@ -48,7 +48,7 @@ struct Filter: Identifiable, Hashable{
     //静态属性：Filter.recent
     static var recent = Filter(
         id: UUID(),
-        name: "Recents Issues",
+        name: "Recent Issues",
         icon: "clock",
         //86400是一天的秒数，乘以-7代表7天前的
         minModificationDate: .now.addingTimeInterval(86400 * -7)

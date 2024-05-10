@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    
+<dict>
+    
+    <!-- StringKey 是代码中存在的字符串。现在已经取消了自动语法一致性，剩下的是一个整数，后面跟着“issues”。因此，请将“StringKey”替换为“%lld issues” -->
+	<key>%lld issues</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+        <!-- <string>%#@VARIABLE@</string> 行定义了一个变量，这为我们提供了在字符串中查找非常具体格式的空间。在这里不需要它，所以可以跳过它。 -->
+		<string>%#@VARIABLE@</string>
+        <!-- <key>VARIABLE</key> 告诉 iOS 如何处理上面定义的变量。同样，我们在这里不需要它，所以我们可以跳过它。-->
+		<key>VARIABLE</key>
+		<dict>
+            <!-- 键 NSStringFormatSpecTypeKey 具有 NSStringPluralRuleType 值，狡猾地是它实际上可能具有的唯一值，这意味着在这里描述的是复数规则。-->
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+            <!-- 在 NSStringFormatValueTypeKey 行的正下方，会看到一个空字符串。这里告诉 Swift 正在检查复数化，对我们来说，这将再次成为“lld” 我们正在检查一个长整数。-->
+			<key>NSStringFormatValueTypeKey</key>
+            <!-- 加上 lld-->
+			<string>lld</string>
+            <!-- 文件的其余部分包含各种数值情况的规则：当有零项时为字符串，当有一个、两个、几个或多个项时为字符串，所有其他情况为字符串 -->
+			<key>zero</key>
+            <!-- 对于0下面的字符串，可以写“No issues” -->
+			<string>No issues</string>
+			<key>one</key>
+            <!-- 对于1下面的字符串，可以写“1 issue” -->
+			<string>1 issue</string>
+            <!-- 然后可以删除 two、few 和 many 的键和字符串，因为英语对它们没有特殊规则 -->
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+            <!-- 最后，对于其他下面的字符串，可以写“%lld issues”以将号码放回那里 -->
+			<key>other</key>
+			<string>%lld issues</string>
+		</dict>
+	</dict>
+    
+</dict>
+
+</plist>

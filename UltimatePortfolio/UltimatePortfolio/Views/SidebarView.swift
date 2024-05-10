@@ -49,14 +49,10 @@ struct SidebarView: View {
     @State private var renamingTag = false           //重命名当前是否正在进行中
     @State private var tagToRename: Tag?             //尝试重命名的标签
     @State private var tagName = ""                  //新标签的名称
-    
-    
-    //状态属性：跟踪奖项视图是否展示
-    @State private var showingAwards = false
-    
-    
 
-    
+
+
+
     //MARK: - 视图
     var body: some View {
         
@@ -68,10 +64,8 @@ struct SidebarView: View {
             Section("Smart Filters") {
                 ForEach(smartFilters) {
                     filter in
-                    //导航链接附加值为过滤器
-                    NavigationLink(value: filter) {
-                        Label(filter.name, systemImage: filter.icon)
-                    }
+                    //已抽出子视图
+                    SmartFilterRow(filter: filter)
                 }
             }
             
@@ -79,35 +73,8 @@ struct SidebarView: View {
             Section("Tags") {
                 ForEach(tagFilters) { 
                     filter in
-                    //导航链接附加值为过滤器
-                    NavigationLink(value: filter) {
-                        Label(filter.name, systemImage: filter.icon)
-                            //在侧边栏中每个标签旁边显示其活动问题的数量
-                            .badge(filter.activeIssuesCount)
-                            //设置长按上下文菜单
-                            .contextMenu {
-                                //重命名按钮
-                                Button {
-                                    rename(filter)
-                                } label: {
-                                    Label("Rename", systemImage: "pencil")
-                                }
-                                //删除按钮
-                                Button(role: .destructive) {
-                                    delete(filter)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                            //增加旁白功能
-                            //1.让子视图归组一起被读出，因为分别读出没什么意义
-                            .accessibilityElement()
-                            //2.先读出标题
-                            .accessibilityLabel(filter.name)
-                            //3.英语要解决复数问题
-                            .accessibilityHint("^[\(filter.activeIssuesCount) issue](inflect: true)")
-
-                    }
+                    //把 filter 和 rename方法，和 delete方法都传入子视图
+                    UserFilterRow(filter: filter, rename: rename, delete: delete)
                 }
                 //添加滑动删除
                 .onDelete(perform: delete)
@@ -115,31 +82,9 @@ struct SidebarView: View {
             
         }
         //工具栏菜单
+        //或写成 .toolbar(content: SidebarViewToolbar.init)
         .toolbar {
-            
-            //按钮：创建测试数据。让它只在测试时有用
-            #if DEBUG
-            Button {
-                dataController.deleteAll()
-                dataController.createSampleData()
-            } label: {
-                Label("ADD SAMPLES", systemImage: "flame")
-            }
-            #endif
-            
-            //按钮：新建 tag
-            Button(action: dataController.newTag) {
-                Label("Add tag", systemImage: "plus")
-            }
-            
-            //按钮：切换 AwardView 是否打开
-            Button {
-                showingAwards.toggle()
-            } label: {
-                Label("Show awards", systemImage: "rosette")
-            }
-
-            
+            SidebarViewToolbar()    //抽出了子视图
         }
         //弹窗：新建 tag，绑定 $renamingTag 布尔值
         .alert("Rename tag", isPresented: $renamingTag) {
@@ -150,18 +95,14 @@ struct SidebarView: View {
             //输入框：绑定状态属性 $tagName
             TextField("New name", text: $tagName)
         }
-        //弹窗：
-        .sheet(isPresented: $showingAwards) {
-            AwardsView()
-        }
         //导航标题
         .navigationTitle("Filters")
         
     }
-    
-    
-    
-    
+
+
+
+
     //MARK: - 方法
     
     //方法：在 SidebarView 中添加滑动删除支持
@@ -200,8 +141,9 @@ struct SidebarView: View {
         dataController.save()
     }
 
-    
-    
+
+
+
 }
 
 

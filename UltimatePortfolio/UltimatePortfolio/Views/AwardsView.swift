@@ -55,12 +55,11 @@ struct AwardsView: View {
                                 .scaledToFit()
                                 .padding()
                                 .frame(width: 100, height: 100)
-                                .foregroundColor(dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5))
+                                //从方法中返回颜色，
+                                .foregroundColor(color(for: award))
                         }
-                        //增加旁白
-                        .accessibilityLabel(
-                            dataController.hasEarned(award: award) ? "Unlocked: \(award.name)" : "Locked"
-                        )
+                        //增加旁白，从方法中返回旁白
+                        .accessibilityLabel(label(for: award))
                         .accessibilityHint(award.description)
 
                     }
@@ -80,8 +79,26 @@ struct AwardsView: View {
     }
     
     
+    
+    
     //MARK: - 方法
     
+    /*
+     之前代码中，会根据计算奖励来决定具体颜色以及辅助功能标签，但查看 body 代码的人其实不关心数据的计算方式，只关心它的使用方式
+     于是我们把这两部份挪出来作为函数方法，这样除了简化 body 部分的代码外，还有一个额外好处是可以更轻松地编写测试代码
+    */
+    
+    //方法：根据 award 计算应该用什么颜色
+    func color(for award: Award) -> Color {
+        dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5)
+    }
+
+    //方法：根据 award 计算应该用什么旁白
+    //这里返回的值类型是 LocalizedStringKey ，这意味着它在运行时会由 SwiftUI 自动本地化
+    func label(for award: Award) -> LocalizedStringKey {
+        dataController.hasEarned(award: award) ? "Unlocked: \(award.name)" : "Locked"
+    }
+
     
     
     

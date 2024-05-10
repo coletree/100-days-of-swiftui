@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct IssueView: View {
     
     
@@ -15,7 +16,7 @@ struct IssueView: View {
     //环境属性：从环境中读取 dataController 实例
     @EnvironmentObject var dataController: DataController
     
-    //ObservedObject属性：该属性是在父视图列表中传入的
+    //ObservedObject属性：该属性是在父视图列表中传入的。如果不用 ObservedObject ，后面无法绑定
     //selectedIssue 属性是可选的，应用开始时不会选定任何内容。但当它达到 IssueView 该属性时，它肯定应该有值。
     //因此与其让 IssueView 读取可选值，不如为其提供一个非可选 Issue 属性
     @ObservedObject var issue: Issue
@@ -30,6 +31,7 @@ struct IssueView: View {
             
             //第1部份：标题、修改日期、优先级...
             Section {
+                
                 VStack(alignment: .leading) {
                     //标题: 与 issue 的 issueTitle 绑定
                     TextField("Title", text: $issue.issueTitle, prompt: Text("Enter the issue title here"))
@@ -51,50 +53,9 @@ struct IssueView: View {
                     Text("High").tag(Int16(2))
                 }
                 
-                
-                //该视图有个复杂的部分就是tag：需要提供一种方法让用户选择多个tag，这很棘手，因为内置 Picker 视图只支持单个选择
-                //这意味着我们需要自己设置一些东西，理想情况下，用户可以很容易地预先看到他们的所有标签，并快速添加或删除标签
-                //目前最有效的解决方案是使用包含所有【选定】和【未选定】标签的 Menu 视图
-                //对【选定】标签，我们之前已经创建了 issueTags 属性，可以直接读取
-                //对【未选定】标签，需要在 DataController 添加代码对比issue标签和所有标签，即“返回所有该Issue没有的标签”。这是 Swift 里集合的内置方法 symmetricDifference ，具体定义参见 DataController 中的 missingTags 方法
-                //标签：用 Menu 显示所有已选和未选定的标签（连续闭包写法，label是第二个闭包）
-                Menu {
-                    //1.先展示该 issue 有的标签
-                    ForEach(issue.issueTags) { tag in
-                        Button {
-                            //该删除方法是 coreData 数据模型自动生成的
-                            issue.removeFromTags(tag)
-                        } label: {
-                            Label(tag.tagName, systemImage: "checkmark")
-                        }
-                    }
-                    
-                    //2.再展示该 issue 没有的标签
-                    let otherTags = dataController.missingTags(from: issue)
-                    if otherTags.isEmpty == false {
-                        Divider()
-                        Section("Add Tags") {
-                            ForEach(otherTags) { tag in
-                                Button(tag.tagName) {
-                                    //该添加方法是 coreData 数据模型自动生成的
-                                    issue.addToTags(tag)
-                                }
-                            }
-                        }
-                    }
-                }
-                label: {
-                    //直接将有的 tag 名称作为标题
-                    //Text("Tags").multilineTextAlignment(.leading)
-                    Text(issue.issueTagsList)
-                        .multilineTextAlignment(.leading)
-                        //防止文本截断，把宽度设到最大
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        //防止文本动画
-                        .animation(nil, value: issue.issueTagsList)
-                }
+                //菜单：标签管理菜单，已经移入子视图
+                TagsMenuView(issue: issue)
 
-                
             }
             
             //第2部份：编辑 Issue 内容
@@ -118,26 +79,8 @@ struct IssueView: View {
         }
         //对象被删除时禁用编辑：isDeleted 属性是 coredata 自动生成的，表示该对象已删除
         .disabled(issue.isDeleted)
-        //设置工具栏
-        .toolbar {
-            Menu {
-                //复制标题
-                Button {
-                    UIPasteboard.general.string = issue.title
-                } label: {
-                    Label("Copy Issue Title", systemImage: "doc.on.doc")
-                }
-                //将问题标记为已完成，修改完进行保存
-                Button {
-                    issue.completed.toggle()
-                    dataController.save()
-                } label: {
-                    Label(issue.completed ? "Re-open Issue" : "Close Issue", systemImage: "bubble.left.and.exclamationmark.bubble.right")
-                }
-            } label: {
-                Label("Actions", systemImage: "ellipsis.circle")
-            }
-        }
+        //设置工具栏：已抽出子视图
+        .toolbar { IssueViewToolbar(issue: issue) }
         
         //MARK: 设置保存点
         //onReceive 修改器会调用排队保存，onSubmit 修改器立即保存，因此这里会产生一点点重复工作
@@ -155,6 +98,7 @@ struct IssueView: View {
     
     
     //MARK: - 方法
+    
     
     
     

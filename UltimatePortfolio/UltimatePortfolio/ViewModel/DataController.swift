@@ -297,7 +297,8 @@ class DataController : ObservableObject {
     func newIssue() {
         //可使用最低限度信息创建，因为有些属性有默认值
         let issue = Issue(context: container.viewContext)
-        issue.title = "New issue"
+        //让默认名称支持本地化，它会去 Localizable 文件里查
+        issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
         issue.creationDate = .now
         issue.priority = 1
         //将当前 filter 的标签分配给新建的 issue，否则它创建完成后不会出现在列表（addToTags方法是自动生成的）
@@ -315,7 +316,8 @@ class DataController : ObservableObject {
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
-        tag.name = "New tag"
+        //让默认名称支持本地化，它会去 Localizable 文件里查
+        tag.name = NSLocalizedString("New tag", comment: "Create a new tag")
         save()
         //selectedFilter = Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
     }

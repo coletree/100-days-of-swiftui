@@ -37,6 +37,11 @@ extension Issue: Comparable {
         }
     }
     
+    //计算属性：格式化问题的创建时间。让视图那边的 Text 代码简单一点
+    var issueFormattedCreationDate: String {
+        issueCreationDate.formatted(date: .abbreviated, time: .omitted)
+    }
+    
     
     //【NSSet类型属性】需要转型
     //将 NSSet 数组转型为 Tag 数组，并对该数组进行统一排序
