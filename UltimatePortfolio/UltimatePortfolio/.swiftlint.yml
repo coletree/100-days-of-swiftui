@@ -1,0 +1,6 @@
+disabled_rules:
+- operator_whitespace
+- switch_case_alignment
+
+vertical_whitespace:
+  max_empty_lines: 4
