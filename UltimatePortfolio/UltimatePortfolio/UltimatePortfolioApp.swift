@@ -13,48 +13,48 @@ import SwiftUI
 
 @main
 struct UltimatePortfolioApp: App {
-    
-    
-    //MARK: - 属性
-    
-    //状态属性：实作视图模型 DataController
+
+
+    // MARK: - 属性
+
+    // 状态属性：实作视图模型 DataController
     @StateObject var dataController = DataController()
-    
-    //环境属性：获取当前应用状态
+
+    // 环境属性：获取当前应用状态
     @Environment(\.scenePhase) var scenePhase
-    
-    
-    
-    //MARK: - 根视图
+
+
+
+
+    // MARK: - 根视图
     var body: some Scene {
-        
         WindowGroup {
-            //定义一个三栏布局
-            NavigationSplitView(
-                //preferredCompactColumn: .constant(.detail)
-            ){
+            // 定义一个三栏布局
+            // NavigationSplitView(// preferredCompactColumn: .constant(.detail)){
+            NavigationSplitView {
                 SidebarView()
             } content: {
                 ContentView()
             } detail: {
                 DetailView()
             }
-            //把视图模型 dataController 放入环境中
+            // 把视图模型 dataController 放入环境中
             .environmentObject(dataController)
-            //把 dataController 中的上下文，赋予环境变量 managedObjectContext
+            // 把 dataController 中的上下文，赋予环境变量 managedObjectContext
             .environment(\.managedObjectContext, dataController.container.viewContext)
-            //监视环境属性 scenePhase，如果发现应用所处阶段有变化，则触发后面闭包
-            .onChange(of: scenePhase) { oldValue, newValue in
+            // 监视环境属性 scenePhase，如果发现应用所处阶段有变化，则触发后面闭包
+            .onChange(of: scenePhase) { _, newValue in
                 if newValue != .active {
                     dataController.save()
                 }
             }
-            
+
         }
-        
     }
-    
-    
+
+
+
+
 }
 
 

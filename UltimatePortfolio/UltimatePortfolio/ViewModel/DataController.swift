@@ -81,10 +81,23 @@ class DataController: ObservableObject {
     private var saveTask: Task<Void, Error>?
 
 
+    /// 静态属性：创建单体
+    static let model: NSManagedObjectModel = {
+        // 确认资源包里有 Model.momd 数据库文件
+        guard let url = Bundle.main.url(forResource: "Model", withExtension: "momd") else {
+            fatalError("Failed to locate model file.")
+        }
+        // 确认可以用 Model.momd 文件地址作为数据库
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failed to load model file.")
+        }
+        return managedObjectModel
+    }()
+
+
 
 
     // MARK: - 方法
-
 
     /// 自定义初始化：在内存中初始化数据控制器（用于临时使用，例如测试和预览）或永久存储（用于常规应用程序运行。）默认为永久存储。
     /// 
@@ -93,7 +106,11 @@ class DataController: ObservableObject {
     init(inMemory: Bool = false) {
 
         // 给容器属性赋值（后面 Model 就是告诉程序要加载的数据库）
-        container = NSPersistentCloudKitContainer(name: "Model")
+        // container = NSPersistentCloudKitContainer(name: "Model")
+        // 给容器属性赋值（后面 Model 就是告诉程序要加载的数据库），并且指定使用前面静态属性 model 定义的数据库
+        // 确保实体将只会被加载一次，跨测试和实际代码
+        container = NSPersistentCloudKitContainer(name: "Model", managedObjectModel: Self.model)
+
 
         // 为了测试和预览目的，创建一个写入 /dev/null 的临时内存数据库
         // 所以我们的数据在应用程序运行完成后就会被销毁
@@ -112,7 +129,7 @@ class DataController: ObservableObject {
         // 确保关注 iCloud 进行所有更改
         // 绝对确保我们在发生事件时保持本地 UI 同步
         // 发生远程更改
-        
+
         // 设置：告诉 Core Data 在存储发生更改时收到通知
         container.persistentStoreDescriptions.first?.setOption(
                 true as NSNumber,
