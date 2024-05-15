@@ -8,10 +8,10 @@
 import Foundation
 
 
-// 通过对 Tag 类进行扩展，来解决可选值的问题（每个CoreData的Entity都会自动生成一个类）
+/// Tag 类的扩展：注意解决 CoreData 可选值的问题（每个 CoreData 的 Entity 都会自动生成同名类）
 extension Tag: Comparable {
 
-    // 【普通类型属性】设置默认值，即可解包
+    // 普通类型属性：设置默认值，即可解包
     var tagID: UUID {
         id ?? UUID()
     }
@@ -37,7 +37,5 @@ extension Tag: Comparable {
             return left < right
         }
     }
-
-
 
 }

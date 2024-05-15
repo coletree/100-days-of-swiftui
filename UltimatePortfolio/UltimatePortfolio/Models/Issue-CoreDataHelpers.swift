@@ -8,10 +8,11 @@
 import Foundation
 
 
-// 通过对 Issue 类进行扩展，来解决可选值的问题（每个CoreData的Entity都会自动生成一个类）
+/// Issue 类的扩展：注意解决 CoreData 可选值的问题（每个 CoreData 的 Entity 都会自动生成同名类）
 extension Issue: Comparable {
 
-    // 【普通类型属性】设置默认值，即可解包
+    // 普通类型属性：设置默认值，即可解包
+    // 部分属性要用于绑定的，需要支持编辑，所以要支持 set，set 要修改原数据
     var issueTitle: String {
         get { title ?? "" }
         set { title = newValue }
@@ -49,7 +50,7 @@ extension Issue: Comparable {
         return result.sorted()
     }
 
-    // 将 issue 的标签数组转换为仅包含其名称的数组
+    // 将 issue 的标签数组转换为【仅包含其名称字符串】的数组
     var issueTagsList: String {
         guard let tags else { return "No tags" }
         if tags.count == 0 {
@@ -87,6 +88,5 @@ extension Issue: Comparable {
             return left < right
         }
     }
-
 
 }
