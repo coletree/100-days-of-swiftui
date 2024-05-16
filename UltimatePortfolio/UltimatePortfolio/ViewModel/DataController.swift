@@ -6,6 +6,7 @@
 
 import CoreData
 import Foundation
+import SwiftUI
 
 
 /// 一个控制核心数据的单体类：它将处理加载数据，本地保存数据，同步到CloudKit，等工作
@@ -147,9 +148,20 @@ class DataController: ObservableObject {
         // 设置：容器读取数据库中的数据
         container.loadPersistentStores { storeDescription, error in
             // 如果发生错误，则退出程序。error 是 optional 类型，所以用 if let 解包
+            // 当运行到 if let error = error 代码时，代表核心数据已加载完成，无论是成功还是失败
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
+
+            // 为了避免在生产代码中暴露攻击媒介，用 if DEBUG 去限制只在处于调试模式时才做检查（而发布到 AppStore 时不会包含该代码）
+            #if DEBUG
+            // 这里检查【只有在提供“enable-testing”作为启动参数】时，才需要运行里面的代码。我们在UI测试中配置了此参数
+            if CommandLine.arguments.contains("enable-testing") {
+                self.deleteAll()
+                // 禁用应用程序的所有动画，这使得 UI 测试速度大大加快
+                UIView.setAnimationsEnabled(false)
+            }
+            #endif
         }
 
     }

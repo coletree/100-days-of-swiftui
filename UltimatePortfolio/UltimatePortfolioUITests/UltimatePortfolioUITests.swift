@@ -9,34 +9,79 @@ import XCTest
 
 final class UltimatePortfolioUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    // 将应用程序作为属性，在该方法中去配置和启动
+    var app: XCUIApplication!
+
+
+    /// setUpWithError：该方法会在该类中的其他每个测试用例启动前被调用
+    override func setUpWithError() throws {
+
+        // 对 UI 测试来说，最好是遭遇失败时立即停止运行
         continueAfterFailure = false
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI 测试必须在测试前启动应用程序。以下代码将创建默认应用程序的一个实例
-        let app = XCUIApplication()
-        // 然后通过 launch 启动应用程序实例，以准备开始测试
+        // 设置初始状态对 UI 测试非常重要，例如设备方向等，这些配置放在该方法最合适
+        app = XCUIApplication()
+        app.launchArguments = ["enable-testing"]
         app.launch()
 
-        // 使用 XCTAssert 断言和相关方法，去验证测试结果
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+
+    /// UI 测试用例：测试导航栏是否存在
+    func testAppStartsWithNavigationBar() throws {
+        // 使用 XCTAssert 断言和相关方法，去验证测试结果
+        XCTAssertTrue(app.navigationBars.element.exists, "There should be a navigation bar when the app launches.")
+    }
+
+
+    /// UI 测试用例：验证各类按钮是否都存在：
+    func testAppHasBasicButtonsOnLaunch() throws {
+        // XCTAssertTrue(app.navigationBars.buttons["Filters"].exists, "There should be a Filters button launch.")
+        // XCTAssertTrue(app.navigationBars.buttons["Add tag"].exists, "There should be a Add tag button launch.")
+        XCTAssertTrue(app.navigationBars.buttons["New Issue2"].exists, "There should be a New Issue button launch.")
+    }
+    
+    
+    /// UI 测试用例：检查初始状态的 cell
+    func testNoIssuesAtStart() {
+        XCTAssertEqual(app.cells.count, 0, "There should be no list rows initially.")
+    }
+    
+    
+    /// UI 测试用例：创建5个问题，过程中检查 cell
+    func testCreatingIssues() {
+        
+        for tapCount in 1...5 {
+            // 模拟点击 New Issue 按钮，然后再点击 Issues 按钮返回
+            app.buttons["New Issue2"].tap()
+            app.buttons["Issues"].tap()
+            // 点完两个按钮，断言 1 次，最终总共断言 5 次
+            XCTAssertEqual(app.cells.count, tapCount, "There should be \(tapCount) rows in the list.")
         }
+        
+        // 通过删除 Issue 来进一步进行此测试
+        for tapCount in (0...4).reversed() {
+            app.cells.firstMatch.swipeLeft()
+            app.buttons["Delete"].tap()
+            XCTAssertEqual(app.cells.count, tapCount, "There should be \(tapCount) rows in the list.")
+        }
+        
+    }
+    
+
+}
+
+
+
+// 添加扩展
+extension XCUIElement {
+    func clear() {
+        guard let stringValue = self.value as? String else {
+            XCTFail("Failed to clear text in XCUIElement.")
+            return
+        }
+        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
+        typeText(deleteString)
     }
 }

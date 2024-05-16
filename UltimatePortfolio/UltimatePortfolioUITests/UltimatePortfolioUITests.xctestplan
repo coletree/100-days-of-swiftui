@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "7249F38D-088D-428A-992E-7EAC83C71B31",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:UltimatePortfolio.xcodeproj",
+        "identifier" : "DF6C26502BF4670B0065BFE3",
+        "name" : "UltimatePortfolioUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

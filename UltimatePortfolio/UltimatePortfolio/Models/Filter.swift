@@ -17,63 +17,63 @@ import Foundation
 */
 
 
-//结构：创建过滤器结构
-struct Filter: Identifiable, Hashable{
-    
-    
-    //MARK: - 数据基本属性
+// 结构：创建过滤器结构
+struct Filter: Identifiable, Hashable {
+
+
+    // MARK: - 数据基本属性
     var id: UUID
     var name: String
     var icon: String
     var minModificationDate = Date.distantPast
-    //过滤器的 tag 属性，储存 Tag 对象，是一个 Optional，如果没有值就用于智能过滤器
+    // 过滤器的 tag 属性，储存 Tag 对象，是一个 Optional，如果没有值就用于智能过滤器
     var tag: Tag?
-    
-    //计算属性：计算标签
+
+    // 计算属性：计算标签
     var activeIssuesCount: Int {
         tag?.tagActiveIssues.count ?? 0
     }
-    
-    
-    
-    //MARK: - 创建两个常用过滤器，方便使用
-    
-    //静态属性：Filter.all
+
+
+
+    // MARK: - 创建两个常用过滤器，方便使用
+
+    // 静态属性：Filter.all
     static var all = Filter(
         id: UUID(),
         name: "All Issues",
         icon: "tray"
     )
-    
-    //静态属性：Filter.recent
+
+    // 静态属性：Filter.recent
     static var recent = Filter(
         id: UUID(),
         name: "Recent Issues",
         icon: "clock",
-        //86400是一天的秒数，乘以-7代表7天前的
+        // 86400是一天的秒数，乘以-7代表7天前的
         minModificationDate: .now.addingTimeInterval(86400 * -7)
     )
-    
-    
-    
-    
-    //MARK: - 自定义 Hashable 和 Equatable 协议
+
+
+
+
+    // MARK: - 自定义 Hashable 和 Equatable 协议
     /*
      在比较两个过滤器时，关心的只是它们的 id 属性，对名称、图标、修改日期和标签进行哈希处理是没有意义的；
      事实上，这样做还有可能会导致奇怪的行为，因为标签会随着时间的推移而变化；
      因此，我们将只使用 id 属性去判定两个对象是否相同，添加以下两个方法：
     */
-    
-    //方法：自定义对象哈希的方式（只加入id）
+
+    // 方法：自定义对象哈希的方式（只加入id）
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    //方法：自定义对象比较是否相等的方式（只比较id）
+    // 方法：自定义对象比较是否相等的方式（只比较id）
     static func ==(lhs: Filter, rhs: Filter) -> Bool {
         lhs.id == rhs.id
     }
-    
-    
-    
+
+
+
 }

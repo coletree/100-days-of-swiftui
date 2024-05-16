@@ -97,6 +97,7 @@
 		DF6C26512BF4670C0065BFE3 /* UltimatePortfolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UltimatePortfolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6C26532BF4670C0065BFE3 /* UltimatePortfolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltimatePortfolioUITests.swift; sourceTree = "<group>"; };
 		DF6C26552BF4670C0065BFE3 /* UltimatePortfolioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltimatePortfolioUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DF6C265C2BF5B0CA0065BFE3 /* UltimatePortfolioUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UltimatePortfolioUITests.xctestplan; sourceTree = "<group>"; };
 		DF7789952BE8A9EA001415E8 /* Instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Instructions.md; sourceTree = "<group>"; };
 		DF7789972BEB22DB001415E8 /* Extension-View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-View.swift"; sourceTree = "<group>"; };
 		DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 		DF6C26522BF4670C0065BFE3 /* UltimatePortfolioUITests */ = {
 			isa = PBXGroup;
 			children = (
+				DF6C265C2BF5B0CA0065BFE3 /* UltimatePortfolioUITests.xctestplan */,
 				DF6C26532BF4670C0065BFE3 /* UltimatePortfolioUITests.swift */,
 				DF6C26552BF4670C0065BFE3 /* UltimatePortfolioUITestsLaunchTests.swift */,
 			);

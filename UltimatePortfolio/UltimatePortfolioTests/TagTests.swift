@@ -28,13 +28,13 @@ final class TagTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: Tag.fetchRequest()), count, "Expected \(count) tags.")
         XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), issueCount, "Expected \(issueCount) issues.")
     }
-    
+
     /// 测试用例：标签与问题是否独立（例如删除标签后，不会删除该标签下的问题，因为用的 nullify 关联模式）
     func testDeletingTagDoesNotDeleteIssues() throws {
         dataController.createSampleData()
         let request = NSFetchRequest<Tag>(entityName: "Tag")
         let tags = try managedObjectContext.fetch(request)
-        
+
         dataController.delete(tags[0])
         XCTAssertEqual(dataController.count(for: Tag.fetchRequest()), 4, "Expected 4 tags after deleting 1.")
         XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), 50, "Expected 50 issues after deleting a tag.")
