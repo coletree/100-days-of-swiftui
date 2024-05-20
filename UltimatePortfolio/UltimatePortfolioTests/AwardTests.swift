@@ -8,10 +8,8 @@
 import CoreData
 import XCTest
 
-
 // 引入原 target，代表可以访问原 target 的所有类
 @testable import UltimatePortfolio
-
 
 /// Award 相关的测试用例（继承自BaseTestCase）
 final class AwardTests: BaseTestCase {

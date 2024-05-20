@@ -15,8 +15,10 @@ struct UserFilterRow: View {
 
     var filter: Filter
 
-    // 因为代码中有两个按钮是涉及重命名和删除过滤器的。一种选择是可以将重命名和筛选代码移动到该文件中，但这会变得很混乱。因为同时需要移动 completeRename 和 tagToRename ，以及renamingTag 和 tagName 属性
-    // 另一种选择是将父视图的函数传入子视图。这里先添加两个新属性，它们都要求接受过滤器并且不返回任何内容。然后在父视图 SidebarView 中，我们传入它有的 rename() 和 delete() 方法
+    // 因为代码中有两个按钮是涉及重命名和删除过滤器的。一种选择是可以将重命名和筛选代码移动到该文件中，但这会变得很混乱。
+    // 因为同时需要移动 completeRename 和 tagToRename ，以及renamingTag 和 tagName 属性
+    // 另一种选择是将父视图的函数传入子视图。这里先添加两个新属性，它们都要求接受 Filter 并且不返回任何内容。
+    // 然后在父视图 SidebarView 中，我们传入它有的 rename() 和 delete() 方法
     var rename: (Filter) -> Void
     var delete: (Filter) -> Void
 

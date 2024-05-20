@@ -8,10 +8,8 @@
 import CoreData
 import XCTest
 
-
 // 引入原 target，代表可以访问原 target 的所有类
 @testable import UltimatePortfolio
-
 
 /// 开发过程的相关测试用例
 /// 例如：编写测试以确保我们的示例代码正确加载

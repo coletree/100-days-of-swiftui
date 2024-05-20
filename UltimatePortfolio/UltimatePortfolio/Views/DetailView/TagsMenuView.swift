@@ -31,7 +31,9 @@ struct TagsMenuView: View {
         // 这意味着我们需要自己设置一些东西，理想情况下，用户可以很容易地预先看到他们的所有标签，并快速添加或删除标签
         // 目前最有效的解决方案是使用包含所有【选定】和【未选定】标签的 Menu 视图
         // 对【选定】标签，我们之前已经创建了 issueTags 属性，可以直接读取
-        // 对【未选定】标签，需要在 DataController 添加代码对比issue标签和所有标签，即“返回所有该Issue没有的标签”。这是 Swift 里集合的内置方法 symmetricDifference ，具体定义参见 DataController 中的 missingTags 方法
+        // 对【未选定】标签，需要在 DataController 添加代码对比issue标签和所有标签，
+        // 即“返回所有该Issue没有的标签”。这是 Swift 里集合的内置方法 symmetricDifference
+        // 具体定义参见 DataController 中的 missingTags 方法
         // 标签：用 Menu 显示所有已选和未选定的标签（连续闭包写法，label是第二个闭包）
         Menu {
             // 1.先展示该 issue 有的标签

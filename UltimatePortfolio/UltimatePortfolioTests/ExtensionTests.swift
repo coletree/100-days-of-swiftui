@@ -8,10 +8,8 @@
 import CoreData
 import XCTest
 
-
 // 引入原 target，代表可以访问原 target 的所有类
 @testable import UltimatePortfolio
-
 
 /// 关于扩展的测试用例
 /// 例如：是否能按照预期读取或写入基础 Core Data 属性值
@@ -95,7 +93,6 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual([issue3, issue1, issue2], sorted, "Sorting issue arrays should use name then creation date.")
     }
 
-
     /// 测试用例：检查对 tagID 的解包和写入是否有效
     func testTagIDUnwrap() {
         let tag = Tag(context: managedObjectContext)
@@ -133,7 +130,7 @@ final class ExtensionTests: BaseTestCase {
 
     /// 测试用例：测试排序稳定性。(如果两个标签具有相同的名称，排序依赖于 UUID)
     func testTagSortingIsStable() {
-        
+
         // 创建 3 个不同的 tag
         let tag1 = Tag(context: managedObjectContext)
         tag1.name = "B Tag"
@@ -155,7 +152,6 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual([tag3, tag1, tag2], sortedTags, "Sorting tag arrays should use name then UUID string.")
     }
 
-
     /// Bundle 扩展可以处理任何类型的 Decodable 数据，因此除了测试解码 Award 类型，还应测试其他一些数据
     /// 我们不希望测试文件出现在主项目中，因此将这些文件直接添加到测试目标中
 
@@ -165,7 +161,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertFalse(awards.isEmpty, "Awards.json should decode to a non-empty array.")
 
     }
-    
+
     /// 测试解码测试文件：DecodableString.json
     func testDecodingString() {
         // 首先通过 ExtensionTests 类本身，找到所在 Bundle
@@ -173,7 +169,7 @@ final class ExtensionTests: BaseTestCase {
         let data = bundle.decode("DecodableString.json", as: String.self)
         XCTAssertEqual(data, "Never ask a starfish for directions.", "The string must match DecodableString.json.")
     }
-    
+
     /// 测试解码测试文件：DecodableDictionary.json
     func testDecodingDictionary() {
         // 首先通过 ExtensionTests 类本身，找到所在 Bundle

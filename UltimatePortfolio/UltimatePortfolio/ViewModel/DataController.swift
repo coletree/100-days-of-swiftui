@@ -158,6 +158,7 @@ class DataController: ObservableObject {
             // 这里检查【只有在提供“enable-testing”作为启动参数】时，才需要运行里面的代码。我们在UI测试中配置了此参数
             if CommandLine.arguments.contains("enable-testing") {
                 self.deleteAll()
+                print("**********已经删除所有数据**********")
                 // 禁用应用程序的所有动画，这使得 UI 测试速度大大加快
                 UIView.setAnimationsEnabled(false)
             }

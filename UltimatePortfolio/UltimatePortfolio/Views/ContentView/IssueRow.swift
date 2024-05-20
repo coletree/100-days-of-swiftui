@@ -39,6 +39,8 @@ struct IssueRow: View {
                 Image(systemName: "exclamationmark.circle")
                     .imageScale(.large)
                     .opacity(issue.priority == 2 ? 1 : 0)
+                    // 增加用于 UI 测试的额外标识符
+                    .accessibilityIdentifier(issue.priority == 2 ? "\(issue.issueTitle) High Priority" : "")
 
                 VStack(alignment: .leading) {
 
@@ -78,12 +80,11 @@ struct IssueRow: View {
         // 增加旁白：优先级高的时候要读出来
         .accessibilityHint(issue.priority == 2 ? "High priority" : "")
 
+        // 增加用于 UI 测试的额外标识符
+        .accessibilityIdentifier(issue.issueTitle)
+
+
     }
-
-
-
-
-    // MARK: - 方法
 
 
 

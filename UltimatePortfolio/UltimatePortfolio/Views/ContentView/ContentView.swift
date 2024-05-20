@@ -42,8 +42,7 @@ struct ContentView: View {
             text: $dataController.filterText,
             tokens: $dataController.filterTokens,
             suggestedTokens: .constant(dataController.suggestedFilterTokens),
-            prompt: "Filter issues, or type # to add tags") {
-                tag in
+            prompt: "Filter issues, or type # to add tags") { tag in
                 Text(tag.tagName)
             }
 

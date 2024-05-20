@@ -68,7 +68,7 @@ struct AwardsView: View {
             .navigationTitle("Awards")
             // 徽章弹窗
             .alert(awardTitle, isPresented: $showingAwardDetails) {
-                Button("好的", role: .cancel) { }
+                Button("OK", role: .cancel) { }
             } message: {
                 Text(selectedAward.description)
             }

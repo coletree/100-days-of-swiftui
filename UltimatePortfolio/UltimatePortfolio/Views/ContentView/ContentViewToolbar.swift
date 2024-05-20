@@ -80,7 +80,7 @@ struct ContentViewToolbar: View {
 
         // 按钮：创建新 issue
         Button(action: dataController.newIssue) {
-            Label("New Issue2", systemImage: "square.and.pencil")
+            Label("New Issue", systemImage: "square.and.pencil")
         }
 
     }

@@ -32,7 +32,7 @@ struct UltimatePortfolioApp: App {
             // 定义一个三栏布局
             // NavigationSplitView(// preferredCompactColumn: .constant(.detail)){
             NavigationSplitView {
-                SidebarView()
+                SidebarView(dataController: dataController)
             } content: {
                 ContentView()
             } detail: {
