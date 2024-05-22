@@ -16,10 +16,13 @@ struct IssueRow: View {
     // MARK: - 属性
 
     // 环境属性：从环境中读取 dataController 实例
-    @EnvironmentObject var dataController: DataController
+    // @EnvironmentObject var dataController: DataController
 
     // 订阅者属性：该属性是靠显式传入的。到时候在父视图中会传入
-    @ObservedObject var issue: Issue
+    // @ObservedObject var issue: Issue
+
+    // 视图模型：引入该视图的视图模型
+    @StateObject private var viewModel: ViewModel
 
 
 
@@ -29,7 +32,8 @@ struct IssueRow: View {
     var body: some View {
 
         // 重要的是会将所有这些信息封装在另一个 NavigationLink 中，该链接最终将为某个 issue 加载正确的详细信息视图
-        NavigationLink(value: issue) {
+        // 这一行不能改成 viewModel
+        NavigationLink(value: viewModel.issue) {
 
             HStack {
 
@@ -38,18 +42,18 @@ struct IssueRow: View {
                 // 如果我们完全排除图像视图，行的其余部分将向左移动以填充空间，并且看起来会很混乱
                 Image(systemName: "exclamationmark.circle")
                     .imageScale(.large)
-                    .opacity(issue.priority == 2 ? 1 : 0)
+                    .opacity(viewModel.iconOpacity)
                     // 增加用于 UI 测试的额外标识符
-                    .accessibilityIdentifier(issue.priority == 2 ? "\(issue.issueTitle) High Priority" : "")
+                    .accessibilityIdentifier(viewModel.iconIdentifier)
 
                 VStack(alignment: .leading) {
 
-                    Text(issue.issueTitle)
+                    Text(viewModel.issueTitle)
                         .font(.headline)
                         .lineLimit(1)
 
                     // 展示标签
-                    Text(issue.issueTagsList)
+                    Text(viewModel.issueTagsList)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
 
@@ -62,11 +66,11 @@ struct IssueRow: View {
                     // 方案1：(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
                     // 方案2：修改日期格式方便旁白读。但破坏了UI不好看。(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
                     // 方案3：不改变 UI，只改变 accessibilityLabel 修饰符 
-                    Text(issue.issueFormattedCreationDate)
-                        .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+                    Text(viewModel.creationDate)
+                        .accessibilityLabel(viewModel.accessibilityCreationDate)
                         .font(.subheadline)
 
-                    if issue.completed {
+                    if viewModel.completed {
                         Text("CLOSED")
                             .font(.body.smallCaps())
                     }
@@ -78,12 +82,23 @@ struct IssueRow: View {
 
         }
         // 增加旁白：优先级高的时候要读出来
-        .accessibilityHint(issue.priority == 2 ? "High priority" : "")
+        .accessibilityHint(viewModel.accessibilityHint)
 
         // 增加用于 UI 测试的额外标识符
-        .accessibilityIdentifier(issue.issueTitle)
+        .accessibilityIdentifier(viewModel.issueTitle)
 
 
+    }
+
+
+
+
+    // MARK: - 方法
+
+    // 自定义初始化：引入视图模型
+    init(issue: Issue) {
+        let viewModel = ViewModel(issue: issue)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
 

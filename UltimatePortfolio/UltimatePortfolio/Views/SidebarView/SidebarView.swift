@@ -48,7 +48,7 @@ struct SidebarView: View {
                     UserFilterRow(filter: filter, rename: viewModel.rename, delete: viewModel.delete)
                 }
                 // 添加滑动删除
-                .onDelete(perform: delete)
+                .onDelete(perform: viewModel.delete)
             }
 
         }
@@ -57,7 +57,8 @@ struct SidebarView: View {
         .toolbar {
             SidebarViewToolbar()    // 抽出了子视图
         }
-        // 弹窗：新建 tag，绑定 $renamingTag 布尔值
+        // 弹窗：因为没有单独的页面，所以采用 alert 弹窗实现
+        // 绑定 @Published 属性：renamingTag布尔值、tagName、
         .alert("Rename tag", isPresented: $viewModel.renamingTag) {
             // 完成按钮：点击后执行 “completeRename”
             Button("OK", action: viewModel.completeRename)
@@ -77,23 +78,17 @@ struct SidebarView: View {
     // MARK: - 方法
 
     // 自定义初始化：视图模型需要能够访问实例 DataController ，但无法从环境中读取该实例
-    // 因此自定义初始化方法，从这里传入 DataController
+    // 因此自定义初始化方法，从这里注入 DataController
     init(dataController: DataController) {
         // 利用传入的 DataController 来创建视图模型
         let viewModel = ViewModel(dataController: dataController)
+        // StateObject 是一个属性包装器，用于管理视图模型的生命周期，并确保视图在视图模型的状态改变时自动更新
+        // _viewModel 是 @StateObject 属性包装器的底层存储器，在初始化时需要通过 wrappedValue 参数设置它的初始值
+        // StateObject 应该在视图的初始化时设置，并且只能在初始化方法中设置一次
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    // 方法：在 SidebarView 中添加滑动删除支持
-    // 该方法属于和 UI 相关的方法，所以不需要移到视图模型中
-    func delete(_ offsets: IndexSet) {
-        for offset in offsets {
-            let item = viewModel.tags[offset]
-            // 由于已经在 dataController 类中添加了 delete 方法
-            // 因此可以从 SidebarView 和 ContentView 中直接调用去删除 tag 和 issue
-            viewModel.dataController.delete(item)
-        }
-    }
+
 
 }
 

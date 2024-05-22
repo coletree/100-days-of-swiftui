@@ -54,8 +54,9 @@ struct AwardsView: View {
                                 .scaledToFit()
                                 .padding()
                                 .frame(width: 100, height: 100)
-                                // 从方法中返回颜色，
-                                .foregroundColor(color(for: award))
+                                // 从方法中返回颜色（foregroundColor 已经被 foregroundStyle 取代）
+                                // .foregroundColor(color(for: award))
+                                .foregroundStyle(color(for: award))
                         }
                         // 增加旁白，从方法中返回旁白
                         .accessibilityLabel(label(for: award))

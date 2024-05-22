@@ -17,7 +17,7 @@ struct UltimatePortfolioApp: App {
 
     // MARK: - 属性
 
-    // 状态属性：实作视图模型 DataController
+    // 状态属性：使用 @StateObject 创建并持有 DataController 实例
     @StateObject var dataController = DataController()
 
     // 环境属性：获取当前应用状态
@@ -34,7 +34,7 @@ struct UltimatePortfolioApp: App {
             NavigationSplitView {
                 SidebarView(dataController: dataController)
             } content: {
-                ContentView()
+                ContentView(dataController: dataController)
             } detail: {
                 DetailView()
             }

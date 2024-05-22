@@ -38,6 +38,8 @@
 		DF77899B2BEB2DCA001415E8 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */; };
 		DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899C2BEB57DD001415E8 /* AwardsView.swift */; };
 		DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789A02BEB5D9F001415E8 /* Award.swift */; };
+		DF8204962BFC747500EDD8E0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */; };
+		DF8204982BFC791100EDD8E0 /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */; };
 		DFFE7D382BEDBD7C00E8EB42 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D3A2BEDBD7C00E8EB42 /* Localizable.strings */; };
 		DFFE7D442BEDC37900E8EB42 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D422BEDC37900E8EB42 /* Localizable.stringsdict */; };
 		DFFE7D472BEDC45900E8EB42 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D492BEDC45900E8EB42 /* Awards.json */; };
@@ -105,6 +107,8 @@
 		DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		DF77899C2BEB57DD001415E8 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 		DF7789A02BEB5D9F001415E8 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowViewModel.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DFFE7D3B2BEDBDF300E8EB42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Localization/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DFFE7D3C2BEDBF2000E8EB42 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Localization/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -291,8 +295,10 @@
 		DF6C26602BFB79C00065BFE3 /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
+				DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */,
 				DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */,
 				DFFE7D502BEE08BC00E8EB42 /* ContentViewToolbar.swift */,
+				DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */,
 				DF44EC352BE08FEA008FB6A6 /* IssueRow.swift */,
 			);
 			path = ContentView;
@@ -505,6 +511,7 @@
 				DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */,
 				DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */,
 				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
+				DF8204962BFC747500EDD8E0 /* ContentViewModel.swift in Sources */,
 				DF6C265E2BFB79930065BFE3 /* SidebarViewModel.swift in Sources */,
 				DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */,
 				DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */,
@@ -520,6 +527,7 @@
 				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 				DFFE7D4D2BEDFDA600E8EB42 /* SidebarViewToolbar.swift in Sources */,
+				DF8204982BFC791100EDD8E0 /* IssueRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
