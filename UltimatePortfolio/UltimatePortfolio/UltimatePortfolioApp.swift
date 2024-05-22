@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 import SwiftUI
 
 
@@ -48,11 +49,33 @@ struct UltimatePortfolioApp: App {
                     dataController.save()
                 }
             }
+            // 当用户从 spotlight 跳转进来时，执行 loadSpotlightItem 方法
+            .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
 
         }
     }
 
 
+
+
+    // MARK: - 方法
+
+    // 方法：处理用户从 spotlight 搜索结果跳转进来的行为
+    // 该方法可以接受任何类型的 NSUserActivity ，然后查看其数据以从 Spotlight 中找到唯一标识符：
+    func loadSpotlightItem(_ userActivity: NSUserActivity) {
+
+            // NSUserActivity 有一个 userInfo 字典，我们需要在里面挖掘一个特定的 Core Spotlight 键来读出 Issue 的标识符
+            // 如果字典存在，如果键存在，并且它的值是字符串，那么我们将使用它
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            
+            // 使用之前编写的 DataController 的 issue(with:) 方法，可以获取标识符字符串并发回匹配 Issue 对象
+            // 我们调用它来查找点击的任何 Issue，并将其赋予 dataController 的 selectedIssue，并将选择的过滤器设置为 .all
+            dataController.selectedIssue = dataController.issue(with: uniqueIdentifier)
+            dataController.selectedFilter = .all
+                    
+        }
+        
+    }
 
 
 }

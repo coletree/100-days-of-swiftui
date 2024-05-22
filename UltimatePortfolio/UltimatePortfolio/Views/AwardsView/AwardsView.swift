@@ -25,7 +25,7 @@ struct AwardsView: View {
     @State private var selectedAward = Award.example
     @State private var showingAwardDetails = false
 
-    var awardTitle: String {
+    var awardTitle: LocalizedStringKey {
         if dataController.hasEarned(award: selectedAward) {
             return "Unlocked: \(selectedAward.name)"
         } else {

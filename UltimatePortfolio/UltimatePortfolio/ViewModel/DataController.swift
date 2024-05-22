@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 
+
+
 /// 一个控制核心数据的单体类：它将处理加载数据，本地保存数据，同步到CloudKit，等工作
 /// 这里要用 ObservableObject，不能用 Observable ，不然后面 delete 方法的 objectWillChange 属性就无法用
 class DataController: ObservableObject {
@@ -96,6 +98,11 @@ class DataController: ObservableObject {
     }()
 
 
+    // Spotlight集成：需要一个属性来存储一个活跃的 Core Spotlight 索引器
+    var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
+
+
+
 
 
     // MARK: - 方法
@@ -146,18 +153,36 @@ class DataController: ObservableObject {
         )
 
         // 设置：容器读取数据库中的数据
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { [weak self] storeDescription, error in
             // 如果发生错误，则退出程序。error 是 optional 类型，所以用 if let 解包
-            // 当运行到 if let error = error 代码时，代表核心数据已加载完成，无论是成功还是失败
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
+            }
+
+            // 当运行到 if let error = error 代码时，代表核心数据已加载完成，无论是成功还是失败
+            // 1. 一旦持久存储加载完毕，就可以为 spotlight 配置持久性历史记录跟踪
+            if let description = self?.container.persistentStoreDescriptions.first {
+
+                description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
+                // 3.需要创建索引委托，将其附加到我们的存储描述和核心数据容器的持久存储协调器
+                if let coordinator = self?.container.persistentStoreCoordinator {
+
+                    self?.spotlightDelegate = NSCoreDataCoreSpotlightDelegate(
+                        forStoreWith: description, coordinator: coordinator
+                    )
+
+                    // 4.我们需要告诉该索引器开始其工作：
+                    self?.spotlightDelegate?.startSpotlightIndexing()
+                }
+
             }
 
             // 为了避免在生产代码中暴露攻击媒介，用 if DEBUG 去限制只在处于调试模式时才做检查（而发布到 AppStore 时不会包含该代码）
             #if DEBUG
             // 这里检查【只有在提供“enable-testing”作为启动参数】时，才需要运行里面的代码。我们在UI测试中配置了此参数
             if CommandLine.arguments.contains("enable-testing") {
-                self.deleteAll()
+                self?.deleteAll()
                 print("**********已经删除所有数据**********")
                 // 禁用应用程序的所有动画，这使得 UI 测试速度大大加快
                 UIView.setAnimationsEnabled(false)
@@ -388,6 +413,25 @@ class DataController: ObservableObject {
                 return false
 
         }
+    }
+
+    // 方法：将 Spotlight 搜索结果的唯一标识符转化为 Issue 对象
+    func issue(with uniqueIdentifier: String) -> Issue? {
+
+        // 确保可以从 uniqueIdentifier 生成 URL
+        guard let url = URL(string: uniqueIdentifier) else {
+            return nil
+        }
+
+        // 确保可以从 URL 生成对象 ID
+        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
+            return nil
+        }
+
+        // 如果 URL 无效，或者如果我们找不到对象 ID，或如果我们以某种方式加载了托管对象但它不是 issue ，那我们都会发回 nil
+        // 否则返回正确的 Issue 实例
+        return try? container.viewContext.existingObject(with: id) as? Issue
+
     }
 
 

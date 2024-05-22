@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
+
+
 
 
 /// Issue 类的扩展：注意解决 CoreData 可选值的问题（每个 CoreData 的 Entity 都会自动生成同名类）
@@ -29,11 +32,19 @@ extension Issue: Comparable {
     }
 
     // 计算属性：Issue当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加计算属性将布尔值转成字符串：
-    var issueStatus: String {
+//    var issueStatus: String {
+//        if completed {
+//            return NSLocalizedString("Closed", comment: "This issue has been resolved by the user.")
+//        } else {
+//            return NSLocalizedString("Open", comment: "This issue is currently unresolved.")
+//        }
+//    }
+
+    var issueStatus: LocalizedStringKey {
         if completed {
-            return "Closed"
+            return ("Closed")
         } else {
-            return "Open"
+            return ("Open")
         }
     }
 
@@ -52,9 +63,10 @@ extension Issue: Comparable {
 
     // 将 issue 的标签数组转换为【仅包含其名称字符串】的数组
     var issueTagsList: String {
-        guard let tags else { return "No tags" }
+        let noTags = NSLocalizedString("No tags", comment: "The user has not created any tags yet")
+        guard let tags else { return noTags }
         if tags.count == 0 {
-            return "No tags"
+            return noTags
         } else {
             // 这个 \.tagName 是 Swift 中的键路径语法,它表示访问 tag 对象的 tagName 属性
             // map 函数会遍历 issueTags 数组中的每个 tag 对象，并对每个对象执行 \.tagName 操作，也就是获取 tagName 属性的值
@@ -65,6 +77,9 @@ extension Issue: Comparable {
             return issueTags.map(\.tagName).formatted()
         }
     }
+
+
+
 
     // 静态属性：添加静态 example 属性，用于创建用于预览的示例项
     static var example: Issue {

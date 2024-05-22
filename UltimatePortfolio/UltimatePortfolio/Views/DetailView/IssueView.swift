@@ -40,7 +40,7 @@ struct IssueView: View {
                     Text("**Modified:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))")
                         .foregroundStyle(.secondary)
                     // 状态: 与 issue 的 issueStatus 绑定
-                    Text("**Status:** \(issue.issueStatus)")
+                    Text("**Status:** \(Text(issue.issueStatus))")
                         .foregroundStyle(.secondary)
                 }
 
