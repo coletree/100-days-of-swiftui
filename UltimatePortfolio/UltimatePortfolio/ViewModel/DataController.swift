@@ -101,6 +101,8 @@ class DataController: ObservableObject {
     // Spotlight集成：需要一个属性来存储一个活跃的 Core Spotlight 索引器
     var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
 
+    // UserDefaults 的本地实例，用于测试
+    let defaults: UserDefaults
 
 
 
@@ -111,7 +113,10 @@ class DataController: ObservableObject {
     /// 
     /// 这是什么
     /// - Parameter inMemory: 一个布尔值决定是否将此数据存储在临时内存中
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
+        
+        // 给属性赋值
+        self.defaults = defaults
 
         // 给容器属性赋值（后面 Model 就是告诉程序要加载的数据库）
         // container = NSPersistentCloudKitContainer(name: "Model")
@@ -365,13 +370,31 @@ class DataController: ObservableObject {
     }
 
     // 方法：新建 tag 实例
-    func newTag() {
+    func newTag() -> Bool {
+
+        var shouldCreate = fullVersionUnlocked
+        // 1，先检查权益有没有解锁
+        if shouldCreate == false {
+            // 2.如果权益没有解锁，再检查当前 tag 是否小于 3
+            shouldCreate = count(for: Tag.fetchRequest()) < 3
+        }
+
+        // 通过以上两个检查，就可以决定 shouldCreate 的值，是否应该创建...
+        // shouldCreate 必须是 true，才往下执行，否则退出，返回 false
+        guard shouldCreate else {
+            return false
+        }
+
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
         // 让默认名称支持本地化，它会去 Localizable 文件里查
         tag.name = NSLocalizedString("New tag", comment: "Create a new tag")
         save()
         // selectedFilter = Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
+
+        // 别忘了在末尾添加这一行，因为该方法是有返回值的
+        return true
+
     }
 
 

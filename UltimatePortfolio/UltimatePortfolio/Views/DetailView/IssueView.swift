@@ -21,6 +21,12 @@ struct IssueView: View {
     // 因此与其让 IssueView 读取可选值，不如为其提供一个非可选 Issue 属性
     @ObservedObject var issue: Issue
 
+    // 状态属性：设置提醒失败的弹窗
+    @State private var showingNotificationsError = false
+
+    // 环境属性：从环境中获取 URL
+    @Environment(\.openURL) var openURL
+
 
 
 
@@ -40,7 +46,7 @@ struct IssueView: View {
                     Text("**Modified:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))")
                         .foregroundStyle(.secondary)
                     // 状态: 与 issue 的 issueStatus 绑定
-                    Text("**Status:** \(Text(issue.issueStatus))")
+                    Text("**Status:** \(issue.issueStatus)")
                         .foregroundStyle(.secondary)
                 }
 
@@ -75,11 +81,33 @@ struct IssueView: View {
                 }
             }
 
+            // 第3部分：设置提醒
+            Section("Reminders") {
+                Toggle("Show reminders", isOn: $issue.reminderEnabled.animation())
+                if issue.reminderEnabled {
+                   DatePicker(
+                       "Reminder time",
+                       selection: $issue.issueReminderTime,
+                       displayedComponents: .hourAndMinute
+                   )
+                }
+            }
+
         }
         // 对象被删除时禁用编辑：isDeleted 属性是 coredata 自动生成的，表示该对象已删除
         .disabled(issue.isDeleted)
         // 设置工具栏：已抽出子视图
         .toolbar { IssueViewToolbar(issue: issue) }
+        // 通知设置失败的弹窗
+        .alert("Oops!", isPresented: $showingNotificationsError) {
+            Button("Check Settings", action: showAppSettings)
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("There was a problem setting your notification. Please check you have notifications enabled.")
+        }
+        // 监视设置提醒的控件
+        .onChange(of: issue.reminderEnabled, updateReminder)
+        .onChange(of: issue.reminderTime, updateReminder)
 
         // MARK: 设置保存点
         // onReceive 修改器会调用排队保存，onSubmit 修改器立即保存，因此这里会产生一点点重复工作
@@ -97,6 +125,30 @@ struct IssueView: View {
 
     // MARK: - 方法
 
+    // 方法：更新提醒
+    func updateReminder() {
+        // 先清楚已有提醒，再设置新的提醒
+        dataController.removeReminders(for: issue)
+        Task { @MainActor in
+            if issue.reminderEnabled {
+                // 如果开关打开，则执行 addReminder 方法，并返回布尔值给 success 作为结果
+                let success = await dataController.addReminder(for: issue)
+                // 如果结果失败，则把提醒开关关上，并且弹出失败弹窗
+                if success == false {
+                    issue.reminderEnabled = false
+                    showingNotificationsError = true
+                }
+            }
+        }
+    }
+
+    // 方法：跳转到手机的设置页
+    func showAppSettings() {
+        guard let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) else {
+            return
+        }
+        openURL(settingsURL)
+    }
 
 
 

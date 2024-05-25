@@ -52,10 +52,10 @@ struct SidebarView: View {
             }
 
         }
-        // 工具栏菜单
+        // 工具栏菜单：抽出了子视图
         // 或写成 .toolbar(content: SidebarViewToolbar.init)
         .toolbar {
-            SidebarViewToolbar()    // 抽出了子视图
+            SidebarViewToolbar()
         }
         // 弹窗：因为没有单独的页面，所以采用 alert 弹窗实现
         // 绑定 @Published 属性：renamingTag布尔值、tagName、

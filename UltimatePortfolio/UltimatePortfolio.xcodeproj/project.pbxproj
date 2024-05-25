@@ -40,6 +40,9 @@
 		DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789A02BEB5D9F001415E8 /* Award.swift */; };
 		DF8204962BFC747500EDD8E0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */; };
 		DF8204982BFC791100EDD8E0 /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */; };
+		DF82049A2BFEE67600EDD8E0 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */; };
+		DF82049D2BFF2D0500EDD8E0 /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */; };
+		DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049F2C00459500EDD8E0 /* StoreView.swift */; };
 		DFFE7D382BEDBD7C00E8EB42 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D3A2BEDBD7C00E8EB42 /* Localizable.strings */; };
 		DFFE7D442BEDC37900E8EB42 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D422BEDC37900E8EB42 /* Localizable.stringsdict */; };
 		DFFE7D472BEDC45900E8EB42 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D492BEDC45900E8EB42 /* Awards.json */; };
@@ -109,6 +112,10 @@
 		DF7789A02BEB5D9F001415E8 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowViewModel.swift; sourceTree = "<group>"; };
+		DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
+		DF82049B2BFF253300EDD8E0 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-StoreKit.swift"; sourceTree = "<group>"; };
+		DF82049F2C00459500EDD8E0 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DFFE7D3B2BEDBDF300E8EB42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Localization/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DFFE7D3C2BEDBF2000E8EB42 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Localization/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -175,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				DF44EBA52BD79E3B008FB6A6 /* UltimatePortfolioApp.swift */,
+				DF82049E2C00457400EDD8E0 /* Store */,
 				DF44EC162BDB5BC5008FB6A6 /* Views */,
 				DF44EC152BDB5BB4008FB6A6 /* ViewModel */,
 				DF44EC102BDB4F05008FB6A6 /* Models */,
@@ -210,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				DF44EC132BDB5B2E008FB6A6 /* DataController.swift */,
+				DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */,
+				DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 		DF6C262D2BEF23D20065BFE3 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				DF82049B2BFF253300EDD8E0 /* Configuration.storekit */,
 				DF44EC172BDB7428008FB6A6 /* Info.plist */,
 				DF44EBAB2BD79E3D008FB6A6 /* UltimatePortfolio.entitlements */,
 				DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */,
@@ -340,6 +351,14 @@
 				DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		DF82049E2C00457400EDD8E0 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				DF82049F2C00459500EDD8E0 /* StoreView.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -515,6 +534,7 @@
 				DF6C265E2BFB79930065BFE3 /* SidebarViewModel.swift in Sources */,
 				DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */,
 				DF44EBA82BD79E3C008FB6A6 /* ContentView.swift in Sources */,
+				DF82049A2BFEE67600EDD8E0 /* DataController-Notifications.swift in Sources */,
 				DF77899B2BEB2DCA001415E8 /* Bundle-Decodable.swift in Sources */,
 				DFFE7D552BEE0D8A00E8EB42 /* SmartFilterRow.swift in Sources */,
 				DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */,
@@ -523,10 +543,12 @@
 				DF44EC1C2BDE3024008FB6A6 /* SidebarView.swift in Sources */,
 				DF44EBA62BD79E3B008FB6A6 /* UltimatePortfolioApp.swift in Sources */,
 				DFFE7D572BEE0E5B00E8EB42 /* UserFilterRow.swift in Sources */,
+				DF82049D2BFF2D0500EDD8E0 /* DataController-StoreKit.swift in Sources */,
 				DF44EC362BE08FEA008FB6A6 /* IssueRow.swift in Sources */,
 				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 				DFFE7D4D2BEDFDA600E8EB42 /* SidebarViewToolbar.swift in Sources */,
+				DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */,
 				DF8204982BFC791100EDD8E0 /* IssueRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

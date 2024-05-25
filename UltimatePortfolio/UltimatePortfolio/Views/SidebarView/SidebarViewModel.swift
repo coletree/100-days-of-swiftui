@@ -125,6 +125,7 @@ extension SidebarView {
         }
 
         // 方法：完成重命名 tag
+        // FIXME: - 重命名后为什么列表的文本不更新
         func completeRename() {
             tagToRename?.name = tagName
             // 不需要将 Boolean 设置回 false，因为 alert 绑定 renamingTag 后会自动处理

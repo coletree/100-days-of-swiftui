@@ -20,33 +20,35 @@ extension Issue: Comparable {
         get { title ?? "" }
         set { title = newValue }
     }
+
     var issueContent: String {
         get { content ?? "" }
         set { content = newValue }
     }
+
     var issueCreationDate: Date {
         creationDate ?? .now
     }
+
     var issueModificationDate: Date {
         modificationDate ?? .now
     }
 
-    // 计算属性：Issue当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加计算属性将布尔值转成字符串：
-//    var issueStatus: String {
-//        if completed {
-//            return NSLocalizedString("Closed", comment: "This issue has been resolved by the user.")
-//        } else {
-//            return NSLocalizedString("Open", comment: "This issue is currently unresolved.")
-//        }
-//    }
+    // CoreData模型中的布尔值将自动设为 true/false，但 Date 属性就是可选属性，因此将以与处理其他属性相同的方式处理它
+    var issueReminderTime: Date {
+        get { reminderTime ?? .now }
+        set { reminderTime = newValue }
+    }
 
-    var issueStatus: LocalizedStringKey {
+    // 计算属性：Issue当前完成状态。我们已经有布尔值 completed 来跟踪问题是否已完成，但界面希望展示字符串，所以添加计算属性将布尔值转成字符串：
+    var issueStatus: String {
         if completed {
-            return ("Closed")
+            return NSLocalizedString("Closed", comment: "This issue has been resolved by the user.")
         } else {
-            return ("Open")
+            return NSLocalizedString("Open", comment: "This issue is currently unresolved.")
         }
     }
+
 
     // 计算属性：格式化问题的创建时间。让视图那边的 Text 代码简单一点
     //    var issueFormattedCreationDate: String {

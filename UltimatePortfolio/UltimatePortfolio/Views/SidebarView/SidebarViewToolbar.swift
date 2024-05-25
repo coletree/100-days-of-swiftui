@@ -21,6 +21,9 @@ struct SidebarViewToolbar: View {
     // 状态属性：绑定父视图的 @State var showingAwards，从父视图移入子视图了
     @State private var showingAwards = false
 
+    // 状态属性：创建超过3个tag时，点击按钮需要弹窗提示购买解锁
+    @State private var showingStore = false
+
 
 
 
@@ -43,16 +46,18 @@ struct SidebarViewToolbar: View {
         } label: {
             Label("Show awards", systemImage: "rosette")
         }
-
-        // 按钮：新建 tag
-        Button(action: dataController.newTag) {
-            Label("Add tag", systemImage: "plus")
-        }
-
         // 徽章弹窗：将其从父视图移入子视图
         .sheet(isPresented: $showingAwards) {
             AwardsView()
         }
+
+        // 按钮：新建 tag
+        Button(action: tryNewTag) {
+            Label("Add tag", systemImage: "plus")
+        }
+        // 购买弹窗：创建超过3个tag时，会弹出
+        .sheet(isPresented: $showingStore, content: StoreView.init)
+
 
     }
 
@@ -61,7 +66,14 @@ struct SidebarViewToolbar: View {
 
     // MARK: - 方法
 
-
+    // 方法：类似一个转发，为了修复按钮代码中的编译错误
+    // 因为添加到 Button 按钮中的方法，必须是没有返回值的 Void ，而不能是返回 Bool
+    // 因此，与其直接指向 dataController.newTag ，不如创建一个新方法，如果失败，该方法可以运行 newTag() 并显示购买页面
+    func tryNewTag() {
+        if dataController.newTag() == false {
+            showingStore = true
+        }
+    }
 
 
 }
