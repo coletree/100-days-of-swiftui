@@ -26,7 +26,7 @@
 		DF6731152C04A32A00B1773C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF6731142C04A32A00B1773C /* WidgetKit.framework */; };
 		DF6731172C04A32A00B1773C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF6731162C04A32A00B1773C /* SwiftUI.framework */; };
 		DF67311A2C04A32A00B1773C /* PortfolioWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6731192C04A32A00B1773C /* PortfolioWidgetBundle.swift */; };
-		DF67311C2C04A32A00B1773C /* SimplePortfolioWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67311B2C04A32A00B1773C /* SimplePortfolioWidget.swift */; };
+		DF67311C2C04A32A00B1773C /* ComplexWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67311B2C04A32A00B1773C /* ComplexWidget.swift */; };
 		DF67311E2C04A32B00B1773C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF67311D2C04A32B00B1773C /* Assets.xcassets */; };
 		DF6731222C04A32B00B1773C /* PortfolioWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DF6731122C04A32A00B1773C /* PortfolioWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF6731272C04A78B00B1773C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC132BDB5B2E008FB6A6 /* DataController.swift */; };
@@ -59,6 +59,11 @@
 		DF82049A2BFEE67600EDD8E0 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */; };
 		DF82049D2BFF2D0500EDD8E0 /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */; };
 		DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049F2C00459500EDD8E0 /* StoreView.swift */; };
+		DFFDE3D82C06FBCD006388D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
+		DFFDE3DA2C07060F006388D5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3D92C07060F006388D5 /* DataProvider.swift */; };
+		DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */; };
+		DFFDE3DD2C07069D006388D5 /* SimpleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */; };
+		DFFDE3DE2C0706A1006388D5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3D92C07060F006388D5 /* DataProvider.swift */; };
 		DFFE7D382BEDBD7C00E8EB42 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D3A2BEDBD7C00E8EB42 /* Localizable.strings */; };
 		DFFE7D442BEDC37900E8EB42 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D422BEDC37900E8EB42 /* Localizable.stringsdict */; };
 		DFFE7D472BEDC45900E8EB42 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D492BEDC45900E8EB42 /* Awards.json */; };
@@ -132,7 +137,7 @@
 		DF6731142C04A32A00B1773C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DF6731162C04A32A00B1773C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		DF6731192C04A32A00B1773C /* PortfolioWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioWidgetBundle.swift; sourceTree = "<group>"; };
-		DF67311B2C04A32A00B1773C /* SimplePortfolioWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePortfolioWidget.swift; sourceTree = "<group>"; };
+		DF67311B2C04A32A00B1773C /* ComplexWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexWidget.swift; sourceTree = "<group>"; };
 		DF67311D2C04A32B00B1773C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF67311F2C04A32B00B1773C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF67312F2C057A5700B1773C /* DataController-Awards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Awards.swift"; sourceTree = "<group>"; };
@@ -164,6 +169,8 @@
 		DF82049B2BFF253300EDD8E0 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-StoreKit.swift"; sourceTree = "<group>"; };
 		DF82049F2C00459500EDD8E0 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		DFFDE3D92C07060F006388D5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWidget.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DFFE7D3B2BEDBDF300E8EB42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Localization/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DFFE7D3C2BEDBF2000E8EB42 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Localization/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -312,7 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				DF6731192C04A32A00B1773C /* PortfolioWidgetBundle.swift */,
-				DF67311B2C04A32A00B1773C /* SimplePortfolioWidget.swift */,
+				DFFDE3D92C07060F006388D5 /* DataProvider.swift */,
+				DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */,
+				DF67311B2C04A32A00B1773C /* ComplexWidget.swift */,
 				DF67311D2C04A32B00B1773C /* Assets.xcassets */,
 				DF67311F2C04A32B00B1773C /* Info.plist */,
 			);
@@ -475,6 +484,7 @@
 				DF67310E2C04A32A00B1773C /* Sources */,
 				DF67310F2C04A32A00B1773C /* Frameworks */,
 				DF6731102C04A32A00B1773C /* Resources */,
+				DFFDE3D42C06F844006388D5 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -492,6 +502,7 @@
 				DF6C262E2BEF50070065BFE3 /* Sources */,
 				DF6C262F2BEF50070065BFE3 /* Frameworks */,
 				DF6C26302BEF50070065BFE3 /* Resources */,
+				DFFDE3D52C06F906006388D5 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -510,6 +521,7 @@
 				DF6C264D2BF4670B0065BFE3 /* Sources */,
 				DF6C264E2BF4670B0065BFE3 /* Frameworks */,
 				DF6C264F2BF4670B0065BFE3 /* Resources */,
+				DFFDE3D62C06F91B006388D5 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -589,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF67311E2C04A32B00B1773C /* Assets.xcassets in Resources */,
+				DFFDE3D82C06FBCD006388D5 /* Assets.xcassets in Resources */,
 				DF6731322C05C62200B1773C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +644,63 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		DFFDE3D42C06F844006388D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		DFFDE3D52C06F906006388D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		DFFDE3D62C06F91B006388D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -649,6 +719,7 @@
 				DF6731302C057A5700B1773C /* DataController-Awards.swift in Sources */,
 				DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */,
 				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
+				DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */,
 				DF8204962BFC747500EDD8E0 /* ContentViewModel.swift in Sources */,
 				DF6C265E2BFB79930065BFE3 /* SidebarViewModel.swift in Sources */,
 				DF7789A12BEB5D9F001415E8 /* Award.swift in Sources */,
@@ -656,6 +727,7 @@
 				DF82049A2BFEE67600EDD8E0 /* DataController-Notifications.swift in Sources */,
 				DF77899B2BEB2DCA001415E8 /* Bundle-Decodable.swift in Sources */,
 				DFFE7D552BEE0D8A00E8EB42 /* SmartFilterRow.swift in Sources */,
+				DFFDE3DA2C07060F006388D5 /* DataProvider.swift in Sources */,
 				DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */,
 				DF44EC1E2BDE3032008FB6A6 /* DetailView.swift in Sources */,
 				DF44EC142BDB5B2E008FB6A6 /* DataController.swift in Sources */,
@@ -677,13 +749,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF67312B2C0578FE00B1773C /* Filter.swift in Sources */,
-				DF67311C2C04A32A00B1773C /* SimplePortfolioWidget.swift in Sources */,
+				DF67311C2C04A32A00B1773C /* ComplexWidget.swift in Sources */,
+				DFFDE3DE2C0706A1006388D5 /* DataProvider.swift in Sources */,
 				DF6731272C04A78B00B1773C /* DataController.swift in Sources */,
 				DF6731292C04A79200B1773C /* Tag-CoreDataHelpers.swift in Sources */,
 				DF67312E2C05793900B1773C /* DataController-StoreKit.swift in Sources */,
 				DF6731282C04A79000B1773C /* Issue-CoreDataHelpers.swift in Sources */,
 				DF67311A2C04A32A00B1773C /* PortfolioWidgetBundle.swift in Sources */,
 				DF67312A2C04A79700B1773C /* Model.xcdatamodeld in Sources */,
+				DFFDE3DD2C07069D006388D5 /* SimpleWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,6 +1044,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PortfolioWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PortfolioWidget;
@@ -1000,6 +1075,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PortfolioWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PortfolioWidget;
@@ -1029,6 +1105,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -1049,6 +1126,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -1069,6 +1147,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -1088,6 +1167,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D4ZUMTLAC2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;

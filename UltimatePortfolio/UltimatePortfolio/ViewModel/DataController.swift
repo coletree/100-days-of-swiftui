@@ -456,7 +456,7 @@ class DataController: ObservableObject {
         request.fetchLimit = count
         return request
     }
-    
+
     // 方法：调用上面的请求，返回数组
     func results<T: NSManagedObject>(for fetchRequest: NSFetchRequest<T>) -> [T] {
         return (try? container.viewContext.fetch(fetchRequest)) ?? []

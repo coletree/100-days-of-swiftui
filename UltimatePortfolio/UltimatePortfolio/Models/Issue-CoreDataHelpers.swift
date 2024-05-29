@@ -16,6 +16,10 @@ extension Issue: Comparable {
 
     // 普通类型属性：设置默认值，即可解包
     // 部分属性要用于绑定的，需要支持编辑，所以要支持 set，set 要修改原数据
+    var issueID: UUID {
+        id ?? UUID()
+    }
+
     var issueTitle: String {
         get { title ?? "" }
         set { title = newValue }
