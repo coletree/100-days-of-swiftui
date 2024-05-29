@@ -24,6 +24,9 @@ struct UltimatePortfolioApp: App {
     // 环境属性：获取当前应用状态
     @Environment(\.scenePhase) var scenePhase
 
+    // 应用程序委托：告诉 SwiftUI 使用应用委托类 AppDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
 
 
 
@@ -52,6 +55,7 @@ struct UltimatePortfolioApp: App {
             // 当用户从 spotlight 跳转进来时，执行 loadSpotlightItem 方法
             .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
 
+
         }
     }
 
@@ -60,8 +64,7 @@ struct UltimatePortfolioApp: App {
 
     // MARK: - 方法
 
-    // 方法：处理用户从 spotlight 搜索结果跳转进来的行为
-    // 该方法可以接受任何类型的 NSUserActivity ，然后查看其数据以从 Spotlight 中找到唯一标识符：
+    /// 方法：处理用户从 spotlight 搜索结果跳转进来的行为。该方法接受任何类型的 NSUserActivity ，然后查看数据以从 Spotlight 中找到唯一标识符
     func loadSpotlightItem(_ userActivity: NSUserActivity) {
 
             // NSUserActivity 有一个 userInfo 字典，我们需要在里面挖掘一个特定的 Core Spotlight 键来读出 Issue 的标识符

@@ -24,6 +24,10 @@ extension ContentView {
         // 全局数据模型：添加新属性来存储对全局数据控制器的访问
         var dataController: DataController
 
+        // 计算属性：是否应该展示评分弹窗
+        var shouldRequestReview: Bool {
+            dataController.count(for: Tag.fetchRequest()) >= 5
+        }
 
 
 

@@ -20,6 +20,11 @@ struct ContentView: View {
     // 视图模型：引入该视图的视图模型
     @StateObject private var viewModel: ViewModel
 
+    // 环境属性：从环境中读取 requestReview 操作
+    @Environment(\.requestReview) var requestReview
+
+    private let newIssueActivity = "com.hackingwithswift.UltimatePortfolio.newIssue"
+
 
 
 
@@ -51,6 +56,17 @@ struct ContentView: View {
 
         // MARK: 标题栏过滤器控件 (已移入子视图)
         .toolbar { ContentViewToolbar() }
+        // MARK: 用户评分弹窗
+        .onAppear(perform: askForReview)
+        // 响应主图标的快捷方式
+        .onOpenURL(perform: openURL)
+        // 处理快捷方式指令
+        .userActivity(newIssueActivity) { activity in
+            activity.isEligibleForPrediction = true
+            activity.title = "New Issue"
+        }
+        // 响应快捷指令
+        .onContinueUserActivity(newIssueActivity, perform: resumeActivity)
 
     }
 
@@ -68,6 +84,26 @@ struct ContentView: View {
         // _viewModel 是 @StateObject 属性包装器的底层存储器，在初始化时需要通过 wrappedValue 参数设置它的初始值
         // StateObject 应该在视图的初始化时设置，并且只能在初始化方法中设置一次
         _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    /// 方法：请求用户评分
+    @MainActor
+    func askForReview() {
+        if viewModel.shouldRequestReview {
+            requestReview()
+        }
+    }
+
+    // 快捷方式：打开创建 issue 的页面
+    func openURL(_ url: URL) {
+        if url.absoluteString.contains("newIssue") {
+            viewModel.dataController.newIssue()
+        }
+    }
+
+    // 快捷指令：响应快捷指令的行为
+    func resumeActivity(_ userActivity: NSUserActivity) {
+        viewModel.dataController.newIssue()
     }
 
 

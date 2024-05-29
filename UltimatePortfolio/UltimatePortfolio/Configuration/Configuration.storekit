@@ -10,14 +10,19 @@
       "internalID" : "8A4B616B",
       "localizations" : [
         {
-          "description" : "",
+          "description" : "You can use all function.",
           "displayName" : "Premium Unlock",
           "locale" : "en_US"
         },
         {
-          "description" : "",
+          "description" : "解锁后可以使用所有功能。",
           "displayName" : "会员解锁",
           "locale" : "zh_CN"
+        },
+        {
+          "description" : "Hozzáférés a teljes alkalmazáshoz",
+          "displayName" : "Prémium feloldás",
+          "locale" : "hu"
         }
       ],
       "productID" : "com.coletree.UltimatePortfolio.premiumUnlock",
@@ -26,15 +31,24 @@
     }
   ],
   "settings" : {
+    "_askToBuyEnabled" : true,
     "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
     "_storeKitErrors" : [
       {
-        "current" : null,
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
         "enabled" : false,
         "name" : "Load Products"
       },
       {
-        "current" : null,
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
         "enabled" : false,
         "name" : "Purchase"
       },

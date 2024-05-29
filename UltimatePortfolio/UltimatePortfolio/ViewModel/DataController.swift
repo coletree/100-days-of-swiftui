@@ -7,6 +7,8 @@
 import CoreData
 import Foundation
 import SwiftUI
+import StoreKit
+import WidgetKit
 
 
 
@@ -97,12 +99,17 @@ class DataController: ObservableObject {
         return managedObjectModel
     }()
 
-
     // Spotlight集成：需要一个属性来存储一个活跃的 Core Spotlight 索引器
     var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
 
-    // UserDefaults 的本地实例，用于测试
+    // 私有变量属性：Task 实例来处理监视交易。该任务在应用程序启动后需立即调用 monitorTransactions()
+    private var storeTask: Task<Void, Never>?
+
+    // UserDefaults 的本地实例，用于商品购买状态的储存测试
     let defaults: UserDefaults
+
+    // 储存可购买商品列表
+    @Published var products = [Product]()
 
 
 
@@ -114,7 +121,7 @@ class DataController: ObservableObject {
     /// 这是什么
     /// - Parameter inMemory: 一个布尔值决定是否将此数据存储在临时内存中
     init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
-        
+
         // 给属性赋值
         self.defaults = defaults
 
@@ -124,12 +131,21 @@ class DataController: ObservableObject {
         // 确保实体将只会被加载一次，跨测试和实际代码
         container = NSPersistentCloudKitContainer(name: "Model", managedObjectModel: Self.model)
 
+        // 创建任务：监视交易
+        storeTask = Task {
+            await monitorTransactions()
+        }
 
         // 为了测试和预览目的，创建一个写入 /dev/null 的临时内存数据库
-        // 所以我们的数据在应用程序运行完成后就会被销毁
-        // 如果布尔值参数为真，则使用它（于是不支持持久化存储）
+        // 如果 inMemory 为真，则使用临时内存数据库，它不支持持久化存储，数据在应用程序运行完成后就会被销毁
+        // 如果 inMemory 为假，则使用 App group 的共享数据区域（该container是之前在target中指定的）
         if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            let groupID = "group.com.coletree.upa"
+            if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
+                container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
+            }
         }
 
         // 设置：自动将【底层持久性存储发生的更改】应用于视图
@@ -147,6 +163,12 @@ class DataController: ObservableObject {
         container.persistentStoreDescriptions.first?.setOption(
                 true as NSNumber,
                 forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+        )
+
+        // 设置：为 spotlight 配置持久性历史记录跟踪
+        container.persistentStoreDescriptions.first?.setOption(
+                true as NSNumber,
+                forKey: NSPersistentHistoryTrackingKey
         )
 
         // 设置：告诉系统在发生更改时调用新 remoteStoreChanged() 方法
@@ -168,16 +190,14 @@ class DataController: ObservableObject {
             // 1. 一旦持久存储加载完毕，就可以为 spotlight 配置持久性历史记录跟踪
             if let description = self?.container.persistentStoreDescriptions.first {
 
-                description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-
-                // 3.需要创建索引委托，将其附加到我们的存储描述和核心数据容器的持久存储协调器
+                // 2.需要创建索引委托，将其附加到我们的存储描述和核心数据容器的持久存储协调器
                 if let coordinator = self?.container.persistentStoreCoordinator {
 
                     self?.spotlightDelegate = NSCoreDataCoreSpotlightDelegate(
                         forStoreWith: description, coordinator: coordinator
                     )
 
-                    // 4.我们需要告诉该索引器开始其工作：
+                    // 3.我们需要告诉该索引器开始其工作：
                     self?.spotlightDelegate?.startSpotlightIndexing()
                 }
 
@@ -222,6 +242,8 @@ class DataController: ObservableObject {
         saveTask?.cancel()
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
+            // 强制更新小组件
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 
@@ -365,7 +387,7 @@ class DataController: ObservableObject {
         }
         // 创建完成，调用save方法
         save()
-        // 保存后，将 selectedIssue 设置为刚创建的问题，这将立即触发它被选择，于是可以带入该问题的页面
+        // 保存后，将 selectedIssue 设置为刚创建的问题，这将立即触发它被选择，于是可以跳转到该问题的详情页面
         selectedIssue = issue
     }
 
@@ -404,40 +426,6 @@ class DataController: ObservableObject {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 
-    // TODO: - 方法：评估奖励
-    // 评估是否得到奖励，有两个重要的值：criterion 和 value，最终返回的是布尔值。因此后续可以用于数组的 filter 过滤
-    func hasEarned(award: Award) -> Bool {
-        // 首先判断标准 criterion 属于什么情况
-        switch award.criterion {
-
-            case "issues":
-                // 标准为 issues 的情况下，如果查询到 issue 的数量大于标准值，返回 true
-                let fetchRequest = Issue.fetchRequest()
-                let awardCount = count(for: fetchRequest)
-                return awardCount >= award.value
-
-            case "closed":
-                // 标准为 closed 的情况下，如果查询到（状态为已完成的 issue） 的数量大于标准值，返回 true
-                let fetchRequest = Issue.fetchRequest()
-                // 添加了一个简单的谓词来按已完成的问题进行过滤
-                fetchRequest.predicate = NSPredicate(format: "completed = true")
-                let awardCount = count(for: fetchRequest)
-                return awardCount >= award.value
-
-            case "tags":
-                // 标准为 tags 的情况下，如果查询到 tag 的数量大于标准值，返回 true
-                let fetchRequest = Tag.fetchRequest()
-                let awardCount = count(for: fetchRequest)
-                return awardCount >= award.value
-
-            default:
-                // an unknown award criterion; this should never be allowed
-                // fatalError("Unknown award criterion: \(award.criterion)")
-                return false
-
-        }
-    }
-
     // 方法：将 Spotlight 搜索结果的唯一标识符转化为 Issue 对象
     func issue(with uniqueIdentifier: String) -> Issue? {
 
@@ -455,6 +443,23 @@ class DataController: ObservableObject {
         // 否则返回正确的 Issue 实例
         return try? container.viewContext.existingObject(with: id) as? Issue
 
+    }
+
+    // 方法：创建一个请求。该请求会返回 N 个未完成的有最高优先级的 issue
+    func fetchRequestForTopIssues(count: Int) -> NSFetchRequest<Issue> {
+        let request = Issue.fetchRequest()
+        // 状态必须是未完成的
+        request.predicate = NSPredicate(format: "completed = false")
+        // 按照优先级排序
+        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Issue.priority, ascending: false) ]
+        // 设置获取数量
+        request.fetchLimit = count
+        return request
+    }
+    
+    // 方法：调用上面的请求，返回数组
+    func results<T: NSManagedObject>(for fetchRequest: NSFetchRequest<T>) -> [T] {
+        return (try? container.viewContext.fetch(fetchRequest)) ?? []
     }
 
 

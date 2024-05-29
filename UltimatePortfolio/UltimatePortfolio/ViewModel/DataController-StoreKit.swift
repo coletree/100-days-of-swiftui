@@ -45,6 +45,15 @@ extension DataController {
         }
     }
 
+    // 方法：加载可购买商品
+    @MainActor
+    func loadProducts() async throws {
+        // 确保数据为空再进行加载
+        guard products.isEmpty else { return }
+        try await Task.sleep(for: .seconds(3))
+        products = try await Product.products(for: [Self.unlockPremiumProductID])
+    }
+
     // 方法：检查商品当前是否授权 和 监视未来的交易更新
     func monitorTransactions() async {
         // 检查之前的购买
