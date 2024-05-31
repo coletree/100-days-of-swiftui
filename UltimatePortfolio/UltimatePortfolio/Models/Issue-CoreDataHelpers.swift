@@ -61,9 +61,10 @@ extension Issue: Comparable {
 
 
     // 【NSSet类型属性】需要转型
-    // 将 NSSet 数组转型为 Tag 数组，并对该数组进行统一排序
     var issueTags: [Tag] {
+        // 将 NSSet 数组转型为 Tag 数组，
         let result = tags?.allObjects as? [Tag] ?? []
+        // 并对该数组进行统一排序
         return result.sorted()
     }
 

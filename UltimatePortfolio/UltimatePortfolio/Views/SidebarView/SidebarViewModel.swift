@@ -80,10 +80,12 @@ extension SidebarView {
                 cacheName: nil
             )
 
+            // 调用 super.init 是必需的，因为现在继承自 NSObject ，因此需要在“更改获取结果的控制器的委托之前”给该类创建自己 self 的机会
             super.init()
             tagsController.delegate = self
 
             do {
+                // 这两句要按顺序写，有点像：启动 —— 再获取的感觉
                 try tagsController.performFetch()
                 tags = tagsController.fetchedObjects ?? []
             } catch {
@@ -99,7 +101,7 @@ extension SidebarView {
         // 如果我们在视图模型中实现 `controllerDidChangeContent()` 方法，那么当数据更改时，我们会收到通知。
         // 然后就可以提取新更新的对象并将其分配给 `tags` 数组，然后它将触发其 `@Published` 属性包装器以宣布对 UI 的更新
 
-        // 方法：当 controller 的内容发生更改时，要自己指定如何更新UI
+        // 方法：指定当 controller 的内容发生更改时，需要做什么工作
         // 这里指定执行 “提取新新对象，并将其分配给 tags 数组”，然后它将触发其 @Published 属性包装器，最终以实现 UI 的更新
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             if let newTags = controller.fetchedObjects as? [Tag] {

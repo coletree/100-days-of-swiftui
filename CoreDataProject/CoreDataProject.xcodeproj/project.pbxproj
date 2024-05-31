@@ -84,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				DF44EBC02BD8A88C008FB6A6 /* CoreDataProjectApp.swift */,
-				DF44EBEE2BDA3EBE008FB6A6 /* HomeView.swift */,
 				DF44EBDB2BD9F3CC008FB6A6 /* View */,
 				DF44EBDA2BD9F3C2008FB6A6 /* ViewModel */,
 				DF44EBD72BD8BD8B008FB6A6 /* Model */,
@@ -129,6 +128,7 @@
 		DF44EBDB2BD9F3CC008FB6A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF44EBEE2BDA3EBE008FB6A6 /* HomeView.swift */,
 				DF44EBC22BD8A88C008FB6A6 /* ContentView.swift */,
 				DF44EBD82BD9F3A1008FB6A6 /* CoreDataDemoOneView.swift */,
 				DF44EBE02BD9FBEB008FB6A6 /* CoreDataDemoTwoView.swift */,
