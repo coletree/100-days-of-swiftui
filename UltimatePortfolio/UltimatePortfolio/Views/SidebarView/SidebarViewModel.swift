@@ -7,9 +7,9 @@
 
 
 // 在 MVVM 的视图模型中，应该避免使用任何 UI 的内容，所以干脆不要引入 SwiftUI ，以帮助检查
+// import SwiftUI
 import CoreData
 import Foundation
-// import SwiftUI
 
 
 
@@ -106,6 +106,8 @@ extension SidebarView {
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             if let newTags = controller.fetchedObjects as? [Tag] {
                 tags = newTags
+                objectWillChange.send()
+                print("数据变化了！！！！")
             }
         }
 
@@ -144,6 +146,7 @@ extension SidebarView {
                 dataController.delete(item)
             }
         }
+        
 
 
     }

@@ -11,7 +11,7 @@ import WidgetKit
 
 /// Provider 结构：符合 TimelineProvider 协议，定义如何获取小部件的数据
 struct Provider: TimelineProvider {
-    
+
     // 设置别名，让 getTimeline 方法可以识别类型
     typealias Entry = SimpleEntry
 

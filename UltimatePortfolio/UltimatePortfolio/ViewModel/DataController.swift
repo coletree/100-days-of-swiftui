@@ -142,7 +142,7 @@ class DataController: ObservableObject {
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         } else {
-            let groupID = "group.com.coletree.upa"
+            let groupID = "group.com.coletree.ultimateportfolio"
             if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
                 container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
             }
@@ -202,6 +202,9 @@ class DataController: ObservableObject {
                 }
 
             }
+            // 加载持久存储后，立即要求视图上下文自动合并发生的任何更改，确保保持最新
+            self?.container.viewContext.automaticallyMergesChangesFromParent = true
+
 
             // 为了避免在生产代码中暴露攻击媒介，用 if DEBUG 去限制只在处于调试模式时才做检查（而发布到 AppStore 时不会包含该代码）
             #if DEBUG
@@ -380,6 +383,7 @@ class DataController: ObservableObject {
         issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
         issue.creationDate = .now
         issue.priority = 1
+        issue.completed = false
         // 将当前 filter 的标签分配给新建的 issue
         // 如果当前正在浏览用户创建的标签，请立即将这个新问题添加到标签中，否则它创建完成后不会出现在列表（addToTags方法是自动生成的）
         if let tag = selectedFilter?.tag {

@@ -18,7 +18,7 @@ struct UltimatePortfolioApp: App {
 
     // MARK: - 属性
 
-    // 状态属性：使用 @StateObject 创建并持有 DataController 实例
+    // 状态属性：使用 @StateObject 创建并持有 DataController 实例，该实例生命周期和根视图一致
     @StateObject var dataController = DataController()
 
     // 环境属性：获取当前应用状态

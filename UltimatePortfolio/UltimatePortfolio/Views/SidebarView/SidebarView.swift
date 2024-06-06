@@ -21,7 +21,7 @@ struct SidebarView: View {
     // @EnvironmentObject var dataController: DataController
 
     // 视图模型：引入该视图的视图模型
-    @StateObject private var viewModel: ViewModel
+    @ObservedObject private var viewModel: ViewModel
 
 
 
@@ -85,7 +85,7 @@ struct SidebarView: View {
         // StateObject 是一个属性包装器，用于管理视图模型的生命周期，并确保视图在视图模型的状态改变时自动更新
         // _viewModel 是 @StateObject 属性包装器的底层存储器，在初始化时需要通过 wrappedValue 参数设置它的初始值
         // StateObject 应该在视图的初始化时设置，并且只能在初始化方法中设置一次
-        _viewModel = StateObject(wrappedValue: viewModel)
+        _viewModel = ObservedObject(wrappedValue: viewModel)
     }
 
 

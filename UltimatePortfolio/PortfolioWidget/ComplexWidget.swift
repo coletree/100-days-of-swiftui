@@ -19,7 +19,7 @@ struct PortfolioWidgetMultipleEntryView: View {
 
     // 环境属性：获取当前小组件尺寸
     @Environment(\.widgetFamily) var widgetFamily
-    
+
     // 环境属性：获取当前屏幕的字体动态大小
     @Environment(\.sizeCategory) var sizeCategory
 

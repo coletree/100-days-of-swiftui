@@ -37,7 +37,7 @@ struct ContentView: View {
 
             // MARK: 通过函数返回 issue 列表
             // 之前的计算属性 [issues] 被移到视图模型中了，并改成了方法
-            ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
+            ForEach(viewModel.dataController.issuesForSelectedFilter(), id: \.issueID) { issue in
                 IssueRow(issue: issue)
             }
             .onDelete(perform: viewModel.delete)
