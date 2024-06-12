@@ -5,6 +5,7 @@
 //  Created by coletree on 2024/4/23.
 //
 
+import CloudKit
 import SwiftUI
 
 
@@ -23,7 +24,13 @@ struct ContentView: View {
     // 环境属性：从环境中读取 requestReview 操作
     @Environment(\.requestReview) var requestReview
 
-    private let newIssueActivity = "com.hackingwithswift.UltimatePortfolio.newIssue"
+    private let newIssueActivity = "com.coletree.ultimateportfolio.newIssue"
+
+    // @AppStorage 属性：包装器检查有效的用户名
+    @AppStorage("username") var username: String?
+
+    // 状态属性：存储当前是否显示登录视图
+    @State private var showingSignIn = false
 
 
 
@@ -55,7 +62,14 @@ struct ContentView: View {
             }
 
         // MARK: 标题栏过滤器控件 (已移入子视图)
-        .toolbar { ContentViewToolbar() }
+        .toolbar {
+            ContentViewToolbar()
+            // 按钮：上传iCloud
+            Button(action: uploadToCloud) {
+                Label("Upload to iCloud", systemImage: "icloud.and.arrow.up")
+            }
+        }
+
         // MARK: 用户评分弹窗
         .onAppear(perform: askForReview)
         // 响应主图标的快捷方式
@@ -67,6 +81,8 @@ struct ContentView: View {
         }
         // 响应快捷指令
         .onContinueUserActivity(newIssueActivity, perform: resumeActivity)
+        // 登录弹窗
+        .sheet(isPresented: $showingSignIn, content: SignInView.init)
 
     }
 
@@ -104,6 +120,29 @@ struct ContentView: View {
     // 快捷指令：响应快捷指令的行为
     func resumeActivity(_ userActivity: NSUserActivity) {
         viewModel.dataController.newIssue()
+    }
+
+    // 上传 records
+    func uploadToCloud() {
+        if let username = username {
+            if let records = viewModel.dataController.selectedFilter?.tag?.prepareCloudRecords(owner: username) {
+                let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+                operation.savePolicy = .allKeys
+                operation.modifyRecordsCompletionBlock = { _, _, error in
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                    }
+                }
+
+                let container = CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio")
+                container.publicCloudDatabase.add(operation)
+                print("\(records.count) 条记录发送成功")
+            } else {
+                showingSignIn = true
+            }
+        } else {
+            showingSignIn = true
+        }
     }
 
 

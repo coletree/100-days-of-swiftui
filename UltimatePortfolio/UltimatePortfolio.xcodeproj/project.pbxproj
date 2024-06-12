@@ -59,6 +59,12 @@
 		DF82049A2BFEE67600EDD8E0 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */; };
 		DF82049D2BFF2D0500EDD8E0 /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */; };
 		DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049F2C00459500EDD8E0 /* StoreView.swift */; };
+		DF88A1632C19596C00502A95 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1622C19596C00502A95 /* SignInView.swift */; };
+		DF88A1692C197A0200502A95 /* SharedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1682C197A0200502A95 /* SharedTag.swift */; };
+		DF88A16B2C197A3B00502A95 /* SharedIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A16A2C197A3B00502A95 /* SharedIssue.swift */; };
+		DF88A16D2C197B6800502A95 /* LoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A16C2C197B6800502A95 /* LoadStates.swift */; };
+		DF88A1732C197BFB00502A95 /* SharedTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1722C197BFB00502A95 /* SharedTagsView.swift */; };
+		DF88A1752C197EB600502A95 /* SharedIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1742C197EB600502A95 /* SharedIssuesView.swift */; };
 		DFFDE3D82C06FBCD006388D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
 		DFFDE3DA2C07060F006388D5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3D92C07060F006388D5 /* DataProvider.swift */; };
 		DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */; };
@@ -169,6 +175,12 @@
 		DF82049B2BFF253300EDD8E0 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-StoreKit.swift"; sourceTree = "<group>"; };
 		DF82049F2C00459500EDD8E0 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		DF88A1622C19596C00502A95 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		DF88A1682C197A0200502A95 /* SharedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTag.swift; sourceTree = "<group>"; };
+		DF88A16A2C197A3B00502A95 /* SharedIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedIssue.swift; sourceTree = "<group>"; };
+		DF88A16C2C197B6800502A95 /* LoadStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadStates.swift; sourceTree = "<group>"; };
+		DF88A1722C197BFB00502A95 /* SharedTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTagsView.swift; sourceTree = "<group>"; };
+		DF88A1742C197EB600502A95 /* SharedIssuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedIssuesView.swift; sourceTree = "<group>"; };
 		DFFDE3D92C07060F006388D5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWidget.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -254,6 +266,7 @@
 				DF44EC162BDB5BC5008FB6A6 /* Views */,
 				DF44EC152BDB5BB4008FB6A6 /* ViewModel */,
 				DF44EC102BDB4F05008FB6A6 /* Models */,
+				DF88A16E2C197B9400502A95 /* Activities */,
 				DF7789992BEB2DB2001415E8 /* Extension */,
 				DF6C262C2BEF23590065BFE3 /* Localization */,
 				DF6C262D2BEF23D20065BFE3 /* Configuration */,
@@ -302,6 +315,7 @@
 				DF6C26602BFB79C00065BFE3 /* ContentView */,
 				DF6C26612BFB79E40065BFE3 /* DetailView */,
 				DF6C26622BFB7A1E0065BFE3 /* AwardsView */,
+				DF88A1622C19596C00502A95 /* SignInView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -452,6 +466,26 @@
 				DF82049F2C00459500EDD8E0 /* StoreView.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		DF88A16E2C197B9400502A95 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				DF88A16F2C197BAA00502A95 /* Community */,
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
+		DF88A16F2C197BAA00502A95 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DF88A16C2C197B6800502A95 /* LoadStates.swift */,
+				DF88A1682C197A0200502A95 /* SharedTag.swift */,
+				DF88A1722C197BFB00502A95 /* SharedTagsView.swift */,
+				DF88A16A2C197A3B00502A95 /* SharedIssue.swift */,
+				DF88A1742C197EB600502A95 /* SharedIssuesView.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -714,8 +748,12 @@
 				DF44EC202BDE3918008FB6A6 /* Filter.swift in Sources */,
 				DF67310B2C047BE800B1773C /* AppDelegate.swift in Sources */,
 				DF67310D2C047C3100B1773C /* SceneDelegate.swift in Sources */,
+				DF88A1752C197EB600502A95 /* SharedIssuesView.swift in Sources */,
+				DF88A1632C19596C00502A95 /* SignInView.swift in Sources */,
 				DF44EC2C2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift in Sources */,
+				DF88A16D2C197B6800502A95 /* LoadStates.swift in Sources */,
 				DF77899D2BEB57DD001415E8 /* AwardsView.swift in Sources */,
+				DF88A1732C197BFB00502A95 /* SharedTagsView.swift in Sources */,
 				DF6731302C057A5700B1773C /* DataController-Awards.swift in Sources */,
 				DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */,
 				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
@@ -731,6 +769,7 @@
 				DF44EC2A2BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift in Sources */,
 				DF44EC1E2BDE3032008FB6A6 /* DetailView.swift in Sources */,
 				DF44EC142BDB5B2E008FB6A6 /* DataController.swift in Sources */,
+				DF88A16B2C197A3B00502A95 /* SharedIssue.swift in Sources */,
 				DF44EC1C2BDE3024008FB6A6 /* SidebarView.swift in Sources */,
 				DF44EBA62BD79E3B008FB6A6 /* UltimatePortfolioApp.swift in Sources */,
 				DFFE7D572BEE0E5B00E8EB42 /* UserFilterRow.swift in Sources */,
@@ -739,6 +778,7 @@
 				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 				DFFE7D4D2BEDFDA600E8EB42 /* SidebarViewToolbar.swift in Sources */,
+				DF88A1692C197A0200502A95 /* SharedTag.swift in Sources */,
 				DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */,
 				DF8204982BFC791100EDD8E0 /* IssueRowViewModel.swift in Sources */,
 			);

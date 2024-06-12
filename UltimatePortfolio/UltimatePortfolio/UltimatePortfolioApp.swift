@@ -64,6 +64,15 @@ struct UltimatePortfolioApp: App {
 
     // MARK: - 方法
 
+    /// 初始化方法
+    init() {
+
+        #if targetEnvironment(simulator)
+        UserDefaults.standard.set("Coletree", forKey: "username")
+        #endif
+
+    }
+
     /// 方法：处理用户从 spotlight 搜索结果跳转进来的行为。该方法接受任何类型的 NSUserActivity ，然后查看数据以从 Spotlight 中找到唯一标识符
     func loadSpotlightItem(_ userActivity: NSUserActivity) {
 

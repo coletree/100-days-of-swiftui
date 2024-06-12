@@ -24,6 +24,9 @@ struct SidebarViewToolbar: View {
     // 状态属性：创建超过3个tag时，点击按钮需要弹窗提示购买解锁
     @State private var showingStore = false
 
+    // 状态属性：
+    @State private var showingCommunity = false
+
 
 
 
@@ -57,6 +60,15 @@ struct SidebarViewToolbar: View {
         }
         // 购买弹窗：创建超过3个tag时，会弹出
         .sheet(isPresented: $showingStore, content: StoreView.init)
+
+
+        // 按钮：测试CloudKit
+        Button {
+            showingCommunity.toggle()
+        } label: {
+            Label("iCloud", systemImage: "arrow.triangle.2.circlepath.icloud.fill")
+        }
+        .sheet(isPresented: $showingCommunity, content: SharedTagsView.init)
 
 
     }

@@ -5,6 +5,8 @@
 //  Created by coletree on 2024/4/29.
 //
 
+
+import CloudKit
 import Foundation
 
 
@@ -40,6 +42,39 @@ extension Tag: Comparable {
         } else {
             return left < right
         }
+    }
+
+
+    // 因为这都是数据而不是逻辑，所以选择把代码放入 Project-CoreDataHelpers.swift 文件中：
+    // 添加名为 prepareCloudRecords() 的新方法，它会将所有的项目数据转换为 CloudKit 记录
+    func prepareCloudRecords(owner: String) -> [CKRecord] {
+        let parentName = objectID.uriRepresentation().absoluteString
+        let parentID = CKRecord.ID(recordName: parentName)
+        let parent = CKRecord(recordType: "Tag", recordID: parentID)
+        parent["name"] = tagName
+        parent["owner"] = owner
+        print(tagName)
+
+        // 确保 issues 是一个 NSSet 并且转换为 [Issue]
+        guard let tagItemsArray = issues?.allObjects as? [Issue] else {
+            return [parent]
+        }
+
+        var records = tagItemsArray.map { item -> CKRecord in
+            let childName = item.objectID.uriRepresentation().absoluteString
+            let childID = CKRecord.ID(recordName: childName)
+            let child = CKRecord(recordType: "Issue", recordID: childID)
+            child["title"] = item.issueTitle
+            child["content"] = item.issueContent
+            child["status"] = item.issueStatus
+            child["owner"] = owner
+            child["tag"] = CKRecord.Reference(recordID: parentID, action: .deleteSelf)
+            return child
+        }
+
+        records.append(parent)
+        print("\(records.count)条数据准备成功")
+        return records
     }
 
 }

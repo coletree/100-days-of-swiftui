@@ -18,7 +18,7 @@ extension DataController {
     // MARK: - 属性
 
     /// 常量：可购买商品 Premium unlock 的商品 ID
-    static let unlockPremiumProductID = "com.coletree.UltimatePortfolio.premiumUnlock"
+    static let unlockPremiumProductID = "com.coletree.ultimateportfolio.premiumUnlock"
 
     /// 计算属性：判断 Premium unlock 是否被购买，以及当 Premium unlock 被购买后，设置该属性
     var fullVersionUnlocked: Bool {
