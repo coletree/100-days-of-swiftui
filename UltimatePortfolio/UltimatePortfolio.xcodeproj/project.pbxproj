@@ -65,6 +65,7 @@
 		DF88A16D2C197B6800502A95 /* LoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A16C2C197B6800502A95 /* LoadStates.swift */; };
 		DF88A1732C197BFB00502A95 /* SharedTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1722C197BFB00502A95 /* SharedTagsView.swift */; };
 		DF88A1752C197EB600502A95 /* SharedIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1742C197EB600502A95 /* SharedIssuesView.swift */; };
+		DF88A1772C1AD25100502A95 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1762C1AD25100502A95 /* ChatMessage.swift */; };
 		DFFDE3D82C06FBCD006388D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
 		DFFDE3DA2C07060F006388D5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3D92C07060F006388D5 /* DataProvider.swift */; };
 		DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */; };
@@ -181,6 +182,7 @@
 		DF88A16C2C197B6800502A95 /* LoadStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadStates.swift; sourceTree = "<group>"; };
 		DF88A1722C197BFB00502A95 /* SharedTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTagsView.swift; sourceTree = "<group>"; };
 		DF88A1742C197EB600502A95 /* SharedIssuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedIssuesView.swift; sourceTree = "<group>"; };
+		DF88A1762C1AD25100502A95 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		DFFDE3D92C07060F006388D5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWidget.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -315,7 +317,6 @@
 				DF6C26602BFB79C00065BFE3 /* ContentView */,
 				DF6C26612BFB79E40065BFE3 /* DetailView */,
 				DF6C26622BFB7A1E0065BFE3 /* AwardsView */,
-				DF88A1622C19596C00502A95 /* SignInView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -479,7 +480,9 @@
 		DF88A16F2C197BAA00502A95 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				DF88A1622C19596C00502A95 /* SignInView.swift */,
 				DF88A16C2C197B6800502A95 /* LoadStates.swift */,
+				DF88A1762C1AD25100502A95 /* ChatMessage.swift */,
 				DF88A1682C197A0200502A95 /* SharedTag.swift */,
 				DF88A1722C197BFB00502A95 /* SharedTagsView.swift */,
 				DF88A16A2C197A3B00502A95 /* SharedIssue.swift */,
@@ -775,6 +778,7 @@
 				DFFE7D572BEE0E5B00E8EB42 /* UserFilterRow.swift in Sources */,
 				DF82049D2BFF2D0500EDD8E0 /* DataController-StoreKit.swift in Sources */,
 				DF44EC362BE08FEA008FB6A6 /* IssueRow.swift in Sources */,
+				DF88A1772C1AD25100502A95 /* ChatMessage.swift in Sources */,
 				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
 				DFFE7D4D2BEDFDA600E8EB42 /* SidebarViewToolbar.swift in Sources */,

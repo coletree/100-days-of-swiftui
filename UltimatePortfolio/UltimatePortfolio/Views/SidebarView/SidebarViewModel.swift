@@ -146,7 +146,6 @@ extension SidebarView {
                 dataController.delete(item)
             }
         }
-        
 
 
     }

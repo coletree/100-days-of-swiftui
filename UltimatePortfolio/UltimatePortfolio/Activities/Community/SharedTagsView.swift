@@ -37,7 +37,7 @@ struct SharedTagsView: View {
                 case .inactive, .loading:
                     ProgressView()
                 case .noResults:
-                    Text("No results")
+                    Text("没有获取到结果")
                 case .success:
                     List(tags) { tag in
                         NavigationLink(destination: SharedIssuesView(tag: tag)) {
@@ -50,7 +50,7 @@ struct SharedTagsView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .navigationTitle("Shared Projects")
+            .navigationTitle("Shared Tags")
         }
         .onAppear(perform: fetchSharedTags)
     }
@@ -64,8 +64,6 @@ struct SharedTagsView: View {
     // 方法：获取数据
     func fetchSharedTags() {
 
-        print("请求下载开始...")
-
         // 1. 首先，确保该方法只能运行一次，要避免在应用中切换界面导致 CloudKit 的多次触发
         guard loadState == .inactive else { return }
         loadState = .loading
@@ -75,13 +73,12 @@ struct SharedTagsView: View {
         let sort = NSSortDescriptor(key: "creationDate", ascending: false)
         let query = CKQuery(recordType: "Tag", predicate: pred)
         query.sortDescriptors = [sort]
-        
+
         // 3. 还需要创建一个 CKQueryOperation 来定义想要返回的内容，它让我们可以添加限制
         let operation = CKQueryOperation(query: query)
         operation.desiredKeys = ["name", "owner"]
-        operation.resultsLimit = 50
+        operation.resultsLimit = 20
         // 提示：如果不设置 desiredKeys ，CloudKit 将自动返回所有键
-        print(operation)
 
         // 4.第一个是 recordFetchedBlock ：CloudKit 每下载一条记录作为查询结果，该闭包就会被调用一次
         operation.recordFetchedBlock = { record in
@@ -94,17 +91,20 @@ struct SharedTagsView: View {
         }
 
         // 5.第二个闭包是 queryCompletionBlock ：它将在检索到所有记录后被调用
-        operation.queryCompletionBlock = { _, _ in
+        operation.queryCompletionBlock = { _, error in
+            if let error = error {
+                print("查询出错: \(error.localizedDescription)")
+                return
+            }
             if tags.isEmpty {
                 loadState = .noResults
             }
         }
 
-        // 6. 剩下就是将该操作发送到 iCloud。有了这个方法，SharedTagsView 现在几乎可以正常工作了
-        // CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio").publicCloudDatabase.add(operation)
-        CKContainer.default().publicCloudDatabase.add(operation)
+        // 6. 剩下就是将该操作发送到 iCloud
+        CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio").publicCloudDatabase.add(operation)
+        // CKContainer.default().publicCloudDatabase.add(operation)
 
-        print(tags.count)
         print("请求下载完成")
     }
 

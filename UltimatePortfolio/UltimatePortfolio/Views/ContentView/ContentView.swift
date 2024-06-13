@@ -133,9 +133,10 @@ struct ContentView: View {
                         print("Error: \(error.localizedDescription)")
                     }
                 }
-
                 let container = CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio")
                 container.publicCloudDatabase.add(operation)
+                // container.sharedCloudDatabase.add(operation)
+                // container.privateCloudDatabase.add(operation)
                 print("\(records.count) 条记录发送成功")
             } else {
                 showingSignIn = true
