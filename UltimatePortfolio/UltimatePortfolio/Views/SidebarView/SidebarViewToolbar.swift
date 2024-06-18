@@ -63,12 +63,14 @@ struct SidebarViewToolbar: View {
 
 
         // 按钮：测试CloudKit
+        #if os(iOS)
         Button {
             showingCommunity.toggle()
         } label: {
             Label("iCloud", systemImage: "arrow.triangle.2.circlepath.icloud.fill")
         }
         .sheet(isPresented: $showingCommunity, content: SharedTagsView.init)
+        #endif
 
 
     }

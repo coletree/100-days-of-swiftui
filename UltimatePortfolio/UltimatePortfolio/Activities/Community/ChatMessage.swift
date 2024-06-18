@@ -31,5 +31,3 @@ extension ChatMessage {
         date = record.creationDate ?? Date()
     }
 }
-
-

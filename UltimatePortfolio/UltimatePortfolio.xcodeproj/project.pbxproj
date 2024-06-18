@@ -66,6 +66,55 @@
 		DF88A1732C197BFB00502A95 /* SharedTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1722C197BFB00502A95 /* SharedTagsView.swift */; };
 		DF88A1752C197EB600502A95 /* SharedIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1742C197EB600502A95 /* SharedIssuesView.swift */; };
 		DF88A1772C1AD25100502A95 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1762C1AD25100502A95 /* ChatMessage.swift */; };
+		DF88A1792C1C0CBC00502A95 /* Error-CloudKitMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1782C1C0CBC00502A95 /* Error-CloudKitMessages.swift */; };
+		DF88A17B2C1C0E7A00502A95 /* CloudError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A17A2C1C0E7A00502A95 /* CloudError.swift */; };
+		DF88A1872C1FD7F500502A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF88A1862C1FD7F500502A95 /* Assets.xcassets */; };
+		DF88A18A2C1FD7F500502A95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF88A1892C1FD7F500502A95 /* Preview Assets.xcassets */; };
+		DF88A18F2C1FDAB100502A95 /* UltimatePortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBA52BD79E3B008FB6A6 /* UltimatePortfolioApp.swift */; };
+		DF88A1902C1FDAC000502A95 /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049C2BFF2D0500EDD8E0 /* DataController-StoreKit.swift */; };
+		DF88A1932C1FDAC000502A95 /* DataController-Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67312F2C057A5700B1773C /* DataController-Awards.swift */; };
+		DF88A1942C1FDAC000502A95 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC132BDB5B2E008FB6A6 /* DataController.swift */; };
+		DF88A1952C1FDAC000502A95 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204992BFEE67600EDD8E0 /* DataController-Notifications.swift */; };
+		DF88A1962C1FDACB00502A95 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */; };
+		DF88A1972C1FDACB00502A95 /* Extension-View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789972BEB22DB001415E8 /* Extension-View.swift */; };
+		DF88A1982C1FDACB00502A95 /* CloudError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A17A2C1C0E7A00502A95 /* CloudError.swift */; };
+		DF88A1992C1FDACB00502A95 /* Error-CloudKitMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1782C1C0CBC00502A95 /* Error-CloudKitMessages.swift */; };
+		DF88A19A2C1FDAD400502A95 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1F2BDE3918008FB6A6 /* Filter.swift */; };
+		DF88A19B2C1FDAD400502A95 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC292BDF5B7B008FB6A6 /* Issue-CoreDataHelpers.swift */; };
+		DF88A19C2C1FDAD400502A95 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7789A02BEB5D9F001415E8 /* Award.swift */; };
+		DF88A19D2C1FDAD400502A95 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC2B2BDF5D86008FB6A6 /* Tag-CoreDataHelpers.swift */; };
+		DF88A19E2C1FDAE000502A95 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC0D2BDB4EFD008FB6A6 /* Model.xcdatamodeld */; };
+		DF88A19F2C1FDAF000502A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
+		DF88A1A02C1FDAFF00502A95 /* SmartFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D542BEE0D8A00E8EB42 /* SmartFilterRow.swift */; };
+		DF88A1A12C1FDAFF00502A95 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C265D2BFB79930065BFE3 /* SidebarViewModel.swift */; };
+		DF88A1A22C1FDAFF00502A95 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1B2BDE3024008FB6A6 /* SidebarView.swift */; };
+		DF88A1A32C1FDAFF00502A95 /* SidebarViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D4C2BEDFDA600E8EB42 /* SidebarViewToolbar.swift */; };
+		DF88A1A42C1FDAFF00502A95 /* UserFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D562BEE0E5B00E8EB42 /* UserFilterRow.swift */; };
+		DF88A1A52C1FDB0200502A95 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204952BFC747500EDD8E0 /* ContentViewModel.swift */; };
+		DF88A1A62C1FDB0200502A95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EBA72BD79E3C008FB6A6 /* ContentView.swift */; };
+		DF88A1A72C1FDB0200502A95 /* ContentViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D502BEE08BC00E8EB42 /* ContentViewToolbar.swift */; };
+		DF88A1A82C1FDB0200502A95 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC352BE08FEA008FB6A6 /* IssueRow.swift */; };
+		DF88A1A92C1FDB0200502A95 /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8204972BFC791100EDD8E0 /* IssueRowViewModel.swift */; };
+		DF88A1AA2C1FDB0700502A95 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC5A2BE115F9008FB6A6 /* NoIssueView.swift */; };
+		DF88A1AB2C1FDB0700502A95 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC5C2BE1177B008FB6A6 /* IssueView.swift */; };
+		DF88A1AC2C1FDB0700502A95 /* TagsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D522BEE0C0C00E8EB42 /* TagsMenuView.swift */; };
+		DF88A1AD2C1FDB0700502A95 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF44EC1D2BDE3032008FB6A6 /* DetailView.swift */; };
+		DF88A1AE2C1FDB0700502A95 /* IssueViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFE7D4E2BEE03D900E8EB42 /* IssueViewToolbar.swift */; };
+		DF88A1B02C1FDB2F00502A95 /* PlatformAdjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1AF2C1FDB2F00502A95 /* PlatformAdjustments.swift */; };
+		DF88A1B22C1FDB6900502A95 /* PlatformAdjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1B12C1FDB6900502A95 /* PlatformAdjustments.swift */; };
+		DF88A1B42C1FE22600502A95 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF77899C2BEB57DD001415E8 /* AwardsView.swift */; };
+		DF88A1B52C1FE23900502A95 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82049F2C00459500EDD8E0 /* StoreView.swift */; };
+		DF88A1B62C1FE25000502A95 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D422BEDC37900E8EB42 /* Localizable.stringsdict */; };
+		DF88A1B72C1FE25000502A95 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D492BEDC45900E8EB42 /* Awards.json */; };
+		DF88A1B82C1FE25000502A95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFFE7D3A2BEDBD7C00E8EB42 /* Localizable.strings */; };
+		DF88A1B92C1FE25E00502A95 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = DF82049B2BFF253300EDD8E0 /* Configuration.storekit */; };
+		DF88A1BA2C1FE3F900502A95 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1622C19596C00502A95 /* SignInView.swift */; };
+		DF88A1BB2C1FE3F900502A95 /* LoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A16C2C197B6800502A95 /* LoadStates.swift */; };
+		DF88A1BC2C1FE3F900502A95 /* SharedIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A16A2C197A3B00502A95 /* SharedIssue.swift */; };
+		DF88A1BD2C1FE3F900502A95 /* SharedIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1742C197EB600502A95 /* SharedIssuesView.swift */; };
+		DF88A1BE2C1FE3F900502A95 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1762C1AD25100502A95 /* ChatMessage.swift */; };
+		DF88A1BF2C1FE3F900502A95 /* SharedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1682C197A0200502A95 /* SharedTag.swift */; };
+		DF88A1C02C1FE3F900502A95 /* SharedTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF88A1722C197BFB00502A95 /* SharedTagsView.swift */; };
 		DFFDE3D82C06FBCD006388D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF44EBA92BD79E3D008FB6A6 /* Assets.xcassets */; };
 		DFFDE3DA2C07060F006388D5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3D92C07060F006388D5 /* DataProvider.swift */; };
 		DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */; };
@@ -183,6 +232,14 @@
 		DF88A1722C197BFB00502A95 /* SharedTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTagsView.swift; sourceTree = "<group>"; };
 		DF88A1742C197EB600502A95 /* SharedIssuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedIssuesView.swift; sourceTree = "<group>"; };
 		DF88A1762C1AD25100502A95 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		DF88A1782C1C0CBC00502A95 /* Error-CloudKitMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error-CloudKitMessages.swift"; sourceTree = "<group>"; };
+		DF88A17A2C1C0E7A00502A95 /* CloudError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudError.swift; sourceTree = "<group>"; };
+		DF88A1802C1FD7F400502A95 /* UltimatePortfolioMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UltimatePortfolioMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF88A1862C1FD7F500502A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF88A1892C1FD7F500502A95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DF88A18B2C1FD7F500502A95 /* UltimatePortfolioMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UltimatePortfolioMac.entitlements; sourceTree = "<group>"; };
+		DF88A1AF2C1FDB2F00502A95 /* PlatformAdjustments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAdjustments.swift; sourceTree = "<group>"; };
+		DF88A1B12C1FDB6900502A95 /* PlatformAdjustments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAdjustments.swift; sourceTree = "<group>"; };
 		DFFDE3D92C07060F006388D5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		DFFDE3DB2C07069D006388D5 /* SimpleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWidget.swift; sourceTree = "<group>"; };
 		DFFE7D392BEDBD7C00E8EB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -233,6 +290,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF88A17D2C1FD7F400502A95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -244,6 +308,7 @@
 				DF6C26332BEF50070065BFE3 /* UltimatePortfolioTests */,
 				DF6C26522BF4670C0065BFE3 /* UltimatePortfolioUITests */,
 				DF6731182C04A32A00B1773C /* PortfolioWidget */,
+				DF88A1812C1FD7F400502A95 /* UltimatePortfolioMac */,
 				DF6731132C04A32A00B1773C /* Frameworks */,
 				DF44EBA32BD79E3B008FB6A6 /* Products */,
 			);
@@ -256,6 +321,7 @@
 				DF6C26322BEF50070065BFE3 /* UltimatePortfolioTests.xctest */,
 				DF6C26512BF4670C0065BFE3 /* UltimatePortfolioUITests.xctest */,
 				DF6731122C04A32A00B1773C /* PortfolioWidgetExtension.appex */,
+				DF88A1802C1FD7F400502A95 /* UltimatePortfolioMac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				DF44EBA52BD79E3B008FB6A6 /* UltimatePortfolioApp.swift */,
+				DF88A1B12C1FDB6900502A95 /* PlatformAdjustments.swift */,
 				DF82049E2C00457400EDD8E0 /* Store */,
 				DF44EC162BDB5BC5008FB6A6 /* Views */,
 				DF44EC152BDB5BB4008FB6A6 /* ViewModel */,
@@ -455,6 +522,8 @@
 		DF7789992BEB2DB2001415E8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DF88A17A2C1C0E7A00502A95 /* CloudError.swift */,
+				DF88A1782C1C0CBC00502A95 /* Error-CloudKitMessages.swift */,
 				DF7789972BEB22DB001415E8 /* Extension-View.swift */,
 				DF77899A2BEB2DCA001415E8 /* Bundle-Decodable.swift */,
 			);
@@ -489,6 +558,25 @@
 				DF88A1742C197EB600502A95 /* SharedIssuesView.swift */,
 			);
 			path = Community;
+			sourceTree = "<group>";
+		};
+		DF88A1812C1FD7F400502A95 /* UltimatePortfolioMac */ = {
+			isa = PBXGroup;
+			children = (
+				DF88A1AF2C1FDB2F00502A95 /* PlatformAdjustments.swift */,
+				DF88A1862C1FD7F500502A95 /* Assets.xcassets */,
+				DF88A18B2C1FD7F500502A95 /* UltimatePortfolioMac.entitlements */,
+				DF88A1882C1FD7F500502A95 /* Preview Content */,
+			);
+			path = UltimatePortfolioMac;
+			sourceTree = "<group>";
+		};
+		DF88A1882C1FD7F500502A95 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DF88A1892C1FD7F500502A95 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,6 +658,23 @@
 			productReference = DF6C26512BF4670C0065BFE3 /* UltimatePortfolioUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DF88A17F2C1FD7F400502A95 /* UltimatePortfolioMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF88A18C2C1FD7F500502A95 /* Build configuration list for PBXNativeTarget "UltimatePortfolioMac" */;
+			buildPhases = (
+				DF88A17C2C1FD7F400502A95 /* Sources */,
+				DF88A17D2C1FD7F400502A95 /* Frameworks */,
+				DF88A17E2C1FD7F400502A95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UltimatePortfolioMac;
+			productName = UltimatePortfolioMac;
+			productReference = DF88A1802C1FD7F400502A95 /* UltimatePortfolioMac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -594,6 +699,9 @@
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = DF44EBA12BD79E3B008FB6A6;
 					};
+					DF88A17F2C1FD7F400502A95 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 				};
 			};
 			buildConfigurationList = DF44EB9D2BD79E3B008FB6A6 /* Build configuration list for PBXProject "UltimatePortfolio" */;
@@ -615,6 +723,7 @@
 				DF6C26312BEF50070065BFE3 /* UltimatePortfolioTests */,
 				DF6C26502BF4670B0065BFE3 /* UltimatePortfolioUITests */,
 				DF6731112C04A32A00B1773C /* PortfolioWidgetExtension */,
+				DF88A17F2C1FD7F400502A95 /* UltimatePortfolioMac */,
 			);
 		};
 /* End PBXProject section */
@@ -656,6 +765,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF88A17E2C1FD7F400502A95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF88A1B92C1FE25E00502A95 /* Configuration.storekit in Resources */,
+				DF88A18A2C1FD7F500502A95 /* Preview Assets.xcassets in Resources */,
+				DF88A1B82C1FE25000502A95 /* Localizable.strings in Resources */,
+				DF88A1B72C1FE25000502A95 /* Awards.json in Resources */,
+				DF88A1B62C1FE25000502A95 /* Localizable.stringsdict in Resources */,
+				DF88A19F2C1FDAF000502A95 /* Assets.xcassets in Resources */,
+				DF88A1872C1FD7F500502A95 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +882,9 @@
 				DF88A1732C197BFB00502A95 /* SharedTagsView.swift in Sources */,
 				DF6731302C057A5700B1773C /* DataController-Awards.swift in Sources */,
 				DF7789982BEB22DB001415E8 /* Extension-View.swift in Sources */,
+				DF88A17B2C1C0E7A00502A95 /* CloudError.swift in Sources */,
 				DF44EC5B2BE115F9008FB6A6 /* NoIssueView.swift in Sources */,
+				DF88A1B22C1FDB6900502A95 /* PlatformAdjustments.swift in Sources */,
 				DFFDE3DC2C07069D006388D5 /* SimpleWidget.swift in Sources */,
 				DF8204962BFC747500EDD8E0 /* ContentViewModel.swift in Sources */,
 				DF6C265E2BFB79930065BFE3 /* SidebarViewModel.swift in Sources */,
@@ -781,6 +906,7 @@
 				DF88A1772C1AD25100502A95 /* ChatMessage.swift in Sources */,
 				DF44EC5D2BE1177B008FB6A6 /* IssueView.swift in Sources */,
 				DF44EC0F2BDB4EFD008FB6A6 /* Model.xcdatamodeld in Sources */,
+				DF88A1792C1C0CBC00502A95 /* Error-CloudKitMessages.swift in Sources */,
 				DFFE7D4D2BEDFDA600E8EB42 /* SidebarViewToolbar.swift in Sources */,
 				DF88A1692C197A0200502A95 /* SharedTag.swift in Sources */,
 				DF8204A02C00459500EDD8E0 /* StoreView.swift in Sources */,
@@ -825,6 +951,52 @@
 			files = (
 				DF6C26562BF4670C0065BFE3 /* UltimatePortfolioUITestsLaunchTests.swift in Sources */,
 				DF6C26542BF4670C0065BFE3 /* UltimatePortfolioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF88A17C2C1FD7F400502A95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF88A1932C1FDAC000502A95 /* DataController-Awards.swift in Sources */,
+				DF88A19C2C1FDAD400502A95 /* Award.swift in Sources */,
+				DF88A1A22C1FDAFF00502A95 /* SidebarView.swift in Sources */,
+				DF88A19A2C1FDAD400502A95 /* Filter.swift in Sources */,
+				DF88A1B42C1FE22600502A95 /* AwardsView.swift in Sources */,
+				DF88A1A72C1FDB0200502A95 /* ContentViewToolbar.swift in Sources */,
+				DF88A1972C1FDACB00502A95 /* Extension-View.swift in Sources */,
+				DF88A1AC2C1FDB0700502A95 /* TagsMenuView.swift in Sources */,
+				DF88A1952C1FDAC000502A95 /* DataController-Notifications.swift in Sources */,
+				DF88A1BF2C1FE3F900502A95 /* SharedTag.swift in Sources */,
+				DF88A1BA2C1FE3F900502A95 /* SignInView.swift in Sources */,
+				DF88A1942C1FDAC000502A95 /* DataController.swift in Sources */,
+				DF88A1962C1FDACB00502A95 /* Bundle-Decodable.swift in Sources */,
+				DF88A19D2C1FDAD400502A95 /* Tag-CoreDataHelpers.swift in Sources */,
+				DF88A1B02C1FDB2F00502A95 /* PlatformAdjustments.swift in Sources */,
+				DF88A1902C1FDAC000502A95 /* DataController-StoreKit.swift in Sources */,
+				DF88A1AD2C1FDB0700502A95 /* DetailView.swift in Sources */,
+				DF88A1A02C1FDAFF00502A95 /* SmartFilterRow.swift in Sources */,
+				DF88A1A92C1FDB0200502A95 /* IssueRowViewModel.swift in Sources */,
+				DF88A1AE2C1FDB0700502A95 /* IssueViewToolbar.swift in Sources */,
+				DF88A1C02C1FE3F900502A95 /* SharedTagsView.swift in Sources */,
+				DF88A1BB2C1FE3F900502A95 /* LoadStates.swift in Sources */,
+				DF88A1B52C1FE23900502A95 /* StoreView.swift in Sources */,
+				DF88A19B2C1FDAD400502A95 /* Issue-CoreDataHelpers.swift in Sources */,
+				DF88A19E2C1FDAE000502A95 /* Model.xcdatamodeld in Sources */,
+				DF88A18F2C1FDAB100502A95 /* UltimatePortfolioApp.swift in Sources */,
+				DF88A1BC2C1FE3F900502A95 /* SharedIssue.swift in Sources */,
+				DF88A1A32C1FDAFF00502A95 /* SidebarViewToolbar.swift in Sources */,
+				DF88A1AA2C1FDB0700502A95 /* NoIssueView.swift in Sources */,
+				DF88A1BD2C1FE3F900502A95 /* SharedIssuesView.swift in Sources */,
+				DF88A1982C1FDACB00502A95 /* CloudError.swift in Sources */,
+				DF88A1A82C1FDB0200502A95 /* IssueRow.swift in Sources */,
+				DF88A1A62C1FDB0200502A95 /* ContentView.swift in Sources */,
+				DF88A1AB2C1FDB0700502A95 /* IssueView.swift in Sources */,
+				DF88A1A42C1FDAFF00502A95 /* UserFilterRow.swift in Sources */,
+				DF88A1A52C1FDB0200502A95 /* ContentViewModel.swift in Sources */,
+				DF88A1A12C1FDAFF00502A95 /* SidebarViewModel.swift in Sources */,
+				DF88A1992C1FDACB00502A95 /* Error-CloudKitMessages.swift in Sources */,
+				DF88A1BE2C1FE3F900502A95 /* ChatMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,7 +1107,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -990,7 +1164,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1226,6 +1402,64 @@
 			};
 			name = Release;
 		};
+		DF88A18D2C1FD7F500502A95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UltimatePortfolioMac/UltimatePortfolioMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UltimatePortfolioMac/Preview Content\"";
+				DEVELOPMENT_TEAM = WMY6QKQ759;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.UltimatePortfolioMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DF88A18E2C1FD7F500502A95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UltimatePortfolioMac/UltimatePortfolioMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UltimatePortfolioMac/Preview Content\"";
+				DEVELOPMENT_TEAM = WMY6QKQ759;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coletree.UltimatePortfolioMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1270,6 +1504,15 @@
 			buildConfigurations = (
 				DF6C265A2BF4670C0065BFE3 /* Debug */,
 				DF6C265B2BF4670C0065BFE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF88A18C2C1FD7F500502A95 /* Build configuration list for PBXNativeTarget "UltimatePortfolioMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF88A18D2C1FD7F500502A95 /* Debug */,
+				DF88A18E2C1FD7F500502A95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

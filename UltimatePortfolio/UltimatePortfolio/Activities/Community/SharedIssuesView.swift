@@ -63,6 +63,13 @@ struct SharedIssuesView: View {
         }
     }
 
+    // 状态属性：CloudKit 错误文案
+    @State private var cloudError: CloudError?
+
+    // UserDefaults 用户发布了多少条评论
+    @AppStorage("chatCount") var chatCount = 0
+
+
 
 
     // MARK: - 视图
@@ -113,6 +120,13 @@ struct SharedIssuesView: View {
         })
         // 工作表在布尔值为 true 时显示 SignInView 视图
         .sheet(isPresented: $showingSignIn, content: SignInView.init)
+        // CloudKit 错误弹窗
+        .alert(item: $cloudError) { error in
+            Alert(
+                title: Text("There was an error"),
+                message: Text(error.localizedMessage)
+            )
+        }
     }
 
 
@@ -153,7 +167,8 @@ struct SharedIssuesView: View {
             // 4. queryCompletionBlock 闭包用于查询完成时调用
             operation.queryCompletionBlock = { _, error in
                 if let error = error {
-                    print("查询出错: \(error.localizedDescription)")
+                    // cloudError = error.getCloudKitError()
+                    cloudError = CloudError(error)
                     return
                 }
                 if issues.isEmpty {
@@ -201,11 +216,13 @@ struct SharedIssuesView: View {
         let container = CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio")
         container.publicCloudDatabase.save(message) { record, error in
             if let error = error {
-                print(error.localizedDescription)
+                // cloudError = error.getCloudKitError()
+                cloudError = CloudError(error)
                 newChatText = backupChatText
             } else if let record = record {
                 let message = ChatMessage(from: record)
                 messages.append(message)
+                chatCount += 1
             }
         }
 
@@ -232,7 +249,10 @@ struct SharedIssuesView: View {
             messagesLoadState = .success
         }
 
-        operation.queryCompletionBlock = { _, _ in
+        operation.queryCompletionBlock = { _, error in
+            if let error = error {
+                cloudError = CloudError(error)
+            }
             if messages.isEmpty {
                 messagesLoadState = .noResults
             }

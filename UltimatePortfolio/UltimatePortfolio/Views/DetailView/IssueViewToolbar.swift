@@ -34,11 +34,13 @@ struct IssueViewToolbar: View {
         Menu {
 
             // 按钮：复制标题
+            #if os(iOS)
             Button {
                 UIPasteboard.general.string = issue.title
             } label: {
                 Label("Copy Issue Title", systemImage: "doc.on.doc")
             }
+            #endif
 
             // 按钮：将问题标记为已完成，修改完进行保存
             Button(action: toggleCompleted) {

@@ -212,8 +212,10 @@ class DataController: ObservableObject {
             if CommandLine.arguments.contains("enable-testing") {
                 self?.deleteAll()
                 print("**********已经删除所有数据**********")
+                #if os(iOS)
                 // 禁用应用程序的所有动画，这使得 UI 测试速度大大加快
                 UIView.setAnimationsEnabled(false)
+                #endif
             }
             #endif
         }

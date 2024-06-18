@@ -42,6 +42,9 @@ extension DataController {
 
             case "unlock":
                 return fullVersionUnlocked
+            
+            case "chat":
+                return UserDefaults.standard.integer(forKey: "chatCount") >= award.value
 
             default:
                 // an unknown award criterion; this should never be allowed

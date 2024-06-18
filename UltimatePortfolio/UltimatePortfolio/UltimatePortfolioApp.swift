@@ -25,7 +25,9 @@ struct UltimatePortfolioApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     // 应用程序委托：告诉 SwiftUI 使用应用委托类 AppDelegate
+    #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
 
 
 
@@ -67,6 +69,8 @@ struct UltimatePortfolioApp: App {
     /// 初始化方法
     init() {
 
+        // 重要提示：请记住，我们在 UltimatePortfolioApp.swift 中使用了 #if targetEnvironment(simulator) 技巧，这是必需的
+        // 因为“使用 Apple 登录”在模拟器中不可用。如果需要，您可以将其注释掉，但如果您选择保持原样，我建议在其之前添加注释，以便审查您的代码的人不会感到困惑。
         #if targetEnvironment(simulator)
         UserDefaults.standard.set("Coletree", forKey: "username")
         #endif

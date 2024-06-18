@@ -76,5 +76,24 @@ extension Tag: Comparable {
         print("\(records.count)条数据准备成功")
         return records
     }
+    
+    // 检查 Tag 实例在云端的状态（是否存在）
+    func checkCloudStatus(_ completion: @escaping (Bool) -> Void) {
+        let name = objectID.uriRepresentation().absoluteString
+        let id = CKRecord.ID(recordName: name)
+        let operation = CKFetchRecordsOperation(recordIDs: [id])
+        operation.desiredKeys = ["recordID"]
+
+        operation.fetchRecordsCompletionBlock = { records, _ in
+            // 如果 records.count 为 1，则将使用 true 调用完成处理程序；在其他情况下它将为 false
+            if let records = records {
+                completion(records.count == 1)
+            } else {
+                completion(false)
+            }
+        }
+
+        CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio").publicCloudDatabase.add(operation)
+    }
 
 }

@@ -32,6 +32,17 @@ struct ContentView: View {
     // 状态属性：存储当前是否显示登录视图
     @State private var showingSignIn = false
 
+    // 枚举：Tag 的几种可能状态
+    enum CloudStatus {
+        case checking, exists, absent
+    }
+
+    // 状态属性：跟踪该 Tag 在云端的状态
+    @State private var cloudStatus = CloudStatus.checking
+    
+    // 状态属性：CloudKit 错误提示文案
+    @State private var cloudError: CloudError?
+
 
 
 
@@ -65,8 +76,17 @@ struct ContentView: View {
         .toolbar {
             ContentViewToolbar()
             // 按钮：上传iCloud
-            Button(action: uploadToCloud) {
-                Label("Upload to iCloud", systemImage: "icloud.and.arrow.up")
+            switch cloudStatus {
+            case .checking:
+                ProgressView()
+            case .exists:
+                Button(action: removeFromCloud) {
+                    Label("Remove from iCloud", systemImage: "icloud.slash")
+                }
+            case .absent:
+                Button(action: uploadToCloud) {
+                    Label("Upload to iCloud", systemImage: "icloud.and.arrow.up")
+                }
             }
         }
 
@@ -76,13 +96,25 @@ struct ContentView: View {
         .onOpenURL(perform: openURL)
         // 处理快捷方式指令
         .userActivity(newIssueActivity) { activity in
+            // isEligibleForPrediction 属性仅适用于 iOS 和 watchOS。因此要做平台判断
+            #if os(iOS) || os(watchOS)
             activity.isEligibleForPrediction = true
+            #endif
             activity.title = "New Issue"
         }
         // 响应快捷指令
         .onContinueUserActivity(newIssueActivity, perform: resumeActivity)
         // 登录弹窗
         .sheet(isPresented: $showingSignIn, content: SignInView.init)
+        // 每次显示视图时，就进行云端状态检查
+        .onAppear(perform: updateCloudStatus)
+        // CloudKit 错误弹窗
+        .alert(item: $cloudError) { error in
+            Alert(
+                title: Text("There was an error"),
+                message: Text(error.localizedMessage)
+            )
+        }
 
     }
 
@@ -122,7 +154,23 @@ struct ContentView: View {
         viewModel.dataController.newIssue()
     }
 
-    // 上传 records
+
+    // 方法：更新 tag 状态
+    func updateCloudStatus() {
+        if let tag = viewModel.dataController.selectedFilter?.tag{
+            tag.checkCloudStatus { exists in
+                if exists {
+                    cloudStatus = .exists
+                } else {
+                    cloudStatus = .absent
+                }
+            }
+        } else {
+            cloudStatus = .absent
+        }
+    }
+
+    // 方法：上传记录到云端
     func uploadToCloud() {
         if let username = username {
             if let records = viewModel.dataController.selectedFilter?.tag?.prepareCloudRecords(owner: username) {
@@ -130,9 +178,12 @@ struct ContentView: View {
                 operation.savePolicy = .allKeys
                 operation.modifyRecordsCompletionBlock = { _, _, error in
                     if let error = error {
-                        print("Error: \(error.localizedDescription)")
+                        // cloudError = error.getCloudKitError()
+                        cloudError = CloudError(error)
                     }
+                    updateCloudStatus()
                 }
+                cloudStatus = .checking
                 let container = CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio")
                 container.publicCloudDatabase.add(operation)
                 // container.sharedCloudDatabase.add(operation)
@@ -144,6 +195,28 @@ struct ContentView: View {
         } else {
             showingSignIn = true
         }
+    }
+
+    // 方法：从云端删除记录
+    func removeFromCloud() {
+        if let name = viewModel.dataController.selectedFilter?.tag?.objectID.uriRepresentation().absoluteString {
+            let id = CKRecord.ID(recordName: name)
+            let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [id])
+            // 第二次改变
+            operation.modifyRecordsCompletionBlock = { _, _, error in
+                if let error = error {
+                    // cloudError = error.getCloudKitError()
+                    cloudError = CloudError(error)
+                }
+                updateCloudStatus()
+            }
+            // 第一次改变
+            cloudStatus = .checking
+            CKContainer(identifier: "iCloud.com.coletree.ultimateportfolio").publicCloudDatabase.add(operation)
+        } else {
+            return
+        }
+
     }
 
 

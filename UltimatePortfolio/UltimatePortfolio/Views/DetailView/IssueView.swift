@@ -100,7 +100,9 @@ struct IssueView: View {
         .toolbar { IssueViewToolbar(issue: issue) }
         // 通知设置失败的弹窗
         .alert("Oops!", isPresented: $showingNotificationsError) {
+            #if os(iOS)
             Button("Check Settings", action: showAppSettings)
+            #endif
             Button("Cancel", role: .cancel) { }
         } message: {
             Text("There was a problem setting your notification. Please check you have notifications enabled.")
@@ -143,12 +145,16 @@ struct IssueView: View {
     }
 
     // 方法：跳转到手机的设置页
+    #if os(iOS)
     func showAppSettings() {
         guard let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) else {
             return
         }
-        openURL(settingsURL)
+        if UIApplication.shared.canOpenURL(settingsURL) {
+            UIApplication.shared.open(settingsURL)
+        }
     }
+    #endif
 
 
 
