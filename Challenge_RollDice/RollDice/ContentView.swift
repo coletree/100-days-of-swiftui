@@ -6,92 +6,96 @@
 //
 
 import SwiftUI
+import CoreHaptics
+
+
 
 struct ContentView: View {
-    
-    
-    //MARK: - 属性
-    
-    @State var myDice: Dice
-    
-    @State var thisTimeResult : Int = 1
-    
-    //设置骰子
-    let diceType = [2,4,6,8,10,12,100]
-    @State var currentIndex = 0
-    
-    //计时器
-    @State var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    @State var counter = 0
-    
-    
-    
-    //MARK: - 视图
-    var body: some View {
-        
-        VStack(alignment: .center, spacing: 40) {
-            
-            Text("\(thisTimeResult)")
-                .font(.system(size: 100, weight: .heavy, design: .rounded))
-                .onReceive(timer) {
-                    time in
-                    if counter == 15 {
-                        timer.upstream.connect().cancel()
-                        thisTimeResult = myDice.rollDice()
-                        counter = 0
-                    } else {
-                        thisTimeResult = myDice.rollDice()
-                        counter += 1
-                    }
-                }
-            
-            Button {
-                //掷骰子的逻辑
-                self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            } label: {
-                Text("🎲 掷骰子")
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 20)
-                    .foregroundStyle(.white)
-                    .background(.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-            }
-            .sensoryFeedback(.increase, trigger: thisTimeResult)
-            
-            
-            //设置骰子
-            VStack {
-                Picker(selection: $currentIndex, label: Text("选择骰子")) {
-                    ForEach(diceType.indices) {
-                        index in
-                        Text("\(diceType[index])").tag(index)
-                    }
-                }
-            }
-            .background(.red.gradient)
-            //.background(Color.red.opacity(0.4))
-            //.fill(Color.blue)
-            
-            
-            
-        }
-        .padding()
-        
-    }
-    
-    
-    
-    //MARK: - 方法
 
-    
-    
+
+    // MARK: - 属性
+
+    // 读取环境属性
+    @Environment(DiceRollStore.self) var store
+
+    // 当前骰子
+    @State private var selectedDice: Int = 10
+
+    // 可选骰子
+    let allDices = [4, 6, 8, 10, 12, 20, 100]
+
+
+
+
+    // MARK: - 视图
+    var body: some View {
+
+        NavigationStack {
+
+            // 掷骰子区
+            VStack {
+
+                HStack {
+                    Text("选择骰子:")
+                    Picker("选择骰子", selection: $selectedDice) {
+                        ForEach(allDices, id: \.self) { dice in
+                            Text("\(dice) 面骰子")
+                                .tag(dice)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                }
+                .padding()
+
+                VStack(alignment: .center, spacing: 20) {
+
+                    DiceView(sided: selectedDice)
+                        .padding(.top, 20)
+
+                    Text("点击上方 🎲 开始投掷")
+                        .font(.system(size: 18, weight: .regular, design: .rounded))
+                        .foregroundStyle(.gray)
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 40)
+                }
+
+            }
+
+            // 历史列表
+            List {
+                Button("清除历史记录") {
+                    store.deleteAll()
+                }
+                ForEach(store.rolls.reversed()){ roll in
+                    HStack {
+                        Text("\(roll.result)")
+                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                            .padding(.leading, 10)
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            Text("骰子面数：\(roll.faces)")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                            Text(roll.date, format: .dateTime)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
 }
 
 
 
 
-
-//MARK: - 预览
+// MARK: - 预览
 #Preview {
-    ContentView(myDice: Dice(sided: 12))
+    ContentView()
+        .environment(DiceRollStore())
 }

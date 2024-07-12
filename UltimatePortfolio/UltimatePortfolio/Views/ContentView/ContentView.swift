@@ -39,7 +39,7 @@ struct ContentView: View {
 
     // 状态属性：跟踪该 Tag 在云端的状态
     @State private var cloudStatus = CloudStatus.checking
-    
+
     // 状态属性：CloudKit 错误提示文案
     @State private var cloudError: CloudError?
 
