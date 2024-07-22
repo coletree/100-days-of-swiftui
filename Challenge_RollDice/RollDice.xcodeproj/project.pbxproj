@@ -10,6 +10,8 @@
 		DF7D7B082C3E7DE800FF371A /* DiceRoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D7B072C3E7DE800FF371A /* DiceRoll.swift */; };
 		DF7D7B0A2C3E7E2600FF371A /* DiceRollStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D7B092C3E7E2600FF371A /* DiceRollStore.swift */; };
 		DF7D7B0C2C3EC64400FF371A /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D7B0B2C3EC64400FF371A /* DiceView.swift */; };
+		DF7D7B4D2C4A4B9E00FF371A /* NewDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D7B4C2C4A4B9E00FF371A /* NewDiceView.swift */; };
+		DF7D7B4F2C4A4CD400FF371A /* NewDiceGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D7B4E2C4A4CD400FF371A /* NewDiceGroupView.swift */; };
 		DFA5EBDC2B91F41600B5684E /* RollDiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBDB2B91F41600B5684E /* RollDiceApp.swift */; };
 		DFA5EBDE2B91F41600B5684E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5EBDD2B91F41600B5684E /* ContentView.swift */; };
 		DFA5EBE02B91F41700B5684E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA5EBDF2B91F41700B5684E /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		DF7D7B072C3E7DE800FF371A /* DiceRoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRoll.swift; sourceTree = "<group>"; };
 		DF7D7B092C3E7E2600FF371A /* DiceRollStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollStore.swift; sourceTree = "<group>"; };
 		DF7D7B0B2C3EC64400FF371A /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
+		DF7D7B4C2C4A4B9E00FF371A /* NewDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiceView.swift; sourceTree = "<group>"; };
+		DF7D7B4E2C4A4CD400FF371A /* NewDiceGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiceGroupView.swift; sourceTree = "<group>"; };
 		DFA5EBD82B91F41600B5684E /* RollDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RollDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA5EBDB2B91F41600B5684E /* RollDiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDiceApp.swift; sourceTree = "<group>"; };
 		DFA5EBDD2B91F41600B5684E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				DF7D7B0B2C3EC64400FF371A /* DiceView.swift */,
 				DF7D7B092C3E7E2600FF371A /* DiceRollStore.swift */,
 				DF7D7B072C3E7DE800FF371A /* DiceRoll.swift */,
+				DF7D7B4C2C4A4B9E00FF371A /* NewDiceView.swift */,
+				DF7D7B4E2C4A4CD400FF371A /* NewDiceGroupView.swift */,
 				DFA5EBDF2B91F41700B5684E /* Assets.xcassets */,
 				DF7D7B062C3E7D5C00FF371A /* README.md */,
 				DFA5EBE12B91F41700B5684E /* Preview Content */,
@@ -151,7 +157,9 @@
 				DFA5EBDE2B91F41600B5684E /* ContentView.swift in Sources */,
 				DF7D7B0C2C3EC64400FF371A /* DiceView.swift in Sources */,
 				DF7D7B0A2C3E7E2600FF371A /* DiceRollStore.swift in Sources */,
+				DF7D7B4F2C4A4CD400FF371A /* NewDiceGroupView.swift in Sources */,
 				DFA5EBDC2B91F41600B5684E /* RollDiceApp.swift in Sources */,
+				DF7D7B4D2C4A4B9E00FF371A /* NewDiceView.swift in Sources */,
 				DF7D7B082C3E7DE800FF371A /* DiceRoll.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
