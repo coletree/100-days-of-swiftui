@@ -117,8 +117,7 @@ class DataController: ObservableObject {
     // MARK: - 方法
 
     /// 自定义初始化：在内存中初始化数据控制器（用于临时使用，例如测试和预览）或永久存储（用于常规应用程序运行。）默认为永久存储。
-    /// 
-    /// 这是什么
+    ///
     /// - Parameter inMemory: 一个布尔值决定是否将此数据存储在临时内存中
     init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
 
@@ -155,28 +154,26 @@ class DataController: ObservableObject {
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
 
-        // 确保关注 iCloud 进行所有更改
-        // 绝对确保我们在发生事件时保持本地 UI 同步
-        // 发生远程更改
+        // 确保关注 iCloud 进行所有更改，在发生事件时保持本地 UI 同步，发生远程更改
 
         // 设置：告诉 Core Data 在存储发生更改时收到通知
         container.persistentStoreDescriptions.first?.setOption(
-                true as NSNumber,
-                forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+            true as NSNumber,
+            forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
         )
 
         // 设置：为 spotlight 配置持久性历史记录跟踪
         container.persistentStoreDescriptions.first?.setOption(
-                true as NSNumber,
-                forKey: NSPersistentHistoryTrackingKey
+            true as NSNumber,
+            forKey: NSPersistentHistoryTrackingKey
         )
 
         // 设置：告诉系统在发生更改时调用新 remoteStoreChanged() 方法
         NotificationCenter.default.addObserver(
-                forName: .NSPersistentStoreRemoteChange,
-                object: container.persistentStoreCoordinator,
-                queue: .main,
-                using: remoteStoreChanged
+            forName: .NSPersistentStoreRemoteChange,
+            object: container.persistentStoreCoordinator,
+            queue: .main,
+            using: remoteStoreChanged
         )
 
         // 设置：容器读取数据库中的数据
@@ -257,8 +254,7 @@ class DataController: ObservableObject {
         // 每次调用排队保存时，先取消之前的 saveTask 属性中的任务（如果有的话），就是之前没有任务也不受影响
         saveTask?.cancel()
         // 1.把新任务赋予 saveTask 属性。这样允许我们在发生其他更改时首先取消任务，确保不会发生任何现有的排队保存。
-        saveTask = Task {
-            @MainActor in
+        saveTask = Task { @MainActor in
             // 2. 任务里面是的 sleep 等待时间，选择等待多长时间取决于你，但像 3 秒这样的等待是不错的默认情况
             try await Task.sleep(for: .seconds(3))
             // 3. 休眠任务是一种抛出操作，因为取消任务会导致休眠立即结束并引发错误。这意味着我们的 save() 调用不会被执行
@@ -473,7 +469,7 @@ class DataController: ObservableObject {
 
     // MARK: - 测试专用
 
-    // 静态属性：为了方便后面视图的预览，创建一下预处理数据。
+    // 静态属性：为了方便后面视图的预览，创建一下预处理数据
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()

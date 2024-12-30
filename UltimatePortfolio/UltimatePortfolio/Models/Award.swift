@@ -25,6 +25,7 @@ struct Award: Decodable, Identifiable {
     // 静态属性
     // 所有奖项：使用通用方法进行解码，解出来的所有 [Award] 对象生成一个静态属性，方便预览使用
     static let allAwards = Bundle.main.decode("Awards.json", as: [Award].self)
+    
     // 单个奖项：获取 allAwards 第一个元素作为示例
     static let example = allAwards[0]
 

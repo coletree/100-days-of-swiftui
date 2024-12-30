@@ -42,7 +42,7 @@ extension DataController {
 
             case "unlock":
                 return fullVersionUnlocked
-            
+
             case "chat":
                 return UserDefaults.standard.integer(forKey: "chatCount") >= award.value
 

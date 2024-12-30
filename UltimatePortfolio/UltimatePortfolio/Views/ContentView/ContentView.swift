@@ -229,5 +229,5 @@ struct ContentView: View {
 #Preview {
     ContentView(dataController: DataController.preview)
     // 预览代码加上 .preview ，这个是之前在 DataController 就创建好的静态属性，用于测试
-    // .environmentObject(DataController.preview)
+    .environmentObject(DataController.preview)
 }

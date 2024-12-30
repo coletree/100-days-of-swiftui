@@ -66,6 +66,7 @@ struct IssueView: View {
 
             // 第2部份：编辑 Issue 内容
             Section {
+
                 VStack(alignment: .leading) {
                     Text("Basic Information")
                         .font(.title2)
@@ -79,6 +80,7 @@ struct IssueView: View {
                         axis: .vertical
                     )
                 }
+
             }
 
             // 第3部分：设置提醒

@@ -96,7 +96,7 @@ struct ComplexPortfolioWidget: Widget {
 
 
 /// Preview 宏：它决定了如何在 Xcode 中预览我们的小部件
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     ComplexPortfolioWidget()
 } timeline: {
     SimpleEntry(date: .now, issues: [.example])

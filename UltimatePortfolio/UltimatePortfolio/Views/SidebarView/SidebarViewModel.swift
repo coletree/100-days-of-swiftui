@@ -32,7 +32,7 @@ extension SidebarView {
         // 静态属性：创建智能过滤器数组 smartFilters ，里面包括 “全部” 和 “最近” 两个实例
         let smartFilters: [Filter] = [.all, .recent]
 
-        // 2.Tag过滤器属性：读取 CoreData 的 tag 数据
+        // 2.Tag 过滤器属性：读取 CoreData 的 tag 数据
         // @FetchRequest 只能用于视图，在视图模型中无效，改用手动方式获取
         // @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
         private let tagsController: NSFetchedResultsController<Tag>
@@ -85,7 +85,7 @@ extension SidebarView {
             tagsController.delegate = self
 
             do {
-                // 这两句要按顺序写，有点像：启动 —— 再获取的感觉
+                // 这两句要按顺序写，有点像（启动 —— 再获取）的感觉
                 try tagsController.performFetch()
                 tags = tagsController.fetchedObjects ?? []
             } catch {

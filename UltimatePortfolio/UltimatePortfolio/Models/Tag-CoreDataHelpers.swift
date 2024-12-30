@@ -76,7 +76,7 @@ extension Tag: Comparable {
         print("\(records.count)条数据准备成功")
         return records
     }
-    
+
     // 检查 Tag 实例在云端的状态（是否存在）
     func checkCloudStatus(_ completion: @escaping (Bool) -> Void) {
         let name = objectID.uriRepresentation().absoluteString

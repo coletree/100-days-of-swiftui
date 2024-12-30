@@ -303,7 +303,6 @@
 		DF44EB992BD79E3B008FB6A6 = {
 			isa = PBXGroup;
 			children = (
-				DF6731312C057E3200B1773C /* PortfolioWidgetExtension.entitlements */,
 				DF44EBA42BD79E3B008FB6A6 /* UltimatePortfolio */,
 				DF6C26332BEF50070065BFE3 /* UltimatePortfolioTests */,
 				DF6C26522BF4670C0065BFE3 /* UltimatePortfolioUITests */,
@@ -406,6 +405,7 @@
 				DF67311B2C04A32A00B1773C /* ComplexWidget.swift */,
 				DF67311D2C04A32B00B1773C /* Assets.xcassets */,
 				DF67311F2C04A32B00B1773C /* Info.plist */,
+				DF6731312C057E3200B1773C /* PortfolioWidgetExtension.entitlements */,
 			);
 			path = PortfolioWidget;
 			sourceTree = "<group>";
@@ -1189,6 +1189,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UltimatePortfolio/Configuration/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1230,6 +1231,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UltimatePortfolio/Configuration/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1260,7 +1262,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PortfolioWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PortfolioWidget/PortfolioWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WMY6QKQ759;
@@ -1291,7 +1293,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PortfolioWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PortfolioWidget/PortfolioWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WMY6QKQ759;

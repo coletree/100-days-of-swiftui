@@ -77,8 +77,7 @@ struct SidebarView: View {
 
     // MARK: - 方法
 
-    // 自定义初始化：视图模型需要能够访问实例 DataController ，但无法从环境中读取该实例
-    // 因此自定义初始化方法，从这里注入 DataController
+    // 自定义初始化：视图模型需要访问 DataController 实例，但无法从环境中读取该实例，因此从这里注入
     init(dataController: DataController) {
         // 利用传入的 DataController 来创建视图模型
         let viewModel = ViewModel(dataController: dataController)
@@ -87,7 +86,6 @@ struct SidebarView: View {
         // StateObject 应该在视图的初始化时设置，并且只能在初始化方法中设置一次
         _viewModel = ObservedObject(wrappedValue: viewModel)
     }
-
 
 
 }
